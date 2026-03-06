@@ -1,178 +1,105 @@
 "use client";
 
-import { useState } from "react";
-import { RegistrationBenefit } from "@/types/homepage";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import { motion } from "framer-motion";
+import { FileText, Zap, Phone, Mail } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-interface RegistrationSectionProps {
-  title?: string;
-  subtitle?: string;
-  benefits?: RegistrationBenefit[];
-  onSubmit?: (data: RegistrationFormData) => void;
-}
-
-export interface RegistrationFormData {
-  fullName: string;
-  email: string;
-  phone: string;
-  company: string;
-  agreeToTerms: boolean;
-}
-
-const defaultBenefits: RegistrationBenefit[] = [
-  { id: 1, text: "Làm Kinh Doanh Đúng Pháp Luật", icon: "⭐" },
-  { id: 2, text: "Thành phần biểu quyết", icon: "⭐" },
-  { id: 3, text: "Tiếp cận nguồn lực", icon: "⭐" },
-];
-
-export function RegistrationSection({
-  title = "Đăng Ký Tham Gia Ngay",
-  subtitle = "Đăng ký ngay để nhận được những ưu đãi đặc biệt",
-  benefits = defaultBenefits,
-  onSubmit,
-}: RegistrationSectionProps) {
-  const [formData, setFormData] = useState<RegistrationFormData>({
-    fullName: "",
-    email: "",
-    phone: "",
-    company: "",
-    agreeToTerms: false,
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
-    } else {
-      console.log("Form submitted:", formData);
-    }
-  };
-
-  const handleChange = (field: keyof RegistrationFormData, value: string | boolean) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+export const RegistrationSection = () => {
+  const router = useRouter();
 
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {title}
+    <section id="registration" className="py-20 md:py-28 bg-white">
+      <div className="max-w-5xl mx-auto px-4 md:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <p className="text-sm font-semibold text-yellow-600 uppercase tracking-widest mb-3">Đăng ký</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
+            Đăng Ký Tham Gia Ngay
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        </div>
+          <p className="text-gray-600 mt-5 text-lg">Cơ hội kết nối và phát triển doanh nghiệp của bạn</p>
+        </motion.div>
 
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
-          {/* Benefits Card */}
-          <Card className="h-fit">
-            <CardHeader>
-              <CardTitle className="text-xl">Lợi Ích Khi Đăng Ký</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {benefits.map((benefit) => (
-                <div key={benefit.id} className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    {benefit.icon || "✓"}
-                  </div>
-                  <p className="text-gray-700">{benefit.text}</p>
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Timeline */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-gray-50/80 rounded-3xl p-8 md:p-10 border border-gray-100 shadow-sm"
+          >
+            <h3 className="text-xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+             Lịch Trình & Quy Trình
+            </h3>
+            <div className="space-y-8">
+              <div className="flex gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-yellow-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                  <FileText size={20} className="text-gray-900" />
                 </div>
-              ))}
-              <div className="pt-4 border-t">
-                <p className="text-sm text-gray-600">
-                  <strong>Số lượng giới hạn:</strong> 30 - 50n Đại Diện
-                </p>
-                <p className="text-sm text-gray-600 mt-2">
-                  <strong>Lệ phí tham gia:</strong> Miễn Phí
-                </p>
+                <div>
+                  <p className="font-bold text-gray-900 text-base mb-1">Thời gian đăng ký</p>
+                  <p className="text-yellow-600 font-bold text-lg">01/05/2025 → 30/06/2025</p>
+                  <p className="text-sm text-gray-500 mt-1">Nộp hồ sơ đăng ký trực tuyến</p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
-
-          {/* Registration Form */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl">Thông Tin Đăng Ký</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="fullName">Họ và tên *</Label>
-                  <Input
-                    id="fullName"
-                    value={formData.fullName}
-                    onChange={(e) => handleChange("fullName", e.target.value)}
-                    placeholder="Nhập họ và tên"
-                    required
-                  />
+              <div className="flex gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-yellow-500 flex items-center justify-center flex-shrink-0 shadow-md">
+                  <Zap size={20} className="text-gray-900" />
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleChange("email", e.target.value)}
-                    placeholder="Nhập địa chỉ email"
-                    required
-                  />
+                <div>
+                  <p className="font-bold text-gray-900 text-base mb-1">Xét chọn & thông báo</p>
+                  <p className="text-yellow-600 font-bold text-lg">5 ngày kể từ ngày đăng ký</p>
+                  <p className="text-sm text-gray-500 mt-1">Thông báo kết quả qua email</p>
                 </div>
+              </div>
+            </div>
+          </motion.div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Số điện thoại *</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => handleChange("phone", e.target.value)}
-                    placeholder="Nhập số điện thoại"
-                    required
-                  />
-                </div>
+          {/* CTA + Contact */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] flex flex-col justify-between relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl -mr-10 -mt-10" />
+            
+            <div className="relative z-10">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                Đăng Ký Nhanh
+              </h3>
+              <p className="text-base text-gray-600 mb-8">Chỉ mất vài phút để hoàn thành. Số lượng học bổng có hạn!</p>
+              <button
+                onClick={() => router.push("/registration")}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-yellow-500 text-gray-900 font-bold text-base hover:bg-yellow-400 hover:shadow-lg transition-all w-full justify-center transform hover:-translate-y-0.5"
+              >
+                 Đăng Ký Ngay
+              </button>
+            </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="company">Doanh nghiệp</Label>
-                  <Input
-                    id="company"
-                    value={formData.company}
-                    onChange={(e) => handleChange("company", e.target.value)}
-                    placeholder="Nhập tên doanh nghiệp"
-                  />
-                </div>
-
-                <div className="flex items-start space-x-2">
-                  <Checkbox
-                    id="terms"
-                    checked={formData.agreeToTerms}
-                    onCheckedChange={(checked) => handleChange("agreeToTerms", checked as boolean)}
-                    required
-                  />
-                  <label
-                    htmlFor="terms"
-                    className="text-sm text-gray-600 leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Tôi đồng ý với điều khoản và chính sách bảo mật
-                  </label>
-                </div>
-
-                <Button 
-                  type="submit" 
-                  className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold"
-                >
-                  Đăng Ký Ngay
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+            <div className="mt-10 pt-8 border-t border-gray-100 relative z-10">
+              <p className="text-sm font-bold text-gray-900 mb-4 uppercase tracking-wide"> Hỗ trợ 24/7 — Ms. Trâm</p>
+              <div className="flex flex-col gap-3">
+                <a href="tel:0983967567" className="inline-flex items-center gap-3 text-base font-medium text-gray-600 hover:text-yellow-600 transition-colors">
+                  <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center">
+                    <Phone size={16} className="text-gray-900" />
+                  </div>
+                  0983 967 567
+                </a>
+                <a href="mailto:tramnguyenvcci@gmail.com" className="inline-flex items-center gap-3 text-base font-medium text-gray-600 hover:text-yellow-600 transition-colors">
+                  <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center">
+                    <Mail size={16} className="text-gray-900" />
+                  </div>
+                  tramnguyenvcci@gmail.com
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
   );
-}
+};
