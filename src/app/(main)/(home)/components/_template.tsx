@@ -1,16 +1,4 @@
-/**
- * New Section Component Template
- * 
- * Use this template to create new sections for the homepage.
- * 
- * Steps to create a new section:
- * 1. Copy this template
- * 2. Rename to your section name (e.g., TestimonialsSection.tsx)
- * 3. Update types in src/types/homepage.ts
- * 4. Add data in src/configs/homepage-data.ts
- * 5. Export in src/components/features/homepage/index.ts
- * 6. Add to page in src/app/(main)/page.tsx
- */
+
 
 "use client";
 
@@ -22,14 +10,20 @@ import { Button } from "@/components/ui/button";
 // Import your data type
 // import { YourDataType } from "@/types/homepage";
 
+// Example item type - replace with your actual type
+interface ExampleItem {
+  id: number;
+  // Add your properties here
+}
+
 interface NewSectionProps {
   title?: string;
   subtitle?: string;
-  items?: any[]; // Replace 'any' with your actual type
+  items?: ExampleItem[];
 }
 
 // Default data (fallback if no props provided)
-const defaultItems: any[] = [
+const defaultItems: ExampleItem[] = [
   {
     id: 1,
     // Add your data structure here
