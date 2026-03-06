@@ -4,8 +4,8 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 // import AuthGuard from "@/auth/AuthGuard";
 // import FallbackSpinner from "@/components/common/loading";
-import AbilityProvider from "@/providers/ability-provider";
-import RouteGuard from "@/auth/RouteGuard";
+// import AbilityProvider from "@/providers/ability-provider";
+// import RouteGuard from "@/auth/RouteGuard";
 
 export default function DashboardLayout({
   children,
@@ -15,12 +15,12 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen bg-background flex flex-col">
         {/* <AuthGuard fallback={<FallbackSpinner />}> */}
-        <AbilityProvider>
+        {/* <AbilityProvider> */}
           <Header />
           <main className="flex-1">
-            <RouteGuard>
+            {/* <RouteGuard> */}
               {children}
-            </RouteGuard>
+            {/* </RouteGuard> */}
           </main>
           <Footer />
           <Toaster
@@ -36,7 +36,7 @@ export default function DashboardLayout({
               },
             }}
           />
-        </AbilityProvider>
+        {/* </AbilityProvider> */}
       {/* </AuthGuard> */}
     </div>
   );
