@@ -13,7 +13,6 @@ import {
   CountdownSection,
 } from "@/app/(main)/(home)/components";
 import {
-  heroData,
   advisoryBoardData,
   sponsorsData,
   countdownData,
@@ -23,11 +22,7 @@ export default function HomePage() {
   return (
     <div className="homepage">
       {/* Hero Section with Stats */}
-      <HeroSection 
-        title={heroData.title}
-        subtitle={heroData.subtitle}
-        stats={heroData.stats}
-      />
+      <HeroSection />
 
       {/* Stats Section */}
       <StatsSection />
