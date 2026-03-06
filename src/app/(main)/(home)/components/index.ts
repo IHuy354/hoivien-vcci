@@ -1,9 +1,10 @@
 // Homepage section components
 export { HeroSection } from "./HeroSection";
+export { StatsSection } from "./StatsSection";
 export { FeaturesSection } from "./FeaturesSection";
-export { ValuePropositionSection } from "./ValuePropositionSection";
+export { WhyChooseSection } from "./WhyChooseSection";
+export { ObjectivesSection } from "./ObjectivesSection";
 export { RegistrationSection } from "./RegistrationSection";
-export { JourneySection } from "./JourneySection";
 export { GallerySection } from "./GallerySection";
 export { SpeakersSection } from "./SpeakersSection";
 export { AdvisoryBoardSection } from "./AdvisoryBoardSection";

@@ -12,6 +12,16 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+            navy: {
+                DEFAULT: '#0A192F',
+                light: '#112240',
+                dark: '#020C1B',
+            },
+            gold: {
+                DEFAULT: '#D4AF37',
+                light: '#F3E5AB',
+                dark: '#AA8C2C',
+            },
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -72,11 +82,16 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+            float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+            }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+            float: 'float 6s ease-in-out infinite',
   		}
   	}
   },
