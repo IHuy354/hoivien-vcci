@@ -9,8 +9,9 @@ import Image from "next/image";
 
 const navItems = [
   { label: "Đăng ký", href: "#registration" },
-  { label: "Hình ảnh", href: "#gallery" },
+  
   { label: "Nội dung", href: "#objectives" },
+  { label: "Hình ảnh", href: "#gallery" },
   { label: "Diễn giả", href: "#speakers" },
   { label: "Nhà tài trợ", href: "#sponsors" },
 ];
@@ -27,10 +28,28 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMenuOpen(false);
-    if (pathname !== "/") {
-      router.push("/" + href);
+    
+    // Smooth scroll if we are already on the homepage
+    if (pathname === "/") {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+        // If we are not on the homepage, let the Link and useRouter handle it, then wait for page load to scroll
+        e.preventDefault();
+        router.push("/" + href);
+        setTimeout(() => {
+            const targetId = href.replace("#", "");
+            const element = document.getElementById(targetId);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+            }
+        }, 100);
     }
   };
 
@@ -72,7 +91,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={targetHref}
-                onClick={() => handleNavClick(item.href)}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className={`px-4 py-2 rounded-full text-base font-semibold transition-all duration-300 ${
                   scrolled
                     ? "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
@@ -117,7 +136,7 @@ export default function Header() {
                   <Link
                     key={item.href}
                     href={targetHref}
-                    onClick={() => handleNavClick(item.href)}
+                    onClick={(e) => handleNavClick(e, item.href)}
                     className="px-4 py-3 rounded-xl text-sm font-medium text-gray-800 hover:bg-gray-100 transition-colors"
                   >
                     {item.label}
@@ -128,6 +147,7 @@ export default function Header() {
                 onClick={() => {
                   setMenuOpen(false);
                   router.push("/registration");
+                  
                 }}
                 className="mt-2 px-6 py-3 rounded-xl bg-yellow-500 text-gray-900 text-sm font-semibold text-center hover:bg-yellow-400 transition-colors"
               >

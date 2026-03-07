@@ -8,15 +8,10 @@ import {
   RegistrationSection,
   GallerySection,
   SpeakersSection,
-  AdvisoryBoardSection,
+  InstructorsSection,
   SponsorsSection,
   CountdownSection,
 } from "@/app/(main)/(home)/components";
-import {
-  advisoryBoardData,
-  sponsorsData,
-  countdownData,
-} from "@/configs/homepage-data";
 
 export default function HomePage() {
   return (
@@ -42,23 +37,14 @@ export default function HomePage() {
       {/* Speakers Section */}
       <SpeakersSection />
 
-      {/* Advisory Board/Instructors Section */}
-      <AdvisoryBoardSection 
-        title={advisoryBoardData.title}
-        subtitle={advisoryBoardData.subtitle}
-        members={advisoryBoardData.members}
-      />
+      {/* Instructors Section */}
+      <InstructorsSection />
 
       {/* Sponsors Section */}
-      <SponsorsSection 
-        title={sponsorsData.title}
-        subtitle={sponsorsData.subtitle}
-        year={sponsorsData.year}
-        sponsors={sponsorsData.sponsors}
-      />
+      <SponsorsSection />
 
       {/* Countdown Timer Section */}
-      <CountdownSection config={countdownData} />
+      <CountdownSection />
     </div>
   );
 }

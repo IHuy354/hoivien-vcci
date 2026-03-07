@@ -1,140 +1,95 @@
 "use client";
 
-import Image from "next/image";
-import { Sponsor } from "@/types/homepage";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
 
-interface SponsorsSectionProps {
-  title?: string;
-  subtitle?: string;
-  year?: string;
-  sponsors?: Sponsor[];
-}
+const mainSponsor = { name: "VCCIIP", img: "https://s3.meu-solutions.com/skh-event/public/images/vcci-ip.jpg", url: "https://vcci.com.vn/" };
 
-const defaultSponsors: Sponsor[] = [
-  { id: 1, name: "VCCI-JP", logo: "/images/sponsors/vcci-jp.png", tier: "platinum" },
-  { id: 2, name: "Seaplanes", logo: "/images/sponsors/seaplanes.png", tier: "platinum" },
-  { id: 3, name: "SELF-JP", logo: "/images/sponsors/self-jp.png", tier: "platinum" },
-  { id: 4, name: "VCCI", logo: "/images/sponsors/vcci.png", tier: "platinum" },
-  { id: 5, name: "Lạc Hồng University", logo: "/images/sponsors/lhun.png", tier: "gold" },
-  { id: 6, name: "Ngân hàng", logo: "/images/sponsors/bank.png", tier: "gold" },
-  { id: 7, name: "Uni Value", logo: "/images/sponsors/uni-value.png", tier: "gold" },
-  { id: 8, name: "Retail", logo: "/images/sponsors/retail.png", tier: "gold" },
+const goldSponsors = [
+  { name: "MK Group", img: "https://s3.meu-solutions.com/skh-event/public/images/z6476836073983_fa9ab04ef371abf18d7adcd037b41162.jpg" },
+  { name: "Tân Thanh Container", img: "https://s3.meu-solutions.com/skh-event/public/images/T%C3%A2n-Thanh-Container.png" },
+  { name: "TPBank", img: "https://s3.meu-solutions.com/skh-event/public/images/tp-bank.png" },
+  { name: "SELOF", img: "https://s3.meu-solutions.com/skh-event/public/images/z5962928254946_a0f1ee3b590460cb10a336b405f70e36.jpg" },
+  { name: "Quaviet", img: "https://s3.meu-solutions.com/skh-event/public/images/Qua-Viet.png" },
+  { name: "Fujiwa", img: "https://s3.meu-solutions.com/skh-event/public/images/fujiwa.png" },
+  { name: "Grab", img: "https://s3.meu-solutions.com/skh-event/public/images/logo-grab-inkythuatso-2-01-24-09-59-49.jpg" },
 ];
 
-export function SponsorsSection({
-  title = "Nhà Tài Trợ Đồng Hành",
-  subtitle = "Những đối tác tin cậy đồng hành cùng chương trình",
-  year = "2025",
-  sponsors = defaultSponsors,
-}: SponsorsSectionProps) {
-  const platinumSponsors = sponsors.filter(s => s.tier === 'platinum');
-  const goldSponsors = sponsors.filter(s => s.tier === 'gold');
-  const silverSponsors = sponsors.filter(s => s.tier === 'silver');
+const silverSponsors = [
+  { name: "Liontrans", img: "https://s3.meu-solutions.com/skh-event/public/images/Lion-Trans.png" },
+  { name: "Skale", img: "https://s3.meu-solutions.com/skh-event/public/images/skale.png" },
+  { name: "BrainUp", img: "https://s3.meu-solutions.com/skh-event/public/images/brain-up.png" },
+  { name: "Arobid", img: "https://s3.meu-solutions.com/skh-event/public/images/arobid.png" },
+  { name: "10X Value", img: "https://s3.meu-solutions.com/skh-event/public/images/10x-value.png" },
+  { name: "Real Logistics", img: "https://s3.meu-solutions.com/skh-event/public/images/real-logistic.png" },
+];
 
-  return (
-    <section className="py-16 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            {title} {year}
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            {subtitle}
-          </p>
-        </div>
+const SponsorLogo = ({ name, img }: { name: string; img: string }) => (
+  <div className="group/card bg-white rounded-2xl p-4 flex items-center justify-center aspect-[3/2] hover:-translate-y-1 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-all duration-300">
+    <img src={img} alt={name} className="max-h-12 max-w-full object-contain opacity-70 group-hover/card:opacity-100 transition-opacity mix-blend-multiply" loading="lazy" />
+  </div>
+);
 
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Platinum Sponsors */}
-          {platinumSponsors.length > 0 && (
-            <div>
-              <div className="text-center mb-6">
-                <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-1 text-sm">
-                  Nhà Tài Trợ Chính
-                </Badge>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {platinumSponsors.map((sponsor) => (
-                  <Card
-                    key={sponsor.id}
-                    className="p-6 flex items-center justify-center hover:shadow-lg transition-shadow duration-300 bg-white border-2 border-blue-100"
-                  >
-                    <div className="relative w-full h-20">
-                      <Image
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
-                  </Card>
-                ))}
-              </div>
+export const SponsorsSection = () => (
+  <section id="sponsors" className="py-20 md:py-28 bg-gray-50/50">
+    <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <p className="text-md font-semibold text-yellow-500 uppercase tracking-widest mb-3">Đối tác</p>
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mt-5">Nhà Tài Trợ Đồng Hành 2025</h2>
+      </motion.div>
+
+      {/* Main sponsor */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="mb-14"
+      >
+        <p className="text-center text-sm font-bold text-gray-600 mb-5 uppercase tracking-wider">Tài Trợ Chính</p>
+        <a href={mainSponsor.url} target="_blank" rel="noopener noreferrer" className="block max-w-xs mx-auto">
+          <div className="bg-white rounded-3xl p-8 flex items-center justify-center ring-4 ring-yellow-400  hover:shadow-xl transition-all duration-300">
+            <img src={mainSponsor.img} alt={mainSponsor.name} className="max-h-20 object-contain mix-blend-multiply" />
+          </div>
+        </a>
+      </motion.div>
+
+      {/* Gold */}
+      <div className="mb-14 relative overflow-hidden group">
+        <p className="text-center text-sm font-bold text-gray-600 mb-6 uppercase tracking-wider relative z-10 bg-gray-50/50 inline-block px-4 mx-auto left-1/2 -translate-x-1/2">Tài Trợ Vàng</p>
+        
+        {/* Gradient blur edges */}
+        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+
+        <div className="flex w-max animate-marquee-left hover:[animation-play-state:paused] items-center">
+          {[...goldSponsors, ...goldSponsors, ...goldSponsors, ...goldSponsors].map((s, i) => (
+            <div key={i} className="w-[200px] shrink-0 px-3">
+               <SponsorLogo name={s.name} img={s.img} />
             </div>
-          )}
-
-          {/* Gold Sponsors */}
-          {goldSponsors.length > 0 && (
-            <div>
-              <div className="text-center mb-6">
-                <Badge className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white px-4 py-1 text-sm">
-                  Nhà Tài Trợ Vàng
-                </Badge>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                {goldSponsors.map((sponsor) => (
-                  <Card
-                    key={sponsor.id}
-                    className="p-6 flex items-center justify-center hover:shadow-lg transition-shadow duration-300 bg-white"
-                  >
-                    <div className="relative w-full h-16">
-                      <Image
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Silver Sponsors */}
-          {silverSponsors.length > 0 && (
-            <div>
-              <div className="text-center mb-6">
-                <Badge className="bg-gradient-to-r from-gray-400 to-gray-500 text-white px-4 py-1 text-sm">
-                  Nhà Tài Trợ Bạc
-                </Badge>
-              </div>
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-                {silverSponsors.map((sponsor) => (
-                  <Card
-                    key={sponsor.id}
-                    className="p-4 flex items-center justify-center hover:shadow-lg transition-shadow duration-300 bg-white"
-                  >
-                    <div className="relative w-full h-12">
-                      <Image
-                        src={sponsor.logo}
-                        alt={sponsor.name}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 33vw, 16vw"
-                      />
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          )}
+          ))}
         </div>
       </div>
-    </section>
-  );
-}
+
+      {/* Silver */}
+      <div className="relative overflow-hidden group">
+        <p className="text-center text-sm font-bold text-gray-600 mb-6 uppercase tracking-wider relative z-10 bg-gray-50/50 inline-block px-4 mx-auto left-1/2 -translate-x-1/2">Tài Trợ Bạc</p>
+        
+        {/* Gradient blur edges */}
+        <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
+
+        <div className="flex w-max animate-marquee-right hover:[animation-play-state:paused] items-center">
+          {[...silverSponsors, ...silverSponsors, ...silverSponsors, ...silverSponsors, ...silverSponsors, ...silverSponsors].map((s, i) => (
+            <div key={i} className="w-[180px] shrink-0 px-3">
+               <SponsorLogo name={s.name} img={s.img} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
