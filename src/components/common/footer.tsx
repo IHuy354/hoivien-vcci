@@ -15,11 +15,11 @@ export default function Footer({ className }: FooterProps) {
           <div>
             <div className="relative h-12 w-auto mb-4 flex items-center">
               <Image 
-                src="/images/logo-ceo-vcci.png" 
+                src="/imgs/logo.png" 
                 alt="CEO VCCI" 
                 width={160}
                 height={48}
-                className="h-12 w-auto object-contain" 
+                className=" object-contain" 
               />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">

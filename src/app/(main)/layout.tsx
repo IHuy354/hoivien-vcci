@@ -7,11 +7,30 @@ import Footer from "@/components/common/footer";
 // import AbilityProvider from "@/providers/ability-provider";
 // import RouteGuard from "@/auth/RouteGuard";
 
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Check if there is a hash in the URL on load or pathname change
+    if (window.location.hash) {
+      const targetId = window.location.hash.substring(1);
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [pathname]);
   return (
     <div className="min-h-screen bg-background flex flex-col">
         {/* <AuthGuard fallback={<FallbackSpinner />}> */}

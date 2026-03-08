@@ -7,6 +7,6 @@ export { ObjectivesSection } from "./ObjectivesSection";
 export { RegistrationSection } from "./RegistrationSection";
 export { GallerySection } from "./GallerySection";
 export { SpeakersSection } from "./SpeakersSection";
-export { AdvisoryBoardSection } from "./AdvisoryBoardSection";
+export { InstructorsSection } from "./InstructorsSection";
 export { SponsorsSection } from "./SponsorsSection";
 export { CountdownSection } from "./CountdownSection";
