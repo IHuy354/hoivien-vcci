@@ -7,5 +7,6 @@ export { RegistrationSection } from "./RegistrationSection";
 export { GallerySection } from "./GallerySection";
 export { SpeakersSection } from "./SpeakersSection";
 export { InstructorsSection } from "./InstructorsSection";
+export { AdvisorsSection } from "./AdvisorsSection";
 export { SponsorsSection } from "./SponsorsSection";
 export { CountdownSection } from "./CountdownSection";

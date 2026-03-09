@@ -9,6 +9,7 @@ import {
   GallerySection,
   SpeakersSection,
   InstructorsSection,
+  AdvisorsSection,
   SponsorsSection,
   CountdownSection,
 } from "@/app/(main)/(home)/components";
@@ -39,6 +40,9 @@ export default function HomePage() {
 
       {/* Instructors Section */}
       <InstructorsSection />
+
+      {/* Advisors Section */}
+      <AdvisorsSection />
 
       {/* Sponsors Section */}
       <SponsorsSection />
