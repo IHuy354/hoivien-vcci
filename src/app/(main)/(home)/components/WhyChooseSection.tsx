@@ -1,40 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { BookOpen, Award, Users, Lightbulb, Network, MessageSquare } from "lucide-react";
-
-const features = [
-  {
-    icon: BookOpen,
-    title: "Phương Pháp Đào Tạo Tiên Tiến",
-    desc: "Kết hợp lý thuyết và thực tế: kiến tập tại doanh nghiệp, CEO Talkshow, Factory Tour",
-  },
-  {
-    icon: Award,
-    title: "Học Bổng Toàn Phần 100%",
-    desc: "Giá trị 50 triệu VNĐ — chỉ đóng 3 triệu chi phí sinh hoạt lớp",
-  },
-  {
-    icon: Lightbulb,
-    title: "Nội Dung Cô Đọng & Chất Lượng",
-    desc: "Tập trung giá trị cần thiết, giải quyết ngay vướng mắc trong điều hành",
-  },
-  {
-    icon: Network,
-    title: "Mạng Lưới Kết Nối Mạnh",
-    desc: "Kết nối với 3.000+ hội viên VCCI-HCM và các CEO thành công",
-  },
-  {
-    icon: MessageSquare,
-    title: "Tương Tác Cao",
-    desc: "Chia sẻ kinh nghiệm, giao lưu hiệu quả trong hệ sinh thái doanh nghiệp",
-  },
-  {
-    icon: Users,
-    title: "Đề Án Quốc Gia",
-    desc: "Chứng nhận uy tín từ VCCI — Doanh nghiệp vững mạnh, Quốc gia thịnh vượng",
-  },
-];
+import { whyChooseFeatures as features } from "@/mockdata/ceovcci";
 
 export const WhyChooseSection = () => (
   <section className="py-10 md:py-12 bg-gray-50/50">

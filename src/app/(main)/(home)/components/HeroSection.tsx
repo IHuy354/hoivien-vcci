@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, GraduationCap, Users, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { heroStats } from "@/mockdata/ceovcci";
 
 export function HeroSection() {
   const router = useRouter();
@@ -84,11 +85,7 @@ export function HeroSection() {
 
           {/* Info cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-            {[
-              { icon: Calendar, label: "Khai giảng", value: "11/07/2025" },
-              { icon: GraduationCap, label: "Học bổng", value: "50 Triệu VNĐ" },
-              { icon: Users, label: "Chi phí", value: "Chỉ 3 Triệu" },
-            ].map((item, i) => (
+            {heroStats.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}

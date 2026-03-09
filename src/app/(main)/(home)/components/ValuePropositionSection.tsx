@@ -9,44 +9,8 @@ interface ValuePropositionSectionProps {
   items?: ValueProposition[];
 }
 
-const defaultItems: ValueProposition[] = [
-  {
-    id: 1,
-    icon: "💡",
-    title: "Nâng cao năng lực lãnh đạo",
-    description: "Phát triển kỹ năng lãnh đạo chiến lược và quản trị doanh nghiệp hiệu quả",
-  },
-  {
-    id: 2,
-    icon: "🚀",
-    title: "Đổi mới sáng tạo",
-    description: "Học cách tư duy đổi mới và áp dụng công nghệ vào hoạt động kinh doanh",
-  },
-  {
-    id: 3,
-    icon: "📈",
-    title: "Tăng trưởng bền vững",
-    description: "Xây dựng chiến lược phát triển dài hạn và bền vững cho doanh nghiệp",
-  },
-  {
-    id: 4,
-    icon: "🤝",
-    title: "Mở rộng mạng lưới",
-    description: "Kết nối với cộng đồng doanh nghiệp và các đối tác tiềm năng",
-  },
-  {
-    id: 5,
-    icon: "💼",
-    title: "Hiểu biết thị trường",
-    description: "Cập nhật xu hướng mới nhất và nắm bắt cơ hội kinh doanh",
-  },
-  {
-    id: 6,
-    icon: "🎯",
-    title: "Chiến lược kinh doanh",
-    description: "Xây dựng và thực thi chiến lược kinh doanh hiệu quả",
-  },
-];
+import { valuePropositions } from "@/mockdata/ceovcci";
+const defaultItems: ValueProposition[] = valuePropositions;
 
 export function ValuePropositionSection({ 
   title = "Phát Triển Toàn Diện Năng Lực Lãnh Đạo",

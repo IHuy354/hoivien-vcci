@@ -1,17 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 
-const instructors = [
-  { name: "Nguyễn Hồng Thắng", title: "PGS Tiến Sĩ", img: "https://s3.meu-solutions.com/skh-event/public/images/hongthang-removebg-preview.png" },
-  { name: "Lâm Bính Bảo", title: "Thạc Sĩ", img: "https://s3.meu-solutions.com/skh-event/public/images/B%C3%ADnh-B%E1%BA%A3o.png" },
-  { name: "Nguyễn Mạnh Hiền", title: "Tiến Sĩ", img: "https://s3.meu-solutions.com/skh-event/public/images/M%E1%BA%A1nh-Hi%E1%BB%81n.png" },
-  { name: "Võ Tiến Dũng", title: "Thạc Sĩ", img: "https://s3.meu-solutions.com/skh-event/public/images/Ti%E1%BA%BFn-D%C5%A9ng.png" },
-  { name: "Vũ Đỗ Tuấn Huy", title: "Thạc Sĩ", img: "https://s3.meu-solutions.com/skh-event/public/images/Tu%E1%BA%A5n-Huy.png" },
-  { name: "Mai Trường Giang", title: "Chuyên Gia Đầu Tư", img: "https://s3.meu-solutions.com/skh-event/public/images/truonggiang.png" },
-  { name: "Võ Thái Lâm", title: "Coach", img: "https://s3.meu-solutions.com/skh-event/public/images/Th%C3%A1i-L%C3%A2m.png" },
-  { name: "Ngô Quỳnh Anh", title: "Luật Sư", img: "https://s3.meu-solutions.com/skh-event/public/images/Qu%E1%BB%B3nh-Anh.png" },
-];
+import { instructors } from "@/mockdata/ceovcci";
 
 export const InstructorsSection = () => (
   <section className="py-20 md:py-28 bg-[#0A192F] relative overflow-hidden">

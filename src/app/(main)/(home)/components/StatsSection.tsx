@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
-const stats = [
-  { value: 5, suffix: "", label: "Niên khóa" },
-  { value: 500, suffix: "+", label: "CEO tham gia" },
-  { value: 4, suffix: "", label: "Tháng đào tạo" },
-  { value: 3000, suffix: "+", label: "Cộng đồng CEO VCCI" },
-];
+import { stats } from "@/mockdata/ceovcci";
 
 function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0);

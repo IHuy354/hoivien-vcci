@@ -1,17 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 
-const speakers = [
-  { name: "Ông Trần Việt Anh", role: "Chủ Tịch HĐQT", org: "Cty XNK Nam Thái Sơn", img: "https://s3.meu-solutions.com/skh-event/public/images/z6666735830408_d0abbacae2e6bb2d005441ee4dc9f07d.jpg" },
-  { name: "Ông Lê Viết Hải", role: "Chủ Tịch", org: "Tập Đoàn XD Hòa Bình", img: "https://s3.meu-solutions.com/skh-event/public/images/22.png" },
-  { name: "Bà Cao Thị Ngọc Dung", role: "Chủ Tịch HĐQT", org: "PNJ", img: "https://s3.meu-solutions.com/skh-event/public/images/ngoc_dung.png" },
-  { name: "Ông Đặng Văn Thành", role: "Chủ Tịch", org: "Tập đoàn TTC", img: "https://s3.meu-solutions.com/skh-event/public/images/vanthanh.png" },
-  { name: "Bà Thái Vân Linh", role: "GĐDH", org: "Skills Bridge", img: "https://s3.meu-solutions.com/skh-event/public/images/V%C3%A2n-Linh.png" },
-  { name: "Bà Vũ Kim Hạnh", role: "Chủ Tịch", org: "Hội Hàng VN Chất Lượng Cao", img: "https://s3.meu-solutions.com/skh-event/public/images/Kim-H%E1%BA%A1nh.png" },
-  { name: "Ông Lý Ngọc Minh", role: "Chủ Tịch", org: "Minh Long I", img: "https://s3.meu-solutions.com/skh-event/public/images/ngocminh.png" },
-  { name: "Ông Mai Hữu Tín", role: "UV-BCH VCCI", org: "Cty CP Đầu Tư U&I", img: "https://s3.meu-solutions.com/skh-event/public/images/3.png" },
-];
+import { speakers } from "@/mockdata/ceovcci";
 
 export const SpeakersSection = () => (
   <section id="speakers" className="py-20 md:py-28 bg-white">
