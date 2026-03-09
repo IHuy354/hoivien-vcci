@@ -166,3 +166,15 @@ export const valuePropositions = [
     description: "Xây dựng và thực thi chiến lược kinh doanh hiệu quả",
   },
 ];
+
+export const advisors = [
+  { name: "Ông Nguyễn Tuấn Quỳnh", role: "Cố vấn", org: "Chủ Tịch Saigonbooks", img: "https://s3.meu-solutions.com/skh-event/public/images/Tu%E1%BA%A5n-Qu%E1%BB%B3nh.png" },
+  { name: "TTV - Trần Ngọc Liêm", role: "Cố vấn", org: "GĐ VCCI-HCM", img: "https://s3.meu-solutions.com/skh-event/public/images/Ng%E1%BB%8Dc-Li%C3%AAm.png" },
+  { name: "Ông Trần Văn Phát", role: "Cố vấn", org: "CEO Công ty Robot", img: "https://s3.meu-solutions.com/skh-event/public/images/V%C4%83n-Ph%C3%A1t.png" },
+];
+
+export const directors = [
+  { name: "ThS. Vũ Đỗ Tuấn Huy", role: "Chủ nhiệm", org: "VCCI-Partner • Chuyên gia cố vấn và đào tạo doanh nghiệp", img: "https://s3.meu-solutions.com/skh-event/public/images/Tu%E1%BA%A5n-Huy.png" },
+  { name: "ThS. Nguyễn Đoàn Thông", role: "Chủ nhiệm", org: "Trưởng phòng Hội viên - Đào tạo - Truyền thông VCCI-HCM", img: "https://s3.meu-solutions.com/skh-event/public/images/%C4%90o%C3%A0n-Th%C3%B4ng.png" },
+  { name: "Nguyễn Thị Bảo Trâm", role: "Chủ nhiệm", org: "Phòng Hội viên - Đào tạo - Truyền thông VCCI-HCM", img: "https://s3.meu-solutions.com/skh-event/public/images/B%E1%BA%A3o-Tr%C3%A2m.png" },
+];
