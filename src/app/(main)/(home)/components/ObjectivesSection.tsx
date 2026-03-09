@@ -1,17 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Target, Zap, DollarSign, Sparkles, Rocket, Building, Map } from "lucide-react";
-
-const objectives = [
-  { icon: Target, title: "Chiến Lược Thời Đại 4.0", desc: "Xây dựng chiến lược doanh nghiệp với tầm nhìn lãnh đạo trong thời đại 4.0" },
-  { icon: Zap, title: "Kỹ Năng Quản Trị", desc: "Nâng cao năng lực quản trị, xử lý tình huống thực tế" },
-  { icon: DollarSign, title: "Phương Án Gọi Vốn", desc: "Cơ cấu vốn và xây dựng dự án gọi vốn hiệu quả" },
-  { icon: Sparkles, title: "Phong Cách Doanh Nhân", desc: "Bổ trợ kiến thức và phong cách lãnh đạo chuyên nghiệp" },
-  { icon: Rocket, title: "Phát Triển Toàn Diện", desc: "Cập nhật tri thức quản trị, mở rộng mối quan hệ" },
-  { icon: Building, title: "Quản Trị Hệ Thống", desc: "Quản trị doanh nghiệp từ thượng tầng đến hạ tầng" },
-  { icon: Map, title: "Chiến Lược Dài Hạn", desc: "Vạch ra chiến lược bền vững cho doanh nghiệp" },
-];
+import { objectives } from "@/mockdata/ceovcci";
 
 export const ObjectivesSection = () => (
   <section id="objectives" className="py-20 md:py-28 bg-[#0A192F] relative overflow-hidden">

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
-const TARGET = new Date("2025-07-11T08:30:00+07:00").getTime();
+import { countdownTarget as TARGET } from "@/mockdata/ceovcci";
 
 function getTimeLeft() {
   const diff = Math.max(0, TARGET - Date.now());

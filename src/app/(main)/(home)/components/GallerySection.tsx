@@ -1,21 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const categories = ["Tất cả", "Học tập", "Trao bằng", "Thuyết trình", "Kết nối"];
-
-const images = [
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/khaigiang2.jpg", cat: "Học tập", title: "Khai giảng khóa học" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/z6676007734179_1bbb0f51730cac4358395f45566ddce1.jpg", cat: "Học tập", title: "Lớp học trực tiếp" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/NNS00012-768x512.jpg", cat: "Trao bằng", title: "Lễ tốt nghiệp CEO 2024" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/NNS09871-768x512.jpg", cat: "Trao bằng", title: "Trao chứng nhận" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/thuettrinh22.jpg", cat: "Thuyết trình", title: "Thuyết trình doanh nghiệp" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/z6368071764596_86c1f14c007ec1b1962d4283bfba15a1.jpg", cat: "Thuyết trình", title: "Kế hoạch kinh doanh" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/z6404282292064_5a9ea4692dfe628417919aa9d346fa6e.jpg", cat: "Kết nối", title: "Giao lưu doanh nghiệp" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/ketnoi22.jpg", cat: "Kết nối", title: "Giao lưu doanh nghiệp" },
-  { src: "https://s3.meu-solutions.com/skh-event/public/images/NNS09932-768x495.jpg", cat: "Trao bằng", title: "Lễ tốt nghiệp CEO 2024" },
-];
+import { galleryCategories as categories, galleryImages as images } from "@/mockdata/ceovcci";
 
 export const GallerySection = () => {
   const [active, setActive] = useState("Tất cả");

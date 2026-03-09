@@ -1,27 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { motion } from "framer-motion";
 
-const mainSponsor = { name: "VCCIIP", img: "https://s3.meu-solutions.com/skh-event/public/images/vcci-ip.jpg", url: "https://vcci.com.vn/" };
-
-const goldSponsors = [
-  { name: "MK Group", img: "https://s3.meu-solutions.com/skh-event/public/images/z6476836073983_fa9ab04ef371abf18d7adcd037b41162.jpg" },
-  { name: "Tân Thanh Container", img: "https://s3.meu-solutions.com/skh-event/public/images/T%C3%A2n-Thanh-Container.png" },
-  { name: "TPBank", img: "https://s3.meu-solutions.com/skh-event/public/images/tp-bank.png" },
-  { name: "SELOF", img: "https://s3.meu-solutions.com/skh-event/public/images/z5962928254946_a0f1ee3b590460cb10a336b405f70e36.jpg" },
-  { name: "Quaviet", img: "https://s3.meu-solutions.com/skh-event/public/images/Qua-Viet.png" },
-  { name: "Fujiwa", img: "https://s3.meu-solutions.com/skh-event/public/images/fujiwa.png" },
-  { name: "Grab", img: "https://s3.meu-solutions.com/skh-event/public/images/logo-grab-inkythuatso-2-01-24-09-59-49.jpg" },
-];
-
-const silverSponsors = [
-  { name: "Liontrans", img: "https://s3.meu-solutions.com/skh-event/public/images/Lion-Trans.png" },
-  { name: "Skale", img: "https://s3.meu-solutions.com/skh-event/public/images/skale.png" },
-  { name: "BrainUp", img: "https://s3.meu-solutions.com/skh-event/public/images/brain-up.png" },
-  { name: "Arobid", img: "https://s3.meu-solutions.com/skh-event/public/images/arobid.png" },
-  { name: "10X Value", img: "https://s3.meu-solutions.com/skh-event/public/images/10x-value.png" },
-  { name: "Real Logistics", img: "https://s3.meu-solutions.com/skh-event/public/images/real-logistic.png" },
-];
+import { mainSponsor, goldSponsors, silverSponsors } from "@/mockdata/ceovcci";
 
 const SponsorLogo = ({ name, img }: { name: string; img: string }) => (
   <div className="group/card bg-white rounded-2xl p-4 flex items-center justify-center aspect-[3/2] hover:-translate-y-1 shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-gray-100 hover:shadow-md transition-all duration-300">
