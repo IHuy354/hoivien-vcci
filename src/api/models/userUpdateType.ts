@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type UserUpdateType = typeof UserUpdateType[keyof typeof UserUpdateType];
 

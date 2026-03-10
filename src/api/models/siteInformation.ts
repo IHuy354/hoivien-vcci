@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { SiteInformationLinkSocials } from './siteInformationLinkSocials';
 
 export interface SiteInformation {

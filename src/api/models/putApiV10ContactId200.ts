@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { PutApiV10ContactId200AllOf } from './putApiV10ContactId200AllOf';
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostMetadata } from './postMetadata';
 
 export interface Post {

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface SiteSetting {
   id?: string;

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyFocusSkillsItem = typeof PostApiV10PublicRegistrationBodyFocusSkillsItem[keyof typeof PostApiV10PublicRegistrationBodyFocusSkillsItem];
 

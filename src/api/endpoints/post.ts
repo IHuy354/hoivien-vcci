@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -378,7 +378,7 @@ export const getGetApiV10PostQueryKey = (params?: GetApiV10PostParams,) => {
     }
 
     
-export const getGetApiV10PostInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>>, TError = ErrorType<unknown>>(params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10PostInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>, GetApiV10PostParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -387,49 +387,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Post>>> = ({ signal }) => getApiV10Post(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Post>>, QueryKey, GetApiV10PostParams['page']> = ({ signal, pageParam }) => getApiV10Post({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10PostInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Post>>>
 export type GetApiV10PostInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10PostParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData>> & Pick<
+export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>, GetApiV10PostParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10PostParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Post>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Post>>
+          Awaited<ReturnType<typeof getApiV10Post>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData>> & Pick<
+export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>, GetApiV10PostParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Post>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Post>>
+          Awaited<ReturnType<typeof getApiV10Post>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>, GetApiV10PostParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all post
  */
 
-export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10PostInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Post>>, GetApiV10PostParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10PostParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Post>>, TError, TData, QueryKey, GetApiV10PostParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

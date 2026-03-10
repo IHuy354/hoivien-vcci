@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { GetApiV10PublicSponsorsTier } from './getApiV10PublicSponsorsTier';
 
 export type GetApiV10PublicSponsorsParams = {

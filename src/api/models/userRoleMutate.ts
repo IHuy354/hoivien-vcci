@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface UserRoleMutate {
   user_id?: string;

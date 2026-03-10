@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostApiV10AuthLogin423ErrorMessage } from './postApiV10AuthLogin423ErrorMessage';
 
 export type PostApiV10AuthLogin423Error = {

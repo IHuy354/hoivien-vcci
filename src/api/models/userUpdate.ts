@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UserUpdateType } from './userUpdateType';
 import type { UserUpdateGender } from './userUpdateGender';
 

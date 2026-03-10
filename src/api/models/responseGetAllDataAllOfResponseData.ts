@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ResponseGetAllDataAllOfResponseDataRowsItem } from './responseGetAllDataAllOfResponseDataRowsItem';
 
 export type ResponseGetAllDataAllOfResponseData = {

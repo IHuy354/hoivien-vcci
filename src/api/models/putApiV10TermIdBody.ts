@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PutApiV10TermIdBodyPositionsItem } from './putApiV10TermIdBodyPositionsItem';
 
 export type PutApiV10TermIdBody = {

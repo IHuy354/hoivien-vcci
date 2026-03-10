@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { GetApiV10SiteSettingGroup } from './getApiV10SiteSettingGroup';
 
 export type GetApiV10SiteSettingParams = {

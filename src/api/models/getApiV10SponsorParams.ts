@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { FiltersParameter } from './filtersParameter';
 import type { SortFieldParameter } from './sortFieldParameter';
 import type { SortOrderParameter } from './sortOrderParameter';

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { Business } from './business';
 
 export type BusinessGetAllResponseResponseData = {

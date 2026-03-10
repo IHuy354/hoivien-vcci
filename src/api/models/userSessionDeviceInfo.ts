@@ -1,3 +1,3 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type UserSessionDeviceInfo = { [key: string]: unknown };

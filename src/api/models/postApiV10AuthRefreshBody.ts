@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostApiV10AuthRefreshBodyDeviceInfo } from './postApiV10AuthRefreshBodyDeviceInfo';
 
 export type PostApiV10AuthRefreshBody = {

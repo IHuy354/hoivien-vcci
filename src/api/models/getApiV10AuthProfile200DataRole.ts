@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type GetApiV10AuthProfile200DataRole = typeof GetApiV10AuthProfile200DataRole[keyof typeof GetApiV10AuthProfile200DataRole];
 

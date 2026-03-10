@@ -71,6 +71,11 @@ const navigation: NavItem[] = [
     icon: FileText,
   },
   {
+    name:'Quản lý diễn giả',
+    href: '/admin/speaker',
+    icon: Users,
+  },
+  {
     name: 'cài đặt website',
     href: '/admin/site-setting',
     icon: Settings,

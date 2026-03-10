@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -373,7 +373,7 @@ export const getGetApiV10SponsorQueryKey = (params?: GetApiV10SponsorParams,) =>
     }
 
     
-export const getGetApiV10SponsorInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>>, TError = ErrorType<unknown>>(params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10SponsorInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>, GetApiV10SponsorParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -382,49 +382,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Sponsor>>> = ({ signal }) => getApiV10Sponsor(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Sponsor>>, QueryKey, GetApiV10SponsorParams['page']> = ({ signal, pageParam }) => getApiV10Sponsor({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10SponsorInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Sponsor>>>
 export type GetApiV10SponsorInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10SponsorParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData>> & Pick<
+export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>, GetApiV10SponsorParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10SponsorParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Sponsor>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Sponsor>>
+          Awaited<ReturnType<typeof getApiV10Sponsor>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData>> & Pick<
+export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>, GetApiV10SponsorParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Sponsor>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Sponsor>>
+          Awaited<ReturnType<typeof getApiV10Sponsor>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>, GetApiV10SponsorParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all sponsors
  */
 
-export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10SponsorInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Sponsor>>, GetApiV10SponsorParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SponsorParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Sponsor>>, TError, TData, QueryKey, GetApiV10SponsorParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

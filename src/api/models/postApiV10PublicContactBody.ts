@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10PublicContactBody = {
   /** @maxLength 255 */

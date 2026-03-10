@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { FileMutateCompressInfo } from './fileMutateCompressInfo';
 
 export interface FileMutate {

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostApiV10TermBodyPositionsItem } from './postApiV10TermBodyPositionsItem';
 
 export type PostApiV10TermBody = {

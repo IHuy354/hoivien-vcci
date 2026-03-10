@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10AuthLogin200Message = {
   vi?: string;

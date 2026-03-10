@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { RegistrationMutateGoals } from './registrationMutateGoals';
 import type { RegistrationMutateFocusSkills } from './registrationMutateFocusSkills';
 import type { RegistrationMutateScholarshipReason } from './registrationMutateScholarshipReason';

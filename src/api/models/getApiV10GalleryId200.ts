@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { GetApiV10GalleryId200AllOf } from './getApiV10GalleryId200AllOf';
 

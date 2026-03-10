@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface ForgotPasswordResetRequest {
   reset_token: string;

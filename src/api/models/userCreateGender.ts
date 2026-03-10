@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type UserCreateGender = typeof UserCreateGender[keyof typeof UserCreateGender];
 

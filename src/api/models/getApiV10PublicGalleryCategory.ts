@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type GetApiV10PublicGalleryCategory = typeof GetApiV10PublicGalleryCategory[keyof typeof GetApiV10PublicGalleryCategory];
 

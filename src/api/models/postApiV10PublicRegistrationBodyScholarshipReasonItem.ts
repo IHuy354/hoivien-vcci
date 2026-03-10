@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyScholarshipReasonItem = typeof PostApiV10PublicRegistrationBodyScholarshipReasonItem[keyof typeof PostApiV10PublicRegistrationBodyScholarshipReasonItem];
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { Contact } from './contact';
 
 export type GetApiV10ContactId200AllOf = {

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UserSessionDeviceInfo } from './userSessionDeviceInfo';
 
 export interface UserSession {

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { GetApiV10PublicSpeakersType } from './getApiV10PublicSpeakersType';
 
 export type GetApiV10PublicSpeakersParams = {

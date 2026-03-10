@@ -1,9 +1,8 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface Sponsor {
   id?: string;
   name?: string;
-  logo: SponsorLogo;
   logo_id?: string;
   website_url?: string;
   tier?: string;
@@ -14,10 +13,4 @@ export interface Sponsor {
   created_by?: string;
   updated_at?: string;
   updated_by?: string;
-}
-export interface SponsorLogo {
- id:string;
-mime: string;
-original: string;
-path:string;
 }

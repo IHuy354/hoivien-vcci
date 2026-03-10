@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { RegistrationGoals } from './registrationGoals';
 import type { RegistrationFocusSkills } from './registrationFocusSkills';
 import type { RegistrationScholarshipReason } from './registrationScholarshipReason';

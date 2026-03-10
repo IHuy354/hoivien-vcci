@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PutApiV10PageConfigIdBody = {
   /** @maxLength 50 */

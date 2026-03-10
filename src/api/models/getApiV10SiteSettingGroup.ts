@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type GetApiV10SiteSettingGroup = typeof GetApiV10SiteSettingGroup[keyof typeof GetApiV10SiteSettingGroup];
 

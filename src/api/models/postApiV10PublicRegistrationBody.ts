@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostApiV10PublicRegistrationBodyVcciMembership } from './postApiV10PublicRegistrationBodyVcciMembership';
 import type { PostApiV10PublicRegistrationBodyAlumniStatus } from './postApiV10PublicRegistrationBodyAlumniStatus';
 import type { PostApiV10PublicRegistrationBodyEnglishLevel } from './postApiV10PublicRegistrationBodyEnglishLevel';

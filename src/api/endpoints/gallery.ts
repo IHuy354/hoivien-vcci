@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -374,7 +374,7 @@ export const getGetApiV10GalleryQueryKey = (params?: GetApiV10GalleryParams,) =>
     }
 
     
-export const getGetApiV10GalleryInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>>, TError = ErrorType<unknown>>(params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10GalleryInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>, GetApiV10GalleryParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -383,49 +383,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Gallery>>> = ({ signal }) => getApiV10Gallery(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Gallery>>, QueryKey, GetApiV10GalleryParams['page']> = ({ signal, pageParam }) => getApiV10Gallery({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10GalleryInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Gallery>>>
 export type GetApiV10GalleryInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10GalleryParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData>> & Pick<
+export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>, GetApiV10GalleryParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10GalleryParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Gallery>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Gallery>>
+          Awaited<ReturnType<typeof getApiV10Gallery>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData>> & Pick<
+export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>, GetApiV10GalleryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Gallery>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Gallery>>
+          Awaited<ReturnType<typeof getApiV10Gallery>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>, GetApiV10GalleryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all gallery items
  */
 
-export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10GalleryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Gallery>>, GetApiV10GalleryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10GalleryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Gallery>>, TError, TData, QueryKey, GetApiV10GalleryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

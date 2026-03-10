@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type UserCreateType = typeof UserCreateType[keyof typeof UserCreateType];
 

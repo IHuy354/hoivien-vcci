@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface PageConfigCategoryMutate {
   page_config_id?: string;

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { TermPositionResponse } from './termPositionResponse';
 
 export interface TermResponse {

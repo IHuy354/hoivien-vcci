@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { GetApiV10AuthProfile200Data } from './getApiV10AuthProfile200Data';
 
 export type GetApiV10AuthProfile200 = {

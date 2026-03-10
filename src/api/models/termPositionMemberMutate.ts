@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export interface TermPositionMemberMutate {
   term_position_id?: string;

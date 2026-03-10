@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { TermMemberAvatarResponse } from './termMemberAvatarResponse';
 
 export interface TermMemberResponse {

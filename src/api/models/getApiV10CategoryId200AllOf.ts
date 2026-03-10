@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { Category } from './category';
 
 export type GetApiV10CategoryId200AllOf = {

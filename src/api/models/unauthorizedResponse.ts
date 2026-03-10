@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UnauthorizedResponseError } from './unauthorizedResponseError';
 import type { UnauthorizedResponseResponseData } from './unauthorizedResponseResponseData';
 import type { UnauthorizedResponseViolationItem } from './unauthorizedResponseViolationItem';

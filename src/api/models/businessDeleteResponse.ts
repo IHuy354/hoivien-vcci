@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { BusinessDeleteResponseResponseData } from './businessDeleteResponseResponseData';
 import type { BusinessDeleteResponseViolations } from './businessDeleteResponseViolations';
 

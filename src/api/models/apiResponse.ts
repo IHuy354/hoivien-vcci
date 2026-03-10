@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponseResponseData } from './apiResponseResponseData';
 import type { ApiResponseViolationItem } from './apiResponseViolationItem';
 

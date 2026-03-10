@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { RolePermissions } from './rolePermissions';
 
 export interface Role {

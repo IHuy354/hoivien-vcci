@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyVcciMembership = typeof PostApiV10PublicRegistrationBodyVcciMembership[keyof typeof PostApiV10PublicRegistrationBodyVcciMembership];
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type GetApiV10PublicSpeakersType = typeof GetApiV10PublicSpeakersType[keyof typeof GetApiV10PublicSpeakersType];
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -356,7 +356,7 @@ export const getGetApiV10RegistrationStatsQueryKey = (params?: GetApiV10Registra
     }
 
     
-export const getGetApiV10RegistrationStatsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>, TError = ErrorType<unknown>>(params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10RegistrationStatsInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, GetApiV10RegistrationStatsParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -365,49 +365,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10RegistrationStats>>> = ({ signal }) => getApiV10RegistrationStats(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, QueryKey, GetApiV10RegistrationStatsParams['page']> = ({ signal, pageParam }) => getApiV10RegistrationStats({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10RegistrationStatsInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>
 export type GetApiV10RegistrationStatsInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10RegistrationStatsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData>> & Pick<
+export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, GetApiV10RegistrationStatsParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10RegistrationStatsParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10RegistrationStats>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10RegistrationStats>>
+          Awaited<ReturnType<typeof getApiV10RegistrationStats>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData>> & Pick<
+export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, GetApiV10RegistrationStatsParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10RegistrationStats>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10RegistrationStats>>
+          Awaited<ReturnType<typeof getApiV10RegistrationStats>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, GetApiV10RegistrationStatsParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get registration statistics
  */
 
-export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10RegistrationStatsInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, GetApiV10RegistrationStatsParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationStatsParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10RegistrationStats>>, TError, TData, QueryKey, GetApiV10RegistrationStatsParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 
@@ -523,7 +523,7 @@ export const getGetApiV10RegistrationQueryKey = (params?: GetApiV10RegistrationP
     }
 
     
-export const getGetApiV10RegistrationInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>>, TError = ErrorType<unknown>>(params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10RegistrationInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>, GetApiV10RegistrationParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -532,49 +532,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Registration>>> = ({ signal }) => getApiV10Registration(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Registration>>, QueryKey, GetApiV10RegistrationParams['page']> = ({ signal, pageParam }) => getApiV10Registration({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10RegistrationInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Registration>>>
 export type GetApiV10RegistrationInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10RegistrationParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData>> & Pick<
+export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>, GetApiV10RegistrationParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10RegistrationParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Registration>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Registration>>
+          Awaited<ReturnType<typeof getApiV10Registration>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData>> & Pick<
+export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>, GetApiV10RegistrationParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Registration>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Registration>>
+          Awaited<ReturnType<typeof getApiV10Registration>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>, GetApiV10RegistrationParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all registrations
  */
 
-export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10RegistrationInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Registration>>, GetApiV10RegistrationParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10RegistrationParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Registration>>, TError, TData, QueryKey, GetApiV10RegistrationParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

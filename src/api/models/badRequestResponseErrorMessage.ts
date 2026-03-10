@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type BadRequestResponseErrorMessage = {
   vi?: string;

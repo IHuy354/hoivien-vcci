@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { PostApiV10FileUpload200AllOf } from './postApiV10FileUpload200AllOf';
 

@@ -21,10 +21,12 @@ import {
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { AvatarPicker } from './avatar-picker';
+import { toast } from 'sonner';
 
 import type { Speaker } from '@/api/models/speaker';
 import type { SpeakerMutate } from '@/api/models/speakerMutate';
 import { CURRENT_YEAR, YEAR_OPTIONS, SPEAKER_TYPES } from './constants';
+import { usePostApiV10FileUpload } from '@/api/endpoints/file';
 
 interface SpeakerFormDialogProps {
   open: boolean;
@@ -43,7 +45,9 @@ export function SpeakerFormDialog({
   isSaving,
   defaultType = 'speaker'
 }: SpeakerFormDialogProps) {
-  const [avatarUrl, setAvatarUrl] = useState('');
+  // File đang chờ upload (chưa gửi API)
+  const [pendingFile, setPendingFile] = useState<File | null>(null);
+  const { mutateAsync: uploadFile, isPending: uploading } = usePostApiV10FileUpload();
 
   const { control, handleSubmit, reset, setValue, formState: { errors } } = useForm<SpeakerMutate>({
     defaultValues: {
@@ -75,8 +79,7 @@ export function SpeakerFormDialog({
           is_active: speaker.is_active ?? true,
           avatar_id: speaker.avatar_id as unknown as string,
         });
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setAvatarUrl((speaker as any).avatar?.url || '');
+        setPendingFile(null);
       } else {
         reset({
           full_name: '',
@@ -90,18 +93,36 @@ export function SpeakerFormDialog({
           is_active: true,
           avatar_id: null as unknown as string,
         });
-        setAvatarUrl('');
+        setPendingFile(null);
       }
     }
   }, [open, speaker, reset, defaultType]);
 
-  const handleAvatarChange = (id: string, url: string) => {
-    setValue('avatar_id', id ? id as unknown as string : null as unknown as string, { shouldValidate: true, shouldDirty: true });
-    setAvatarUrl(url);
-  };
-
-  const onSubmit = (data: SpeakerMutate) => {
-    onSave(data, speaker?.id);
+  const onSubmit = async (data: SpeakerMutate) => {
+    let finalForm = { ...data };
+    
+    // Upload ảnh trước nếu user đã chọn file mới
+    if (pendingFile) {
+      try {
+        const res = await uploadFile({ 
+          data: { 
+            file: pendingFile, 
+            original: pendingFile.name,
+            compress: true,
+          } 
+        });
+        const uploaded = (res as { responseData?: { id?: string } })?.responseData;
+        if (uploaded?.id) {
+          finalForm = { ...finalForm, avatar_id: uploaded.id as unknown as string };
+        }
+      } catch (error) {
+        console.error('Upload error:', error);
+        toast.error('Tải ảnh lên thất bại, vui lòng thử lại');
+        return;
+      }
+    }
+    
+    await onSave(finalForm, speaker?.id);
   };
 
   return (
@@ -117,7 +138,12 @@ export function SpeakerFormDialog({
                 {/* Cột trái: Ảnh đại diện */}
                 <div className="flex flex-col items-center gap-3">
                      <Label>Ảnh đại diện</Label>
-                    <AvatarPicker value={avatarUrl} onFileIdChange={handleAvatarChange} />
+                    <AvatarPicker 
+                      savedId={speaker?.avatar_id}
+                      pendingFile={pendingFile}
+                      onFileSelect={setPendingFile}
+                      onClearSaved={() => setValue('avatar_id', null as unknown as string)}
+                    />
                 </div>
                 
                  {/* Cột phải: Form nhập liệu */}
@@ -247,8 +273,8 @@ export function SpeakerFormDialog({
 
           <div className="flex justify-end gap-3 pt-4 border-t">
             <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>Hủy</Button>
-            <Button type="submit" disabled={isSaving} className="bg-[#19426D] hover:bg-[#0f3b5a]">
-              {isSaving ? 'Đang lưu...' : 'Lưu lại'}
+            <Button type="submit" disabled={isSaving || uploading} className="bg-[#19426D] hover:bg-[#0f3b5a]">
+              {uploading ? 'Đang tải ảnh...' : isSaving ? 'Đang lưu...' : 'Lưu lại'}
             </Button>
           </div>
 

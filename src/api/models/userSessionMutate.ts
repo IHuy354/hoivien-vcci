@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UserSessionMutateDeviceInfo } from './userSessionMutateDeviceInfo';
 
 export interface UserSessionMutate {

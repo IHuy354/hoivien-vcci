@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostMutateMetadata } from './postMutateMetadata';
 
 export interface PostMutate {

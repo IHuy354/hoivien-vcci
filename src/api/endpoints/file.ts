@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -383,7 +383,7 @@ export const getGetApiV10FileQueryKey = (params?: GetApiV10FileParams,) => {
     }
 
     
-export const getGetApiV10FileInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>>, TError = ErrorType<unknown>>(params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10FileInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>, GetApiV10FileParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -392,49 +392,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10File>>> = ({ signal }) => getApiV10File(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10File>>, QueryKey, GetApiV10FileParams['page']> = ({ signal, pageParam }) => getApiV10File({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10FileInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10File>>>
 export type GetApiV10FileInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10FileParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData>> & Pick<
+export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>, GetApiV10FileParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10FileParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10File>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10File>>
+          Awaited<ReturnType<typeof getApiV10File>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData>> & Pick<
+export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>, GetApiV10FileParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10File>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10File>>
+          Awaited<ReturnType<typeof getApiV10File>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>, GetApiV10FileParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all file
  */
 
-export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10FileInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10File>>, GetApiV10FileParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10FileParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10File>>, TError, TData, QueryKey, GetApiV10FileParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

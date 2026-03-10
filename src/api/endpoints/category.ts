@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -368,7 +368,7 @@ export const getGetApiV10CategoryQueryKey = (params?: GetApiV10CategoryParams,) 
     }
 
     
-export const getGetApiV10CategoryInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>>, TError = ErrorType<unknown>>(params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10CategoryInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>, GetApiV10CategoryParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -377,49 +377,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Category>>> = ({ signal }) => getApiV10Category(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Category>>, QueryKey, GetApiV10CategoryParams['page']> = ({ signal, pageParam }) => getApiV10Category({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10CategoryInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Category>>>
 export type GetApiV10CategoryInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10CategoryParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData>> & Pick<
+export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>, GetApiV10CategoryParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10CategoryParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Category>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Category>>
+          Awaited<ReturnType<typeof getApiV10Category>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData>> & Pick<
+export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>, GetApiV10CategoryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Category>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Category>>
+          Awaited<ReturnType<typeof getApiV10Category>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>, GetApiV10CategoryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all category
  */
 
-export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10CategoryInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Category>>, GetApiV10CategoryParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10CategoryParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Category>>, TError, TData, QueryKey, GetApiV10CategoryParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

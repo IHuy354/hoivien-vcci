@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { FileCompressInfo } from './fileCompressInfo';
 
 export interface File {

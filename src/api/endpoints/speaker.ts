@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -375,7 +375,7 @@ export const getGetApiV10SpeakerQueryKey = (params?: GetApiV10SpeakerParams,) =>
     }
 
     
-export const getGetApiV10SpeakerInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>>, TError = ErrorType<unknown>>(params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10SpeakerInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>, GetApiV10SpeakerParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -384,49 +384,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Speaker>>> = ({ signal }) => getApiV10Speaker(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Speaker>>, QueryKey, GetApiV10SpeakerParams['page']> = ({ signal, pageParam }) => getApiV10Speaker({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10SpeakerInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Speaker>>>
 export type GetApiV10SpeakerInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10SpeakerParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData>> & Pick<
+export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>, GetApiV10SpeakerParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10SpeakerParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Speaker>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Speaker>>
+          Awaited<ReturnType<typeof getApiV10Speaker>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData>> & Pick<
+export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>, GetApiV10SpeakerParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Speaker>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Speaker>>
+          Awaited<ReturnType<typeof getApiV10Speaker>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>, GetApiV10SpeakerParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all speakers
  */
 
-export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10SpeakerInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Speaker>>, GetApiV10SpeakerParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10SpeakerParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Speaker>>, TError, TData, QueryKey, GetApiV10SpeakerParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

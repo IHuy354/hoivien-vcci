@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UserCreateType } from './userCreateType';
 import type { UserCreateGender } from './userCreateGender';
 

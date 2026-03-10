@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import {
   useInfiniteQuery,
   useMutation,
@@ -368,7 +368,7 @@ export const getGetApiV10ContactQueryKey = (params?: GetApiV10ContactParams,) =>
     }
 
     
-export const getGetApiV10ContactInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>>, TError = ErrorType<unknown>>(params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export const getGetApiV10ContactInfiniteQueryOptions = <TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>, GetApiV10ContactParams['page']>, TError = ErrorType<unknown>>(params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']>>, request?: SecondParameter<typeof mainInstance>}
 ) => {
 
 const {query: queryOptions, request: requestOptions} = options ?? {};
@@ -377,49 +377,49 @@ const {query: queryOptions, request: requestOptions} = options ?? {};
 
   
 
-    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Contact>>> = ({ signal }) => getApiV10Contact(params, requestOptions, signal);
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getApiV10Contact>>, QueryKey, GetApiV10ContactParams['page']> = ({ signal, pageParam }) => getApiV10Contact({...params, 'page': pageParam || params?.['page']}, requestOptions, signal);
 
       
 
       
 
-   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+   return  { queryKey, queryFn, ...queryOptions} as UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']> & { queryKey: DataTag<QueryKey, TData, TError> }
 }
 
 export type GetApiV10ContactInfiniteQueryResult = NonNullable<Awaited<ReturnType<typeof getApiV10Contact>>>
 export type GetApiV10ContactInfiniteQueryError = ErrorType<unknown>
 
 
-export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>>, TError = ErrorType<unknown>>(
- params: undefined |  GetApiV10ContactParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData>> & Pick<
+export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>, GetApiV10ContactParams['page']>, TError = ErrorType<unknown>>(
+ params: undefined |  GetApiV10ContactParams, options: { query:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']>> & Pick<
         DefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Contact>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Contact>>
+          Awaited<ReturnType<typeof getApiV10Contact>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  DefinedUseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData>> & Pick<
+export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>, GetApiV10ContactParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']>> & Pick<
         UndefinedInitialDataOptions<
           Awaited<ReturnType<typeof getApiV10Contact>>,
           TError,
-          Awaited<ReturnType<typeof getApiV10Contact>>
+          Awaited<ReturnType<typeof getApiV10Contact>>, QueryKey
         > , 'initialData'
       >, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
-export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>, GetApiV10ContactParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient
   ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
 /**
  * @summary Get all contact
  */
 
-export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>>, TError = ErrorType<unknown>>(
- params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData>>, request?: SecondParameter<typeof mainInstance>}
+export function useGetApiV10ContactInfinite<TData = InfiniteData<Awaited<ReturnType<typeof getApiV10Contact>>, GetApiV10ContactParams['page']>, TError = ErrorType<unknown>>(
+ params?: GetApiV10ContactParams, options?: { query?:Partial<UseInfiniteQueryOptions<Awaited<ReturnType<typeof getApiV10Contact>>, TError, TData, QueryKey, GetApiV10ContactParams['page']>>, request?: SecondParameter<typeof mainInstance>}
  , queryClient?: QueryClient 
  ):  UseInfiniteQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
 

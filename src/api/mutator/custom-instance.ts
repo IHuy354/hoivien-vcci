@@ -55,8 +55,6 @@ const addToQueue = (
 // ─── Refresh Access Token ─────────────────────────────────────────────────────
 
 const refreshAccessToken = async (): Promise<string> => {
-  // Import dynamically to avoid circular dependency
-  const { postApiV10AuthRefresh } = await import("../endpoints/authentication");
   const store = useAuthStore.getState();
 
   const refreshToken = store.refreshToken;
@@ -65,7 +63,11 @@ const refreshAccessToken = async (): Promise<string> => {
     throw new Error("No refresh token available");
   }
 
-  const response = await postApiV10AuthRefresh({ refresh_token: refreshToken });
+  // Direct axios call to avoid circular dependency with generated endpoints
+  const { data: response } = await Axios.post(
+    `${baseConfig.backendDomain}/api/v1.0/auth/refresh`,
+    { refresh_token: refreshToken },
+  );
 
   // API trả về { responseData: { access_token, refresh_token, ... } }
   const responseData = (response as { responseData?: { access_token?: string; refresh_token?: string; session?: { expires_at?: string } } })?.responseData;

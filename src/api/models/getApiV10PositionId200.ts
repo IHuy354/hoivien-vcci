@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { GetApiV10PositionId200AllOf } from './getApiV10PositionId200AllOf';
 

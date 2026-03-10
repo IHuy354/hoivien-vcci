@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { GetApiV10PublicGalleryCategory } from './getApiV10PublicGalleryCategory';
 
 export type GetApiV10PublicGalleryParams = {

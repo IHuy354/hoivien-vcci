@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { BusinessOwnerSummary } from './businessOwnerSummary';
 import type { BusinessLogoSummary } from './businessLogoSummary';
 

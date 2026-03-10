@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { LoginResponse } from './loginResponse';
 import type { PostApiV10AuthLogin200Message } from './postApiV10AuthLogin200Message';
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PutApiV10SiteSettingBodySettingsItem } from './putApiV10SiteSettingBodySettingsItem';
 
 export type PutApiV10SiteSettingBody = {

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UnauthorizedResponseErrorMessage } from './unauthorizedResponseErrorMessage';
 
 export type UnauthorizedResponseError = {

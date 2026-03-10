@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { SiteInformationMutateLinkSocials } from './siteInformationMutateLinkSocials';
 
 export interface SiteInformationMutate {

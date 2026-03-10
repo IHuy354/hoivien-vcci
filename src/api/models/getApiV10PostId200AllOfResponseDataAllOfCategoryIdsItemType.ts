@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType = typeof GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType[keyof typeof GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType];
 

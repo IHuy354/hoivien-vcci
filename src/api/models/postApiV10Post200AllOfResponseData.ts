@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { Post } from './post';
 import type { PostApiV10Post200AllOfResponseDataAllOf } from './postApiV10Post200AllOfResponseDataAllOf';
 

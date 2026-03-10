@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export * from './apiResponse';
 export * from './apiResponseResponseData';
@@ -36,6 +36,8 @@ export * from './deleteApiV10GalleryId200';
 export * from './deleteApiV10GalleryId200AllOf';
 export * from './deleteApiV10PositionId200';
 export * from './deleteApiV10PositionId200AllOf';
+export * from './deleteApiV10SiteSettingId200';
+export * from './deleteApiV10SiteSettingId200AllOf';
 export * from './deleteApiV10SpeakerId200';
 export * from './deleteApiV10SpeakerId200AllOf';
 export * from './deleteApiV10SponsorId200';
@@ -168,6 +170,11 @@ export * from './postApiV10PublicRegistrationBodyFocusSkillsItem';
 export * from './postApiV10PublicRegistrationBodyGoalsItem';
 export * from './postApiV10PublicRegistrationBodyScholarshipReasonItem';
 export * from './postApiV10PublicRegistrationBodyVcciMembership';
+export * from './postApiV10SiteSetting200';
+export * from './postApiV10SiteSetting200AllOf';
+export * from './postApiV10SiteSettingBody';
+export * from './postApiV10SiteSettingBodyDataType';
+export * from './postApiV10SiteSettingBodyGroupName';
 export * from './postApiV10Speaker200';
 export * from './postApiV10Speaker200AllOf';
 export * from './postApiV10Sponsor200';

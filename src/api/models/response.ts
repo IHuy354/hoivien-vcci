@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ResponseResponseData } from './responseResponseData';
 import type { ResponseViolationItem } from './responseViolationItem';
 

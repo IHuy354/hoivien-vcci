@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { LoginRequestDeviceInfo } from './loginRequestDeviceInfo';
 
 export interface LoginRequest {

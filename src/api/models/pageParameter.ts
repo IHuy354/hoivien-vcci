@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 /**
  * page, visit https://www.npmjs.com/package/sequelize-api-paginate for syntax

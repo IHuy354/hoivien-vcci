@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { BadRequestResponseError } from './badRequestResponseError';
 import type { BadRequestResponseResponseData } from './badRequestResponseResponseData';
 import type { BadRequestResponseViolationItem } from './badRequestResponseViolationItem';

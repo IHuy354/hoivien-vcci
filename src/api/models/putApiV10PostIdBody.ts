@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { PostMutate } from './postMutate';
 import type { PutApiV10PostIdBodyAllOf } from './putApiV10PostIdBodyAllOf';
 

@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { UserAuthMutatePasswordHistory } from './userAuthMutatePasswordHistory';
 
 export interface UserAuthMutate {

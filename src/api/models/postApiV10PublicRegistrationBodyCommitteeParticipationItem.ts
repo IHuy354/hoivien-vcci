@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyCommitteeParticipationItem = typeof PostApiV10PublicRegistrationBodyCommitteeParticipationItem[keyof typeof PostApiV10PublicRegistrationBodyCommitteeParticipationItem];
 

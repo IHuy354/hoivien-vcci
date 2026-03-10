@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { PostApiV10Speaker200AllOf } from './postApiV10Speaker200AllOf';
 

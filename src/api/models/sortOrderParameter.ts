@@ -1,4 +1,4 @@
-/* eslint-disable */
+// @ts-nocheck
 
 export type SortOrderParameter = typeof SortOrderParameter[keyof typeof SortOrderParameter];
 
