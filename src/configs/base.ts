@@ -1,6 +1,12 @@
-const baseConfig = {
-    backendDomain: 'https://giangvien.org/ceovcci-backend',
-    frontendDomain: 'http://localhost:3000',
-}
+const backendDomain =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://giangvien.org/ceovcci-backend";
 
-export default baseConfig
+const baseConfig = {
+  backendDomain,
+  frontendDomain:
+    process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000",
+  imageDomain: `${backendDomain}/uploads`,
+};
+
+export default baseConfig;

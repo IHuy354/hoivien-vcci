@@ -2,10 +2,6 @@
 import { Toaster } from "@components/ui/toaster";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
-// import AuthGuard from "@/auth/AuthGuard";
-// import FallbackSpinner from "@/components/common/loading";
-// import AbilityProvider from "@/providers/ability-provider";
-// import RouteGuard from "@/auth/RouteGuard";
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";

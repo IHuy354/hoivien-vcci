@@ -13,17 +13,19 @@ export const baseInputClassName = `text-ellipsis flex h-10 w-full rounded-md bor
   focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
   disabled:cursor-not-allowed disabled:opacity-50 text-sm`
 
-export const Input = ({ className, type, placeholder, ...props }: InputProps) => {
-  // Hooks
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, placeholder, ...props }, ref) => {
+    return (
+      <input
+        data-slot='input'
+        type={type}
+        ref={ref}
+        className={cn(baseInputClassName, className)}
+        placeholder={placeholder}
+        {...props}
+      />
+    )
+  }
+)
 
-  // Template
-  return (
-    <input
-      data-slot='input'
-      type={type}
-      className={cn(baseInputClassName, className)}
-      placeholder={placeholder}
-      {...props}
-    />
-  )
-}
+Input.displayName = 'Input'

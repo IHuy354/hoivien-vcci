@@ -4,8 +4,6 @@
 // import { useRouter } from "next/navigation";
 // import useAuthStore from "@stores/auth";
 import { Toaster } from "@components/ui/toaster";
-import GuestGuard from "@/auth/GuestGuard";
-import FallbackSpinner  from "@/components/common/loading";
 export default function DashboardLayout({
   children,
 }: {
@@ -24,9 +22,7 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-background">
-      <GuestGuard fallback={<FallbackSpinner />}>
-        {children}
-      </GuestGuard>
+      {children}
       <Toaster
         richColors
         closeButton
