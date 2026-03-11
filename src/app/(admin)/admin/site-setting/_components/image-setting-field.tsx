@@ -1,61 +1,38 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { Upload, X, Loader2, ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { usePostApiV10FileUpload, useGetApiV10FileId } from '@/api/endpoints/file';
+import { usePostApiV10FileUpload } from '@/api/endpoints/file';
 import baseConfig from '@/configs/base';
 
 interface ImageSettingFieldProps {
   label: string;
   description?: string;
   keyName: string;
-  fileId: string;
-  onFileIdChange: (fileId: string) => void;
+  filePath: string; // Store the path directly, not ID
+  onFilePathChange: (filePath: string) => void;
 }
 
 export function ImageSettingField({
   label,
   description,
   keyName,
-  fileId,
-  onFileIdChange,
+  filePath,
+  onFilePathChange,
 }: ImageSettingFieldProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string>('');
   
   const { mutateAsync: uploadFile, isPending: isUploading } = usePostApiV10FileUpload();
 
-  // Check if fileId is a UUID (need to fetch file info)
-  const isUUID = fileId && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(fileId);
-  
-  // Fetch file info if we have a UUID
-  const { data: fileData } = useGetApiV10FileId(
-    fileId,
-    {
-      query: {
-        enabled: !!isUUID,
-      },
-    }
-  );
+  // Build image URL: use local preview or the stored path directly
+  const imageUrl = previewUrl || (filePath ? `${baseConfig.imageDomain}/${filePath}` : '');
 
-  // Extract path from file data
-  const filePath = (fileData as { responseData?: { path?: string } })?.responseData?.path;
-
-  // Build preview URL: use fetched path, or fallback to fileId directly, or use local preview
-  const imageUrl = previewUrl || (filePath ? `${baseConfig.imageDomain}/${filePath}` : fileId ? `${baseConfig.imageDomain}/${fileId}` : '');
-
-  console.log('🖼️ Image URL:', { fileId, filePath, imageUrl, isUUID });
-
-  // Clear preview URL when fetched data is available
-  useEffect(() => {
-    if (filePath && previewUrl) {
-      setPreviewUrl('');
-    }
-  }, [filePath, previewUrl]);
+  console.log('🖼️ Image URL:', { filePath, imageUrl });
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -94,21 +71,19 @@ export function ImageSettingField({
       const uploadedFile = (res as { responseData?: { id?: string; path?: string } })
         ?.responseData;
 
-      if (uploadedFile?.id) {
-        console.log('✅ File uploaded, ID:', uploadedFile.id, 'Path:', uploadedFile.path);
+      if (uploadedFile?.path) {
+        console.log('✅ File uploaded, Path:', uploadedFile.path);
         
-        // Save the file ID
-        onFileIdChange(uploadedFile.id);
+        // Save the file PATH instead of ID
+        onFilePathChange(uploadedFile.path);
         
-        // Set preview URL using the path from upload response
-        if (uploadedFile.path) {
-          setPreviewUrl(`${baseConfig.imageDomain}/${uploadedFile.path}`);
-        }
+        // Clear local preview since we now have the server path
+        setPreviewUrl('');
         
         toast.success('Tải ảnh lên thành công');
       } else {
-        console.error('❌ No file ID in response:', res);
-        toast.error('Không nhận được dữ liệu ảnh trả về từ máy chủ');
+        console.error('❌ No file path in response:', res);
+        toast.error('Không nhận được đường dẫn ảnh từ máy chủ');
         setPreviewUrl('');
       }
     } catch (error) {
@@ -126,7 +101,7 @@ export function ImageSettingField({
   };
 
   const handleClear = () => {
-    onFileIdChange('');
+    onFilePathChange('');
     setPreviewUrl('');
     toast.info('Đã xóa ảnh');
   };

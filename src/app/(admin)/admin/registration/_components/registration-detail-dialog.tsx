@@ -106,7 +106,7 @@ export function RegistrationDetailDialog({
                 <Skeleton className="h-20 w-full" />
             </div>
         ) : (
-            <ScrollArea className="flex-1 px-6 py-4">
+            <ScrollArea className="flex-1 px-6 py-4 overflow-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Cột 1: Thông tin người đăng ký */}
                     <div className="space-y-6">

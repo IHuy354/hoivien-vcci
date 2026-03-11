@@ -6,6 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import {
   useGetApiV10Gallery,
+  getApiV10GalleryId,
   usePostApiV10Gallery,
   usePutApiV10GalleryId,
   useDeleteApiV10GalleryId,
@@ -51,6 +52,7 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
+  Loader2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -74,9 +76,13 @@ export default function GalleryManagementPage() {
   const [formOpen, setFormOpen] = useState(false);
   const [editTarget, setEditTarget] = useState<Gallery | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Gallery | null>(null);
+  const [loadingDetailId, setLoadingDetailId] = useState<string | null>(null);
 
-  // Load categories
-  const { data: categoryData } = useGetApiV10Category({ pageSize: 50 });
+  // Load categories (only gallery type)
+  const { data: categoryData } = useGetApiV10Category({ 
+    pageSize: 100,
+    // filters: 'type==gallery'
+  });
   const categories = useMemo(() => {
     return (categoryData as { responseData?: { rows?: Category[] } })?.responseData?.rows ?? [];
   }, [categoryData]);
@@ -148,7 +154,27 @@ export default function GalleryManagementPage() {
   };
 
   const openCreate = () => { setEditTarget(null); setFormOpen(true); };
-  const openEdit = (item: Gallery) => { setEditTarget(item); setFormOpen(true); };
+  
+  const openEdit = async (item: Gallery) => {
+    if (!item.id) return;
+    
+    try {
+      setLoadingDetailId(item.id);
+      const response = await getApiV10GalleryId(item.id);
+      const galleryDetail = (response as { responseData?: Gallery })?.responseData;
+      
+      if (galleryDetail) {
+        setEditTarget(galleryDetail);
+        setFormOpen(true);
+      } else {
+        toast.error('Không tìm thấy dữ liệu');
+      }
+    } catch (error) {
+      toast.error('Không thể tải dữ liệu, vui lòng thử lại');
+    } finally {
+      setLoadingDetailId(null);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -243,12 +269,19 @@ export default function GalleryManagementPage() {
                         {item.description && <p className="text-xs text-slate-500 line-clamp-1 mt-0.5">{item.description}</p>}
                       </TableCell>
                       <TableCell>
-                        {item.category ? (
-                          <span className="px-2 py-1 rounded bg-slate-100 border border-slate-200 text-xs text-slate-600">
-                            {categories.find((c) => c.slug === item.category)?.name || item.category}
-                          </span>
+                        {item.categories && item.categories.length > 0 ? (
+                          <div className="flex flex-wrap gap-1">
+                            {item.categories.map((cat) => (
+                              <span 
+                                key={cat.id} 
+                                className="inline-flex px-2 py-1 rounded bg-blue-50 border border-blue-200 text-xs text-blue-700"
+                              >
+                                {cat.name}
+                              </span>
+                            ))}
+                          </div>
                         ) : (
-                          '-'
+                          <span className="text-slate-400 text-sm">-</span>
                         )}
                       </TableCell>
                       <TableCell className="text-center font-medium text-slate-600">{item.year ?? '-'}</TableCell>
@@ -260,8 +293,18 @@ export default function GalleryManagementPage() {
                       <TableCell className="text-center text-slate-600 font-medium">{item.sort_order}</TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
-                          <Button variant="ghost" size="icon" className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50" onClick={() => openEdit(item)}>
-                            <Pencil className="h-4 w-4" />
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50" 
+                            onClick={() => openEdit(item)}
+                            disabled={loadingDetailId === item.id}
+                          >
+                            {loadingDetailId === item.id ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <Pencil className="h-4 w-4" />
+                            )}
                           </Button>
                           <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50" onClick={() => setDeleteTarget(item)}>
                             <Trash2 className="h-4 w-4" />

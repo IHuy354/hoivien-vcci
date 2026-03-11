@@ -61,6 +61,7 @@ export default function RegistrationManagementPage() {
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [yearFilter, setYearFilter] = useState<string>(String(CURRENT_YEAR));
     const [page, setPage] = useState(1);
+    const [updatingStatusId, setUpdatingStatusId] = useState<string | null>(null);
 
     // ── Dialogs ──
     const [detailId, setDetailId] = useState<string | null>(null);
@@ -116,6 +117,22 @@ export default function RegistrationManagementPage() {
             invalidate();
         } catch {
             toast.error('Có lỗi xảy ra, vui lòng thử lại');
+        }
+    };
+
+    const handleQuickStatusChange = async (itemId: string, newStatus: string) => {
+        try {
+            setUpdatingStatusId(itemId);
+            await updateRegistration({ 
+                id: itemId, 
+                data: { status: newStatus } 
+            });
+            toast.success('Cập nhật trạng thái thành công');
+            invalidate();
+        } catch {
+            toast.error('Có lỗi xảy ra, vui lòng thử lại');
+        } finally {
+            setUpdatingStatusId(null);
         }
     };
 
@@ -234,10 +251,35 @@ export default function RegistrationManagementPage() {
                                          <div className="text-xs text-blue-600 font-medium mt-1">Khóa {item.year || CURRENT_YEAR}</div>
                                     </TableCell>
                                     <TableCell>
-                                        <Badge className={cn("flex items-center gap-1.5 w-fit", statusData.color)} variant="outline">
-                                            <StatusIcon className="w-3.5 h-3.5" />
-                                            {statusData.label}
-                                        </Badge>
+                                        <Select
+                                            value={item.status || 'pending'}
+                                            onValueChange={(newStatus) => handleQuickStatusChange(item.id as string, newStatus)}
+                                            disabled={updatingStatusId === item.id}
+                                        >
+                                            <SelectTrigger className={cn(
+                                                "w-[140px] h-8 border-0 font-medium transition-colors",
+                                                statusData.color,
+                                                updatingStatusId === item.id && "opacity-50 cursor-wait"
+                                            )}>
+                                                <div className="flex items-center gap-1.5">
+                                                    <StatusIcon className="w-3.5 h-3.5" />
+                                                    <SelectValue />
+                                                </div>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                {REGISTRATION_STATUS_OPTIONS.map((opt) => {
+                                                    const Icon = opt.icon;
+                                                    return (
+                                                        <SelectItem key={opt.value} value={opt.value}>
+                                                            <div className="flex items-center gap-2">
+                                                                <Icon className="h-4 w-4" />
+                                                                <span>{opt.label}</span>
+                                                            </div>
+                                                        </SelectItem>
+                                                    );
+                                                })}
+                                            </SelectContent>
+                                        </Select>
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex items-center justify-end gap-2">

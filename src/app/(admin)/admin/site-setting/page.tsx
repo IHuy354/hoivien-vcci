@@ -362,9 +362,9 @@ export default function SiteSettingPage() {
                                 : undefined
                             }
                             keyName={setting.key || ''}
-                            fileId={getCurrentValue(setting)}
-                            onFileIdChange={(fileId) =>
-                              handleValueChange(setting.key || '', fileId)
+                            filePath={getCurrentValue(setting)}
+                            onFilePathChange={(filePath) =>
+                              handleValueChange(setting.key || '', filePath)
                             }
                           />
                         ) : (

@@ -5,7 +5,7 @@ export interface GalleryMutate {
   title?: string;
   description?: string;
   image_id?: string;
-  category?: string;
+  category_ids?: string[];
   year?: number;
   sort_order?: number;
   is_active?: boolean;

@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { useSidebarStore } from '@/hooks/use-sidebar';
 import useAuthStore from '@/stores/auth';
 import {
-  LayoutDashboard,
+  // LayoutDashboard,
   ChevronLeft,
   ChevronDown,
   Users,
@@ -41,11 +41,11 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
-  {
-    name: 'Tổng quan',
-    href: '/admin',
-    icon: LayoutDashboard,
-  },
+  // {
+  //   name: 'Tổng quan',
+  //   href: '/admin',
+  //   icon: LayoutDashboard,
+  // },
   {
     name: 'Nhà tài trợ',
     href: '/admin/sponsor',

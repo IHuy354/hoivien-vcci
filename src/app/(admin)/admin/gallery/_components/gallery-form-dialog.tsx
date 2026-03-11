@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { toast } from 'sonner';
 
 import {
@@ -19,6 +19,8 @@ import {
 } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { X } from 'lucide-react';
 
 import type { GalleryMutate } from '@/api/models/galleryMutate';
 import type { Gallery } from '@/api/models/gallery';
@@ -44,7 +46,7 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
     title: initial?.title ?? '',
     description: initial?.description ?? '',
     image_id: initial?.image_id ?? '',
-    category: initial?.category ?? '',
+    category_ids: initial?.categories?.map(c => c.id).filter(Boolean) as string[] ?? [],
     year: initial?.year ?? CURRENT_YEAR,
     sort_order: initial?.sort_order ?? 0,
     is_active: initial?.is_active ?? true,
@@ -53,26 +55,30 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
   const [pendingFile, setPendingFile] = useState<File | null>(null);
   const { mutateAsync: uploadFile } = usePostApiV10FileUpload();
 
-  // Load categories
-  const { data: categoryData } = useGetApiV10Category({ pageSize: 50 });
-  const categories = useMemo(() => {
-    return (categoryData as { responseData?: { rows?: Category[] } })?.responseData?.rows ?? [];
-  }, [categoryData]);
-
-  const handleOpen = (o: boolean) => {
-    if (o) {
+  // Reset form khi dialog mở hoặc initial thay đổi
+  useEffect(() => {
+    if (open) {
       setPendingFile(null);
       setForm({
         title: initial?.title ?? '',
         description: initial?.description ?? '',
         image_id: initial?.image_id ?? '',
-        category: initial?.category ?? '',
+        category_ids: initial?.categories?.map(c => c.id).filter(Boolean) as string[] ?? [],
         year: initial?.year ?? CURRENT_YEAR,
         sort_order: initial?.sort_order ?? 0,
         is_active: initial?.is_active ?? true,
       });
     }
-  };
+  }, [open, initial]);
+
+  // Load categories (only gallery type)
+  const { data: categoryData } = useGetApiV10Category({ 
+    pageSize: 1000,
+    // filters: 'type==gallery'
+  });
+  const categories = useMemo(() => {
+    return (categoryData as { responseData?: { rows?: Category[] } })?.responseData?.rows ?? [];
+  }, [categoryData]);
 
   const handle = (field: keyof GalleryMutate, value: unknown) => {
     setForm((p) => ({ ...p, [field]: value }));
@@ -108,7 +114,7 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); handleOpen(o); }}>
+    <Dialog open={open} onOpenChange={(o) => { if (!o) onClose(); }}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="text-lg font-semibold">
@@ -154,19 +160,48 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
           {/* Category + Year */}
           <div className="grid grid-cols-2 gap-3">
             <div className="space-y-1.5">
-              <Label>Danh mục ({categories.length})</Label>
-              <Select value={form.category ?? ''} onValueChange={(v) => handle('category', v)}>
+              <Label>Danh mục (Chọn nhiều)</Label>
+              <Select 
+                value="" 
+                onValueChange={(categoryId) => {
+                  const current = form.category_ids ?? [];
+                  if (!current.includes(categoryId)) {
+                    handle('category_ids', [...current, categoryId]);
+                  }
+                }}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Chọn danh mục" />
                 </SelectTrigger>
                 <SelectContent>
-                  {categories.map((c) => (
-                    <SelectItem key={c.slug ?? c.id} value={c.slug ?? ''}>
-                      {c.name}
-                    </SelectItem>
-                  ))}
+                  {categories
+                    .filter((c) => !form.category_ids?.includes(c.id ?? ''))
+                    .map((c) => (
+                      <SelectItem key={c.id} value={c.id ?? ''}>
+                        {c.name}
+                      </SelectItem>
+                    ))}
                 </SelectContent>
               </Select>
+              {/* Selected categories */}
+              {form.category_ids && form.category_ids.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-2">
+                  {form.category_ids.map((catId) => {
+                    const cat = categories.find((c) => c.id === catId);
+                    return cat ? (
+                      <Badge key={catId} variant="secondary" className="gap-1">
+                        {cat.name}
+                        <X 
+                          className="h-3 w-3 cursor-pointer hover:text-red-600" 
+                          onClick={() => {
+                            handle('category_ids', form.category_ids?.filter(id => id !== catId) ?? []);
+                          }}
+                        />
+                      </Badge>
+                    ) : null;
+                  })}
+                </div>
+              )}
             </div>
 
             <div className="space-y-1.5">

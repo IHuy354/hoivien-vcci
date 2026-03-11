@@ -14,6 +14,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
+import { usePostApiV10PublicRegistration } from "@/api/endpoints/public";
+import type { 
+  PostApiV10PublicRegistrationBody,
+  PostApiV10PublicRegistrationBodyAlumniStatus,
+  PostApiV10PublicRegistrationBodyEnglishLevel,
+  PostApiV10PublicRegistrationBodyGoalsItem,
+  PostApiV10PublicRegistrationBodyFocusSkillsItem,
+  PostApiV10PublicRegistrationBodyScholarshipReasonItem,
+  PostApiV10PublicRegistrationBodyCommitteeParticipationItem,
+} from "@/api/models";
 
 const formSchema = z.object({
   companyName: z.string().min(1, "Vui lòng nhập tên công ty").max(200),
@@ -84,6 +94,69 @@ const boardOptions = [
   "Liên hệ, kết nối với các giảng viên",
 ];
 
+// Mapping functions để convert form values sang API format
+const mapPreviousStudentToAlumniStatus = (value: string): PostApiV10PublicRegistrationBodyAlumniStatus => {
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyAlumniStatus> = {
+    "Tôi chưa tham gia chính thức lớp nào": "none",
+    "Tôi là học viên lớp CEO VCCI 2022": "ceo_vcci_2022",
+    "Tôi là học viên lớp CEO VCCI 2023": "ceo_vcci_2023",
+    "Tôi là học viên lớp CEO VCCI 2024 - K1": "ceo_vcci_2024_k1",
+    "Tôi là học viên lớp CEO VCCI 2024 - K2": "ceo_vcci_2024_k2",
+  };
+  return mapping[value] || "none";
+};
+
+const mapEnglishLevel = (value?: string): PostApiV10PublicRegistrationBodyEnglishLevel | undefined => {
+  if (!value) return undefined;
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyEnglishLevel> = {
+    "Tốt": "good",
+    "Trung bình": "average",
+    "Hạn chế": "limited",
+  };
+  return mapping[value];
+};
+
+const mapGoals = (values: string[]): PostApiV10PublicRegistrationBodyGoalsItem[] => {
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyGoalsItem> = {
+    "Mục tiêu phát triển doanh nghiệp lên tầm cao mới với doanh thu, nhân sự, vận hành đột phá": "business_growth",
+    "Muốn hệ thống hóa lại kiến thức, công ty càng phát triển thì càng thấy thiếu kiến thức": "knowledge_systematize",
+    "Mong muốn được kết nối cộng đồng, học hỏi thêm từ các Giảng Viên, các học viên khác": "community_networking",
+  };
+  return values.map(v => mapping[v] || "other");
+};
+
+const mapSkills = (values: string[]): PostApiV10PublicRegistrationBodyFocusSkillsItem[] => {
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyFocusSkillsItem> = {
+    "Tư duy lãnh đạo": "leadership",
+    "Chiến lược, Kinh doanh": "strategy_business",
+    "Kinh doanh": "business",
+    "Nhân sự": "hr",
+    "Tài chính": "finance",
+  };
+  return values.map(v => mapping[v] || "other");
+};
+
+const mapScholarshipReason = (values: string[]): PostApiV10PublicRegistrationBodyScholarshipReasonItem[] => {
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyScholarshipReasonItem> = {
+    "Mong muốn có cơ hội học tập để phát triển tập đoàn, công ty lớn mạnh và đầu tư ngược lại cho các bạn trẻ Khởi Nghiệp": "invest_youth",
+    "Tôi cầu thị muốn học hỏi bài bản vì tôi chỉ có kinh nghiệm thực tế": "practical_learning",
+    "Tôi muốn đóng góp vào sự phát triển chung của Cộng Đồng Doanh Nghiệp Việt Nam": "community_contribution",
+  };
+  return values.map(v => mapping[v] || "other");
+};
+
+const mapBoardParticipation = (values: string[]): PostApiV10PublicRegistrationBodyCommitteeParticipationItem[] => {
+  const mapping: Record<string, PostApiV10PublicRegistrationBodyCommitteeParticipationItem> = {
+    "Tham gia Ban Điều Hành": "executive_board",
+    "Hậu cần": "logistics",
+    "Truyền thông, thiết kế": "communication_design",
+    "MC, Văn nghệ": "mc_entertainment",
+    "Tài trợ": "sponsorship",
+    "Liên hệ, kết nối với các giảng viên": "lecturer_networking",
+  };
+  return values.map(v => mapping[v] || "other");
+};
+
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h4 className="text-xl font-bold text-gray-900 border-b border-gray-200 pb-3 mb-6 mt-10 first:mt-0">
     {children}
@@ -121,8 +194,9 @@ const CheckboxGroup = ({
 
 export const RegistrationForm = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  
+  const { mutateAsync: submitRegistration, isPending: isSubmitting } = usePostApiV10PublicRegistration();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -158,16 +232,54 @@ export const RegistrationForm = () => {
   });
 
   const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    // Simulate submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted:", data);
-    setIsSubmitting(false);
-    setSubmitted(true);
-    toast({
-      title: "Đăng ký thành công!",
-      description: "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
-    });
+    try {
+      // Map form data to API format
+      const apiData: PostApiV10PublicRegistrationBody = {
+        company_name: data.companyName,
+        company_address: data.companyAddress,
+        tax_code: data.taxCode,
+        industry: data.industry,
+        vcci_membership: data.isVcciMember === "yes" ? "member" : "non_member",
+        vcci_member_code: data.memberCode || undefined,
+        referral_source: data.referralSource || undefined,
+        full_name: data.fullName,
+        current_position: data.position,
+        job_description: data.jobDescription,
+        alumni_status: mapPreviousStudentToAlumniStatus(data.previousStudent),
+        achievements: data.successFailure,
+        date_of_birth: data.birthDate,
+        mobile: data.mobile,
+        email: data.email,
+        english_level: mapEnglishLevel(data.englishLevel),
+        want_english_improvement: data.improveEnglish === "Có" ? true : data.improveEnglish === "Không" ? false : null,
+        attendance_commitment: data.commitAttendance,
+        goals: mapGoals(data.goals),
+        focus_skills: mapSkills(data.skillsFocus),
+        scholarship_reason: mapScholarshipReason(data.scholarshipReason),
+        committee_participation: mapBoardParticipation(data.boardParticipation),
+        commitment_rules: data.commitRules,
+        commitment_cooperation: data.commitCooperate,
+        commitment_sharing: data.commitShare,
+        commitment_contribution: data.commitGiveBack,
+        message_to_organizers: data.message || undefined,
+        year: 2025,
+      };
+
+      await submitRegistration({ data: apiData });
+      
+      setSubmitted(true);
+      toast({
+        title: "Đăng ký thành công!",
+        description: "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.",
+      });
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast({
+        title: "Đăng ký thất bại",
+        description: "Có lỗi xảy ra, vui lòng thử lại sau.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (submitted) {

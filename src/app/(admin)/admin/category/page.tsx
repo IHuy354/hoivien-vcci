@@ -12,6 +12,7 @@ import {
 } from '@/api/endpoints/category';
 import type { Category } from '@/api/models/category';
 import type { CategoryMutate } from '@/api/models/categoryMutate';
+import { slugify } from '@/lib/slugify';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -86,7 +87,7 @@ export default function CategoryManagementPage() {
   const [editTarget, setEditTarget] = useState<Category | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
 
-  const { control, handleSubmit, reset, formState: { errors } } = useForm<CategoryMutate>({
+  const { control, handleSubmit, reset, formState: { errors }, watch, setValue } = useForm<CategoryMutate>({
     defaultValues: { name: '', slug: '', type: '', url: '' },
   });
 
@@ -150,7 +151,7 @@ export default function CategoryManagementPage() {
 
   const openCreate = () => {
     setEditTarget(null);
-    reset({ name: '', slug: '', type: '', url: '' });
+    reset({ name: '', slug: '', type: 'gallery', url: '' });
     setFormOpen(true);
   };
 
@@ -373,7 +374,19 @@ export default function CategoryManagementPage() {
                 name="name"
                 rules={{ required: 'Tên danh mục là bắt buộc' }}
                 render={({ field }) => (
-                  <Input {...field} id="name" placeholder="VD: Ngành công nghiệp" className="h-10" />
+                  <Input 
+                    {...field} 
+                    id="name" 
+                    placeholder="VD: Ngành công nghiệp" 
+                    className="h-10"
+                    onChange={(e) => {
+                      field.onChange(e);
+                      // Tự động tạo slug khi nhập tên (chỉ khi tạo mới)
+                      if (!editTarget) {
+                        setValue('slug', slugify(e.target.value));
+                      }
+                    }}
+                  />
                 )}
               />
               {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
@@ -393,24 +406,16 @@ export default function CategoryManagementPage() {
                 )}
               />
               {errors.slug && <p className="text-sm text-red-500">{errors.slug.message}</p>}
+              {!editTarget && <p className="text-xs text-slate-500">Tự động tạo từ tên danh mục, có thể chỉnh sửa</p>}
             </div>
 
-            <div className="grid gap-2">
-              <Label htmlFor="type" className="flex items-center gap-2">
-                <Folder className="h-4 w-4 text-slate-500" />
-                Loại <span className="text-red-500">*</span>
-              </Label>
-              <Controller
-                control={control}
-                name="type"
-                rules={{ required: 'Loại là bắt buộc' }}
-                render={({ field }) => (
-                  <Input {...field} id="type" placeholder="industry / trade / gallery / post" className="h-10" />
-                )}
-              />
-              {errors.type && <p className="text-sm text-red-500">{errors.type.message}</p>}
-              <p className="text-xs text-slate-500">Gợi ý: industry, trade, gallery, post</p>
-            </div>
+            {/* Hidden field for type */}
+            <Controller
+              control={control}
+              name="type"
+              defaultValue="gallery"
+              render={({ field }) => <input type="hidden" {...field} />}
+            />
 
             <div className="grid gap-2">
               <Label htmlFor="url" className="flex items-center gap-2">
