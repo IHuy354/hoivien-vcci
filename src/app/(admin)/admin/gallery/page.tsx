@@ -169,7 +169,7 @@ export default function GalleryManagementPage() {
       } else {
         toast.error('Không tìm thấy dữ liệu');
       }
-    } catch (error) {
+    } catch {
       toast.error('Không thể tải dữ liệu, vui lòng thử lại');
     } finally {
       setLoadingDetailId(null);

@@ -87,7 +87,7 @@ export default function CategoryManagementPage() {
   const [editTarget, setEditTarget] = useState<Category | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
 
-  const { control, handleSubmit, reset, formState: { errors }, watch, setValue } = useForm<CategoryMutate>({
+  const { control, handleSubmit, reset, formState: { errors }, setValue } = useForm<CategoryMutate>({
     defaultValues: { name: '', slug: '', type: '', url: '' },
   });
 
