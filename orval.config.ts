@@ -16,7 +16,7 @@ const orvalConfig = async () => {
       .catch(() => ({ data: null })), // Fallback nếu không có file upload service
   ]);
 
-  const config: any = {
+  const config: Parameters<typeof defineConfig>[0] = {
     "main-api": {
       output: {
         mode: "tags",
