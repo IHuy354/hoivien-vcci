@@ -1,3 +1,6 @@
+"use client";
+
+import { useGetApiV10PublicSiteSettings } from "@/api/endpoints/public";
 import { MapPin, Phone, Mail, Facebook, Linkedin, Youtube, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,6 +11,17 @@ interface FooterProps {
 }
 
 export default function Footer({ className }: FooterProps) {
+  const { data } = useGetApiV10PublicSiteSettings();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const settings = (data as any)?.responseData;
+
+  const address = settings?.contact_address || "Tòa nhà VCCI-HCM, 171 Võ Thị Sáu, Q.3, Tp.HCM";
+  const phone = settings?.contact_phone || "0903.857.520 — Đoàn Thông";
+  const email = settings?.contact_email || "doanthong@vcci-hcm.org.vn";
+  const facebookUrl = settings?.facebook_url || "#";
+  const youtubeUrl = settings?.youtube_url || "#";
+  const seoDescription = settings?.seo_description || "Cộng Đồng CEO VCCI — Chương trình đào tạo Giám đốc điều hành doanh nghiệp CEO 4.0 trong kỷ nguyên AI. Nơi kết nối và phát triển năng lực lãnh đạo toàn diện.";
+
   return (
     <footer className={cn("relative bg-foreground/[0.02] border-t border-border overflow-hidden", className)}>
       {/* Decorative top gradient line */}
@@ -31,16 +45,16 @@ export default function Footer({ className }: FooterProps) {
               />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-              Cộng Đồng CEO VCCI — Chương trình đào tạo Giám đốc điều hành doanh nghiệp CEO 4.0 trong kỷ nguyên AI. Nơi kết nối và phát triển năng lực lãnh đạo toàn diện.
+              {seoDescription}
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+              <a href={facebookUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                 <Facebook size={16} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+              <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                 <Youtube size={16} />
               </a>
-              <a href="#" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
+              <a href="#" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-foreground/5 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                 <Linkedin size={16} />
               </a>
             </div>
@@ -50,23 +64,23 @@ export default function Footer({ className }: FooterProps) {
           <div className="md:col-span-6 lg:col-span-4">
             <h4 className="text-sm font-bold uppercase tracking-wider text-foreground mb-6">Liên hệ</h4>
             <div className="space-y-4">
-              <a href="https://maps.app.goo.gl/XXm47Grhm7Pho8h7A" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors">
                 <div className="w-8 h-8 rounded-md bg-foreground/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
                   <MapPin size={16} className="text-foreground group-hover:text-primary transition-colors" />
                 </div>
-                <span className="text-sm leading-relaxed mt-1">Tòa nhà VCCI-HCM, 171 Võ Thị Sáu, Q.3, Tp.HCM</span>
+                <span className="text-sm leading-relaxed mt-1">{address}</span>
               </a>
-              <a href="https://zalo.me/0903857520" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                 <div className="w-8 h-8 rounded-md bg-foreground/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
                   <Phone size={16} className="text-foreground group-hover:text-primary transition-colors" />
                 </div>
-                <span className="text-sm">0903.857.520 — Đoàn Thông</span>
+                <span className="text-sm">{phone}</span>
               </a>
-              <a href="mailto:doanthong@vcci-hcm.org.vn" className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
+              <a href={`mailto:${email}`} className="group flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors">
                 <div className="w-8 h-8 rounded-md bg-foreground/5 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/10 transition-colors">
                   <Mail size={16} className="text-foreground group-hover:text-primary transition-colors" />
                 </div>
-                <span className="text-sm">doanthong@vcci-hcm.org.vn</span>
+                <span className="text-sm">{email}</span>
               </a>
             </div>
           </div>
