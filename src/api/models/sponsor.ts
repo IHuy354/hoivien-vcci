@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export interface Sponsor {
@@ -13,4 +14,10 @@ export interface Sponsor {
   created_by?: string;
   updated_at?: string;
   updated_by?: string;
+  logo?: {
+    id?: string;
+    path?: string;
+    original?: string;
+    mime?: string;
+  };
 }

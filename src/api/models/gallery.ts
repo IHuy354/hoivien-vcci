@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export interface Gallery {
@@ -13,4 +14,17 @@ export interface Gallery {
   created_by?: string;
   updated_at?: string;
   updated_by?: string;
+  image?: {
+    id?: string;
+    path?: string;
+    original?: string;
+    mime?: string;
+  };
+  categories?: Array<{
+    id?: string;
+    name?: string;
+    slug?: string;
+    type?: string;
+    url?: string;
+  }>;
 }

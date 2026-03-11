@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType = typeof GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType[keyof typeof GetApiV10PostId200AllOfResponseDataAllOfCategoryIdsItemType];

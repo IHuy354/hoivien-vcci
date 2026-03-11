@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export interface Speaker {
@@ -16,4 +17,10 @@ export interface Speaker {
   created_by?: string;
   updated_at?: string;
   updated_by?: string;
+  avatar?: {
+    id?: string;
+    path?: string;
+    original?: string;
+    mime?: string;
+  };
 }

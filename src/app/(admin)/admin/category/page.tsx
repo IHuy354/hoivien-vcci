@@ -48,11 +48,33 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
+  Tag,
+  Hash,
+  Link2,
+  ExternalLink,
+  Folder,
 } from 'lucide-react';
 import { useForm, Controller } from 'react-hook-form';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 const PAGE_SIZE = 10;
+
+// Helper để lấy màu badge theo type
+const getTypeBadgeVariant = (type?: string) => {
+  switch (type) {
+    case 'industry':
+      return { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', icon: 'Folder' };
+    case 'trade':
+      return { bg: 'bg-emerald-50', text: 'text-emerald-700', border: 'border-emerald-200', icon: 'Tag' };
+    case 'gallery':
+      return { bg: 'bg-purple-50', text: 'text-purple-700', border: 'border-purple-200', icon: 'Folder' };
+    case 'post':
+      return { bg: 'bg-amber-50', text: 'text-amber-700', border: 'border-amber-200', icon: 'Folder' };
+    default:
+      return { bg: 'bg-slate-50', text: 'text-slate-700', border: 'border-slate-200', icon: 'Folder' };
+  }
+};
 
 export default function CategoryManagementPage() {
   const queryClient = useQueryClient();
@@ -140,29 +162,38 @@ export default function CategoryManagementPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Quản lý Danh mục</h1>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Quản lý các danh mục hệ thống
+          <h1 className="text-3xl font-bold text-slate-900 flex items-center gap-3">
+            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[#19426D] to-[#0f3b5a] flex items-center justify-center">
+              <Folder className="h-5 w-5 text-white" />
+            </div>
+            Quản lý Danh mục
+          </h1>
+          <p className="text-sm text-slate-500 mt-1.5">
+            Quản lý các danh mục hệ thống (Industry, Trade, Gallery, Post...)
           </p>
         </div>
-        <Button onClick={openCreate} className="gap-2 bg-[#19426D] hover:bg-[#0f3b5a]">
+        <Button onClick={openCreate} className="gap-2 bg-[#19426D] hover:bg-[#0f3b5a] shadow-lg shadow-[#19426D]/20">
           <Plus className="h-4 w-4" />
           Thêm danh mục
         </Button>
       </div>
 
-      <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <div className="relative flex-1 max-w-xs">
+      <div className="bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-200 p-5 shadow-sm">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
             <Input
               value={searchName}
               onChange={(e) => { setSearchName(e.target.value); setPage(1); }}
-              placeholder="Tìm kiếm danh mục..."
-              className="pl-9 h-10 w-full rounded-lg border-slate-200 bg-slate-50 focus:bg-white"
+              placeholder="Tìm kiếm theo tên danh mục..."
+              className="pl-10 h-11 w-full rounded-lg border-slate-300 bg-white focus:bg-white shadow-sm"
             />
+          </div>
+          <div className="flex items-center gap-2 text-sm text-slate-600">
+            <Folder className="h-4 w-4" />
+            <span className="font-medium">{total}</span> danh mục
           </div>
         </div>
       </div>
@@ -170,12 +201,32 @@ export default function CategoryManagementPage() {
       <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <Table>
-            <TableHeader className="bg-slate-50">
-              <TableRow>
-                <TableHead className="w-[200px] font-semibold text-slate-700">Tên dánh mục</TableHead>
-                <TableHead className="font-semibold text-slate-700">Slug</TableHead>
-                <TableHead className="font-semibold text-slate-700">Type</TableHead>
-                <TableHead className="font-semibold text-slate-700">Trạng thái URL</TableHead>
+            <TableHeader className="bg-slate-50/80 border-b border-slate-200">
+              <TableRow className="hover:bg-slate-50/80">
+                <TableHead className="w-[220px] font-semibold text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <Tag className="h-4 w-4" />
+                    Tên danh mục
+                  </div>
+                </TableHead>
+                <TableHead className="font-semibold text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <Hash className="h-4 w-4" />
+                    Slug
+                  </div>
+                </TableHead>
+                <TableHead className="w-[160px] font-semibold text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <Folder className="h-4 w-4" />
+                    Loại
+                  </div>
+                </TableHead>
+                <TableHead className="font-semibold text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <Link2 className="h-4 w-4" />
+                    URL
+                  </div>
+                </TableHead>
                 <TableHead className="text-right w-[120px] font-semibold text-slate-700">Thao tác</TableHead>
               </TableRow>
             </TableHeader>
@@ -193,28 +244,69 @@ export default function CategoryManagementPage() {
                   </TableCell>
                 </TableRow>
               ) : (
-                categories.map((item) => (
-                  <TableRow key={item.id} className="hover:bg-slate-50 transition-colors">
-                    <TableCell className="font-medium text-slate-900">{item.name}</TableCell>
-                    <TableCell className="text-slate-600">{item.slug}</TableCell>
-                    <TableCell className="text-slate-600">
-                      <span className="px-2 py-1 rounded bg-slate-100 border border-slate-200 text-xs">
-                        {item.type}
-                      </span>
-                    </TableCell>
-                    <TableCell className="text-slate-600">{item.url || '-'}</TableCell>
-                    <TableCell className="text-right">
-                      <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50" onClick={() => openEdit(item)}>
-                          <Pencil className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50" onClick={() => setDeleteTarget(item)}>
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </TableCell>
-                  </TableRow>
-                ))
+                categories.map((item) => {
+                  const badgeStyle = getTypeBadgeVariant(item.type);
+                  return (
+                    <TableRow key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                      <TableCell className="font-semibold text-slate-900">
+                        {item.name}
+                      </TableCell>
+                      <TableCell>
+                        <code className="text-sm bg-slate-100 px-2 py-1 rounded text-slate-700 font-mono">
+                          {item.slug}
+                        </code>
+                      </TableCell>
+                      <TableCell>
+                        <Badge 
+                          variant="outline" 
+                          className={cn(
+                            "font-medium capitalize",
+                            badgeStyle.bg,
+                            badgeStyle.text,
+                            badgeStyle.border
+                          )}
+                        >
+                          {item.type}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        {item.url ? (
+                          <a 
+                            href={item.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:text-blue-700 hover:underline text-sm flex items-center gap-1 w-fit max-w-[300px] truncate"
+                          >
+                            <ExternalLink className="h-3.5 w-3.5 flex-shrink-0" />
+                            <span className="truncate">{item.url}</span>
+                          </a>
+                        ) : (
+                          <span className="text-slate-400 text-sm">-</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8 text-blue-600 hover:text-blue-700 hover:bg-blue-50" 
+                            onClick={() => openEdit(item)}
+                          >
+                            <Pencil className="h-4 w-4" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            className="h-8 w-8 text-red-600 hover:text-red-700 hover:bg-red-50" 
+                            onClick={() => setDeleteTarget(item)}
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })
               )}
             </TableBody>
           </Table>
@@ -254,64 +346,91 @@ export default function CategoryManagementPage() {
 
       {/* CREATE/EDIT DIALOG */}
       <Dialog open={formOpen} onOpenChange={setFormOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[500px]">
           <DialogHeader>
-            <DialogTitle>{editTarget ? 'Cập nhật danh mục' : 'Thêm danh mục mới'}</DialogTitle>
+            <DialogTitle className="text-xl flex items-center gap-2">
+              <div className={cn(
+                "h-8 w-8 rounded-lg flex items-center justify-center",
+                editTarget ? "bg-blue-100" : "bg-emerald-100"
+              )}>
+                {editTarget ? (
+                  <Pencil className="h-4 w-4 text-blue-700" />
+                ) : (
+                  <Plus className="h-4 w-4 text-emerald-700" />
+                )}
+              </div>
+              {editTarget ? 'Cập nhật danh mục' : 'Thêm danh mục mới'}
+            </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 py-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 py-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Tên danh mục <span className="text-red-500">*</span></Label>
+              <Label htmlFor="name" className="flex items-center gap-2">
+                <Tag className="h-4 w-4 text-slate-500" />
+                Tên danh mục <span className="text-red-500">*</span>
+              </Label>
               <Controller
                 control={control}
                 name="name"
                 rules={{ required: 'Tên danh mục là bắt buộc' }}
                 render={({ field }) => (
-                  <Input {...field} id="name" placeholder="Nhập tên" />
+                  <Input {...field} id="name" placeholder="VD: Ngành công nghiệp" className="h-10" />
                 )}
               />
               {errors.name && <p className="text-sm text-red-500">{errors.name.message}</p>}
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="slug">Slug <span className="text-red-500">*</span></Label>
+              <Label htmlFor="slug" className="flex items-center gap-2">
+                <Hash className="h-4 w-4 text-slate-500" />
+                Slug <span className="text-red-500">*</span>
+              </Label>
               <Controller
                 control={control}
                 name="slug"
                 rules={{ required: 'Slug là bắt buộc' }}
                 render={({ field }) => (
-                  <Input {...field} id="slug" placeholder="nhap-slug" />
+                  <Input {...field} id="slug" placeholder="nganh-cong-nghiep" className="h-10 font-mono text-sm" />
                 )}
               />
               {errors.slug && <p className="text-sm text-red-500">{errors.slug.message}</p>}
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="type">Loại <span className="text-red-500">*</span></Label>
+              <Label htmlFor="type" className="flex items-center gap-2">
+                <Folder className="h-4 w-4 text-slate-500" />
+                Loại <span className="text-red-500">*</span>
+              </Label>
               <Controller
                 control={control}
                 name="type"
                 rules={{ required: 'Loại là bắt buộc' }}
                 render={({ field }) => (
-                  <Input {...field} id="type" placeholder="industry" />
+                  <Input {...field} id="type" placeholder="industry / trade / gallery / post" className="h-10" />
                 )}
               />
               {errors.type && <p className="text-sm text-red-500">{errors.type.message}</p>}
+              <p className="text-xs text-slate-500">Gợi ý: industry, trade, gallery, post</p>
             </div>
 
             <div className="grid gap-2">
-              <Label htmlFor="url">Đường dẫn URL</Label>
+              <Label htmlFor="url" className="flex items-center gap-2">
+                <Link2 className="h-4 w-4 text-slate-500" />
+                Đường dẫn URL
+              </Label>
               <Controller
                 control={control}
                 name="url"
                 render={({ field }) => (
-                  <Input {...field} id="url" placeholder="https://..." value={field.value ?? ''} />
+                  <Input {...field} id="url" placeholder="https://example.com" value={field.value ?? ''} className="h-10" />
                 )}
               />
             </div>
             
             <div className="flex justify-end gap-3 pt-4 border-t">
-              <Button type="button" variant="outline" onClick={() => setFormOpen(false)}>Hủy</Button>
-              <Button type="submit" disabled={saving} className="bg-[#19426D] hover:bg-[#0f3b5a]">
+              <Button type="button" variant="outline" onClick={() => setFormOpen(false)} className="h-10">
+                Hủy
+              </Button>
+              <Button type="submit" disabled={saving} className="bg-[#19426D] hover:bg-[#0f3b5a] h-10 min-w-[100px]">
                 {saving ? 'Đang lưu...' : 'Lưu lại'}
               </Button>
             </div>

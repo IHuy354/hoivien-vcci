@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { PostApiV10Post200AllOfResponseDataAllOfCategoryIdsItemType } from './postApiV10Post200AllOfResponseDataAllOfCategoryIdsItemType';
 

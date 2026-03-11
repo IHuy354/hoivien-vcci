@@ -1,15 +1,12 @@
-'use client';
-
 import { useRef, useState } from 'react';
-import { Upload, X, Loader2 } from 'lucide-react';
+import { Upload, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import baseConfig from '@/configs/base';
-import { useGetApiV10FileId } from '@/api/endpoints/file';
 
 interface AvatarPickerProps {
-  savedId?: string;
+  savedPath?: string;
   pendingFile?: File | null;
   onFileSelect: (file: File | null) => void;
   onClearSaved: () => void;
@@ -17,7 +14,7 @@ interface AvatarPickerProps {
 }
 
 export function AvatarPicker({ 
-  savedId, 
+  savedPath, 
   pendingFile, 
   onFileSelect, 
   onClearSaved,
@@ -26,28 +23,11 @@ export function AvatarPicker({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Fetch file info từ savedId (chỉ khi savedId có giá trị thực)
-  const { data: fileData, isLoading: isLoadingFile } = useGetApiV10FileId(
-    savedId || 'skip-api-call', 
-    { 
-      query: { 
-        enabled: !!savedId && savedId.length > 0
-      } 
-    }
-  );
-
-  // Preview URL: ưu tiên local blob, sau đó server URL từ API
+  // Preview URL: ưu tiên local blob, sau đó server URL từ path
   const previewUrl = pendingFile
     ? URL.createObjectURL(pendingFile)
-    : savedId && fileData
-      ? (() => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const file = (fileData as any)?.responseData;
-          if (file?.path) {
-            return `${baseConfig.imageDomain}/${file.path}`;
-          }
-          return null;
-        })()
+    : savedPath
+      ? `${baseConfig.imageDomain}/${savedPath}`
       : null;
 
   // const hasValue = !!(pendingFile || savedId);
@@ -97,11 +77,7 @@ export function AvatarPicker({
           onChange={handleFileChange}
         />
         
-        {isLoadingFile && savedId && !pendingFile ? (
-          <div className="w-full h-full flex items-center justify-center bg-slate-50">
-            <Loader2 className="w-6 h-6 animate-spin text-slate-400" />
-          </div>
-        ) : previewUrl ? (
+        {previewUrl ? (
           <>
             <img src={previewUrl} alt="Avatar" className="w-full h-full object-cover" />
             {isHovered && (

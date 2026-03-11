@@ -89,7 +89,7 @@ export default function SponsorManagementPage() {
       pageSize: PAGE_SIZE,
       sortField: 'sort_order',
       sortOrder: 'asc' as const,
-      ...(filters.length ? { filters: filters.join(';') } : {}),
+      ...(filters.length ? { filters: filters.join(',') } : {}),
     };
   }, [page, tierFilter, yearFilter, searchName]);
 
@@ -276,7 +276,7 @@ export default function SponsorManagementPage() {
                 <TableRow key={sponsor.id} className="hover:bg-slate-50/50">
                   <TableCell className="text-center">
                     <div className="flex justify-center">
-                      <SponsorLogo logoId={sponsor.logo.path} name={sponsor.name} />
+                      <SponsorLogo logoPath={sponsor.logo?.path} name={sponsor.name} />
                     </div>
                   </TableCell>
                   <TableCell>

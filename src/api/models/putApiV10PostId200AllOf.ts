@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { PutApiV10PostId200AllOfResponseData } from './putApiV10PostId200AllOfResponseData';
 

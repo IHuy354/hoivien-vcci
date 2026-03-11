@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { UnauthorizedResponseError } from './unauthorizedResponseError';
 import type { UnauthorizedResponseResponseData } from './unauthorizedResponseResponseData';

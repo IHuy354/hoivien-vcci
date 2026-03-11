@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { PostApiV10SiteSettingBodyGroupName } from './postApiV10SiteSettingBodyGroupName';
 import type { PostApiV10SiteSettingBodyDataType } from './postApiV10SiteSettingBodyDataType';

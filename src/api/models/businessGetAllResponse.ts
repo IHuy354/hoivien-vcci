@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { BusinessGetAllResponseResponseData } from './businessGetAllResponseResponseData';
 import type { BusinessGetAllResponseViolations } from './businessGetAllResponseViolations';

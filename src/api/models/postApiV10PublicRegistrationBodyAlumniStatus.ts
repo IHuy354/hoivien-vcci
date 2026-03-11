@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyAlumniStatus = typeof PostApiV10PublicRegistrationBodyAlumniStatus[keyof typeof PostApiV10PublicRegistrationBodyAlumniStatus];

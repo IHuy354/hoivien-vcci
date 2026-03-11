@@ -4,22 +4,22 @@ import { ImageIcon, Upload, X } from 'lucide-react';
 import baseConfig from '@/configs/base';
 
 interface ImagePickerProps {
-  savedId?: string;
+  savedPath?: string;
   pendingFile?: File | null;
   onFileSelect: (file: File | null) => void;
   onClearSaved: () => void;
 }
 
-export function ImagePicker({ savedId, pendingFile, onFileSelect, onClearSaved }: ImagePickerProps) {
+export function ImagePicker({ savedPath, pendingFile, onFileSelect, onClearSaved }: ImagePickerProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const previewSrc = pendingFile
     ? URL.createObjectURL(pendingFile)
-    : savedId
-    ? `${baseConfig.imageDomain}/${savedId}`
+    : savedPath
+    ? `${baseConfig.imageDomain}/${savedPath}`
     : null;
 
-  const hasValue = !!(pendingFile || savedId);
+  const hasValue = !!(pendingFile || savedPath);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;

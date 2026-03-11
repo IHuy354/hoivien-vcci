@@ -56,6 +56,7 @@ import {
   XCircle,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import baseConfig from '@/configs/base';
 import { PAGE_SIZE, YEAR_OPTIONS, SPEAKER_TYPES } from './_components/constants';
 import { SpeakerFormDialog } from './_components/speaker-form-dialog';
 
@@ -251,10 +252,8 @@ export default function SpeakerManagementPage() {
                                 <TableCell>
                                     <div className="flex items-center gap-3">
                                         <div className="h-10 w-10 relative rounded-full overflow-hidden border border-slate-200 bg-slate-50 shrink-0">
-                                            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-                                            {(item as any).avatar?.url ? (
-                                                /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
-                                                <Image src={(item as any).avatar.url} alt={item.full_name || ''} fill className="object-cover" />
+                                            {item.avatar?.path ? (
+                                                <Image src={`${baseConfig.imageDomain}/${item.avatar.path}`} alt={item.full_name || ''} fill className="object-cover" />
                                             ) : (
                                                 <div className="w-full h-full flex items-center justify-center text-slate-300">
                                                     <UserCircle2 className="h-6 w-6" />

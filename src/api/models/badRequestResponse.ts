@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { BadRequestResponseError } from './badRequestResponseError';
 import type { BadRequestResponseResponseData } from './badRequestResponseResponseData';

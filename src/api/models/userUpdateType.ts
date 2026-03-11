@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type UserUpdateType = typeof UserUpdateType[keyof typeof UserUpdateType];

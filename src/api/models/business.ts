@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { BusinessOwnerSummary } from './businessOwnerSummary';
 import type { BusinessLogoSummary } from './businessLogoSummary';

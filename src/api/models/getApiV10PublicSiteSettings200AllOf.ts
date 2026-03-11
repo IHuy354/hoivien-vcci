@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { GetApiV10PublicSiteSettings200AllOfResponseData } from './getApiV10PublicSiteSettings200AllOfResponseData';
 

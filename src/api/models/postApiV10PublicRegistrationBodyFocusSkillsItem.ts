@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyFocusSkillsItem = typeof PostApiV10PublicRegistrationBodyFocusSkillsItem[keyof typeof PostApiV10PublicRegistrationBodyFocusSkillsItem];

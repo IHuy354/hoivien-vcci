@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { PostApiV10PublicRegistrationBodyVcciMembership } from './postApiV10PublicRegistrationBodyVcciMembership';
 import type { PostApiV10PublicRegistrationBodyAlumniStatus } from './postApiV10PublicRegistrationBodyAlumniStatus';

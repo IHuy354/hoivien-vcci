@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { PostApiV10AuthLogout200Message } from './postApiV10AuthLogout200Message';
 

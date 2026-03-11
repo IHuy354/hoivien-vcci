@@ -38,7 +38,7 @@ const orvalConfig = async () => {
             path: "src/api/mutator/custom-instance.ts",
             name: "mainInstance",
           },
-          header: () => "// @ts-nocheck\r\n",
+          header: () => "/* eslint-disable @typescript-eslint/ban-ts-comment */\n// @ts-nocheck\n",
           operations: {
             postSystemBackup: {
               mutator: {
@@ -78,7 +78,7 @@ const orvalConfig = async () => {
             path: "src/api/mutator/custom-instance.ts",
             name: "mainInstance",
           },
-          header: () => "// @ts-nocheck\r\n",
+          header: () => "/* eslint-disable @typescript-eslint/ban-ts-comment */\n// @ts-nocheck\n",
         },
       },
       input: {

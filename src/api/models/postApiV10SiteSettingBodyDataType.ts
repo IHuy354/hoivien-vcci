@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type PostApiV10SiteSettingBodyDataType = typeof PostApiV10SiteSettingBodyDataType[keyof typeof PostApiV10SiteSettingBodyDataType];

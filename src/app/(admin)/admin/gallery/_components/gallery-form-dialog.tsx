@@ -65,7 +65,7 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
       setForm({
         title: initial?.title ?? '',
         description: initial?.description ?? '',
-        image_id: (initial as { image?: { id?: string } })?.image?.id || initial?.image_id || '',
+        image_id: initial?.image_id ?? '',
         category: initial?.category ?? '',
         year: initial?.year ?? CURRENT_YEAR,
         sort_order: initial?.sort_order ?? 0,
@@ -132,7 +132,7 @@ export function GalleryFormDialog({ open, onClose, initial, onSave, saving }: Fo
           <div className="space-y-1.5">
             <Label>Hình ảnh <span className="text-red-500">*</span></Label>
             <ImagePicker
-              savedId={form.image_id || undefined}
+              savedPath={initial?.image?.path}
               pendingFile={pendingFile}
               onFileSelect={setPendingFile}
               onClearSaved={() => handle('image_id', '')}

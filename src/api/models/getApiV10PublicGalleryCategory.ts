@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type GetApiV10PublicGalleryCategory = typeof GetApiV10PublicGalleryCategory[keyof typeof GetApiV10PublicGalleryCategory];

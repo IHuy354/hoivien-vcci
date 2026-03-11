@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { ApiResponse } from './apiResponse';
 import type { DeleteApiV10CategoryId200AllOf } from './deleteApiV10CategoryId200AllOf';

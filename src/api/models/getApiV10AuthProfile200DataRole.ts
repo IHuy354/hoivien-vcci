@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type GetApiV10AuthProfile200DataRole = typeof GetApiV10AuthProfile200DataRole[keyof typeof GetApiV10AuthProfile200DataRole];

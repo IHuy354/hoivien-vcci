@@ -4,25 +4,25 @@ import { ImageIcon, Upload, X } from 'lucide-react';
 import baseConfig from '@/configs/base';
 
 interface LogoPickerProps {
-  /** ID đã lưu (khi edit sponsor cũ) */
-  savedId?: string;
+  /** Path đã lưu (khi edit sponsor cũ) */
+  savedPath?: string;
   /** File đang chờ upload (chưa submit) */
   pendingFile?: File | null;
   onFileSelect: (file: File | null) => void;
   onClearSaved: () => void;
 }
 
-export function LogoPicker({ savedId, pendingFile, onFileSelect, onClearSaved }: LogoPickerProps) {
+export function LogoPicker({ savedPath, pendingFile, onFileSelect, onClearSaved }: LogoPickerProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Preview: ưu tiên local blob URL, fallback ID đã lưu
+  // Preview: ưu tiên local blob URL, fallback path đã lưu
   const previewSrc = pendingFile
     ? URL.createObjectURL(pendingFile)
-    : savedId
-    ? `${baseConfig.imageDomain}/${savedId}`
+    : savedPath
+    ? `${baseConfig.imageDomain}/${savedPath}`
     : null;
 
-  const hasValue = !!(pendingFile || savedId);
+  const hasValue = !!(pendingFile || savedPath);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] ?? null;

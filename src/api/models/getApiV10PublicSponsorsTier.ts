@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type GetApiV10PublicSponsorsTier = typeof GetApiV10PublicSponsorsTier[keyof typeof GetApiV10PublicSponsorsTier];

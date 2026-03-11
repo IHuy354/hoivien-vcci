@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { LoginResponse } from './loginResponse';
 import type { PostApiV10AuthRefresh200Message } from './postApiV10AuthRefresh200Message';

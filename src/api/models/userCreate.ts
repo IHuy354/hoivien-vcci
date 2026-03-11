@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { UserCreateType } from './userCreateType';
 import type { UserCreateGender } from './userCreateGender';

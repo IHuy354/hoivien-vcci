@@ -51,12 +51,11 @@ import {
   Search,
   ChevronLeft,
   ChevronRight,
-  ImageIcon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import baseConfig from '@/configs/base';
 
 import { GalleryFormDialog } from './_components/gallery-form-dialog';
+import { GalleryImage } from './_components/gallery-image';
 
 const PAGE_SIZE = 10;
 const CURRENT_YEAR = new Date().getFullYear();
@@ -232,23 +231,11 @@ export default function GalleryManagementPage() {
                 </TableRow>
               ) : (
                 galleryItems.map((item) => {
-                  const imageId = (item as { image?: { id?: string } })?.image?.id || item.image_id;
-                  
                   return (
                     <TableRow key={item.id} className="hover:bg-slate-50 transition-colors">
                       <TableCell className="text-center">
                         <div className="h-12 w-16 mx-auto rounded overflow-hidden border border-slate-200 bg-slate-100 flex items-center justify-center relative group">
-                          {imageId ? (
-                            // eslint-disable-next-line @next/next/no-img-element
-                            <img
-                              src={`${baseConfig.imageDomain}/${imageId}`}
-                              alt={item.title}
-                              className="w-full h-full object-cover transition-transform group-hover:scale-105"
-                              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                            />
-                          ) : (
-                            <ImageIcon className="h-5 w-5 text-slate-300" />
-                          )}
+                          <GalleryImage imagePath={item.image?.path} alt={item.title} />
                         </div>
                       </TableCell>
                       <TableCell>

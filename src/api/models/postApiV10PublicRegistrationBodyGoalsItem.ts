@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
 export type PostApiV10PublicRegistrationBodyGoalsItem = typeof PostApiV10PublicRegistrationBodyGoalsItem[keyof typeof PostApiV10PublicRegistrationBodyGoalsItem];

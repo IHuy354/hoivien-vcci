@@ -122,7 +122,7 @@ export function SponsorFormDialog({ open, onClose, initial, onSave, saving }: Fo
           <div className="space-y-1.5">
             <Label>Logo nhà tài trợ</Label>
             <LogoPicker
-              savedId={form.logo_id || undefined}
+              savedPath={initial?.logo?.path}
               pendingFile={pendingFile}
               onFileSelect={setPendingFile}
               onClearSaved={() => handle('logo_id', '')}

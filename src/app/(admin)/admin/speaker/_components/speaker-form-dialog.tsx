@@ -139,7 +139,7 @@ export function SpeakerFormDialog({
                 <div className="flex flex-col items-center gap-3">
                      <Label>Ảnh đại diện</Label>
                     <AvatarPicker 
-                      savedId={speaker?.avatar_id}
+                      savedPath={speaker?.avatar?.path}
                       pendingFile={pendingFile}
                       onFileSelect={setPendingFile}
                       onClearSaved={() => setValue('avatar_id', null as unknown as string)}

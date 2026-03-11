@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import type { GetApiV10Term200AllOfResponseData } from './getApiV10Term200AllOfResponseData';
 
