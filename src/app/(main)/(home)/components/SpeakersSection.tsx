@@ -9,7 +9,9 @@ import baseConfig from "@/configs/base";
 import { Loader2 } from "lucide-react";
 
 export const SpeakersSection = () => {
-  const { data, isLoading } = useGetApiV10PublicSpeakers();
+  const { data, isLoading } = useGetApiV10PublicSpeakers({
+    type: 'speaker',
+  });
   const [visibleCount, setVisibleCount] = useState(8);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

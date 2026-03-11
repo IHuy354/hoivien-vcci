@@ -16,6 +16,7 @@ const orvalConfig = async () => {
       .catch(() => ({ data: null })), // Fallback nếu không có file upload service
   ]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const config: any = {
     "main-api": {
       output: {
