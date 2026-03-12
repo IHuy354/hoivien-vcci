@@ -37,6 +37,7 @@ import {
 } from 'lucide-react';
 
 import { ImageSettingField } from './_components/image-setting-field';
+import { DateTimeSettingField } from './_components/datetime-setting-field';
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -115,6 +116,23 @@ const isImageField = (setting: SiteSetting): boolean => {
 const isTextareaField = (key: string): boolean => {
   const textareaKeys = ['description', 'keywords', 'address'];
   return textareaKeys.some((pattern) => key.includes(pattern));
+};
+
+/**
+ * Check if a setting field is a date/datetime field
+ */
+const isDateTimeField = (setting: SiteSetting): boolean => {
+  const key = setting.key || '';
+  const dataType = setting.data_type || '';
+  
+  // Check by data_type first
+  if (dataType.toLowerCase() === 'datetime' || dataType.toLowerCase() === 'date') {
+    return true;
+  }
+  
+  // Check by key pattern
+  const dateKeys = ['_date', 'date_', 'ngay_', '_ngay'];
+  return dateKeys.some((pattern) => key.toLowerCase().includes(pattern));
 };
 
 export default function SiteSettingPage() {
@@ -341,12 +359,34 @@ export default function SiteSettingPage() {
                   </p>
                 ) : (
                   groupedSettings[group.name]?.map((setting) => {
+                    const isDateTime = isDateTimeField(setting);
                     const isImage = isImageField(setting);
                     const isTextarea = isTextareaField(setting.key || '');
 
                     return (
                       <div key={setting.id}>
-                        {isImage ? (
+                        {isDateTime ? (
+                          // Render DateTime Picker Field
+                          <DateTimeSettingField
+                            label={setting.description || setting.key || ''}
+                            description={
+                              setting.data_type
+                                ? `Kiểu dữ liệu: ${setting.data_type}${
+                                    setting.updated_at
+                                      ? ` • Cập nhật: ${new Date(
+                                          setting.updated_at
+                                        ).toLocaleString('vi-VN')}`
+                                      : ''
+                                  }`
+                                : undefined
+                            }
+                            keyName={setting.key || ''}
+                            value={getCurrentValue(setting)}
+                            onChange={(value) =>
+                              handleValueChange(setting.key || '', value)
+                            }
+                          />
+                        ) : isImage ? (
                           // Render Image Upload Field
                           <ImageSettingField
                             label={setting.description || setting.key || ''}

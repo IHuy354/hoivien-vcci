@@ -3,11 +3,18 @@
 import { motion } from "framer-motion";
 import { FileText, Zap, Phone, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
-
+import { useSiteSetting } from "@/hooks/use-site-settings";
 export const RegistrationSection = () => {
   const router = useRouter();
-
-  return (
+  
+const registration_start = useSiteSetting('registration_start');
+const registration_end = useSiteSetting('registration_end');
+const contact_email = useSiteSetting('contact_email');
+const contact_phone = useSiteSetting('contact_phone');
+const formatDate = (date: string | null) => {
+  return date?.split(" ")[0] || "";
+};  
+return (
     <section id="registration" className="py-20 md:py-28 bg-white">
       <div className="max-w-5xl mx-auto px-4 md:px-8">
         <motion.div
@@ -41,7 +48,7 @@ export const RegistrationSection = () => {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 text-base mb-1">Thời gian đăng ký</p>
-                  <p className="text-yellow-600 font-bold text-lg">01/05/2025 → 30/06/2025</p>
+                  <p className="text-yellow-600 font-bold text-lg">{formatDate(registration_start)} → {formatDate(registration_end)}</p>
                   <p className="text-sm text-gray-500 mt-1">Nộp hồ sơ đăng ký trực tuyến</p>
                 </div>
               </div>
@@ -87,13 +94,13 @@ export const RegistrationSection = () => {
                   <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center">
                     <Phone size={16} className="text-gray-900" />
                   </div>
-                  0983 967 567
+                  {contact_phone || '0983 967 567'}
                 </a>
                 <a href="mailto:tramnguyenvcci@gmail.com" className="inline-flex items-center gap-3 text-base font-medium text-gray-600 hover:text-yellow-600 transition-colors">
                   <div className="w-9 h-9 rounded-full bg-gray-50 flex items-center justify-center">
                     <Mail size={16} className="text-gray-900" />
                   </div>
-                  tramnguyenvcci@gmail.com
+                  {contact_email || 'tramnguyenvcci@gmail.com'}
                 </a>
               </div>
             </div>

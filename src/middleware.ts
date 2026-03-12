@@ -68,9 +68,13 @@ export async function middleware(request: NextRequest) {
   const isAuthRoute = pathname.startsWith("/auth");
 
   const isProtectedRoute =
-    pathname.startsWith("/profile") ||
-    pathname.startsWith("/payment") ||
-    pathname.startsWith("/setting");
+    pathname.startsWith("/admin/category") ||
+    pathname.startsWith("/admin/registration") ||
+    pathname.startsWith("/admin/speaker") ||
+    pathname.startsWith("/admin/gallery") ||
+    pathname.startsWith("/admin/site-setting") ||
+    pathname.startsWith("/admin/seo-setting") ||
+    pathname.startsWith("/admin/user");
 
   const isAdminRoute = pathname.startsWith("/admin");
 

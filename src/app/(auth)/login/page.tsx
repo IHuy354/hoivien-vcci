@@ -36,7 +36,7 @@ const LoginPage = () => {
   const onSubmit = async (values: LoginFormValues) => {
     try {
       await signInHandler({ email: values.email, password: values.password });
-      router.push("/admin/registration");
+      router.push("/admin/sponsor");
     } catch {
       // lỗi đã được toast bên trong signInHandler
     }

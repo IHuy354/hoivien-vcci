@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useSidebarStore } from '@/hooks/use-sidebar';
 import useAuthStore from '@/stores/auth';
+import { useSiteSetting } from "@/hooks/use-site-settings";
+import baseConfig from '@/configs/base';
 import {
   // LayoutDashboard,
   ChevronLeft,
@@ -89,6 +91,7 @@ export function AdminSidebar() {
   const router = useRouter();
   const { isOpen, toggle } = useSidebarStore();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const site_logo= useSiteSetting('site_logo');
 
   const user = useAuthStore((s) => s.user);
   const resetStore = useAuthStore((s) => s.resetStore);
@@ -208,11 +211,11 @@ export function AdminSidebar() {
           {isOpen && (
             <Link href="/admin" className="flex items-center gap-2 overflow-hidden">
               <Image
-                src="/imgs/logo.png"
+                src={site_logo ? `${baseConfig.imageDomain}/${site_logo}` : "/imgs/logo.png"}
                 alt="CEO VCCI"
                 width={120}
                 height={40}
-                className="object-contain brightness-0 invert"
+                className="object-contain"
                 priority
               />
             </Link>

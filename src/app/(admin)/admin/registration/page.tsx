@@ -74,7 +74,7 @@ export default function RegistrationManagementPage() {
         if (statusFilter !== 'all') filters.push(`status==${statusFilter}`);
         if (yearFilter !== 'all') filters.push(`year==${yearFilter}`);
         // Giả sử API cho phép tìm kiếm full_name với toán tử like %
-        if (searchName.trim())    filters.push(`full_name==%${searchName.trim()}%`);
+        if (searchName.trim())    filters.push(`full_name@=${searchName.trim()}`);
         
         return {
             page,

@@ -90,16 +90,16 @@ export default function GalleryManagementPage() {
   // Query Params
   const queryParams = useMemo(() => {
     const filters: string[] = [];
-    if (categoryFilter !== 'all') filters.push(`category==${categoryFilter}`);
+    if (categoryFilter !== 'all') filters.push(`category.id==${categoryFilter}`);
     if (yearFilter !== 'all') filters.push(`year==${yearFilter}`);
-    if (searchTitle.trim()) filters.push(`title==%${searchTitle.trim()}%`);
+    if (searchTitle.trim()) filters.push(`title@=${searchTitle.trim()}`);
     
     return {
       page,
       pageSize: PAGE_SIZE,
       sortField: 'sort_order',
       sortOrder: 'asc' as const,
-      ...(filters.length ? { filters: filters.join(';') } : {}),
+      ...(filters.length ? { filters: filters.join(',') } : {}),
     };
   }, [page, categoryFilter, yearFilter, searchTitle]);
 
@@ -212,7 +212,7 @@ export default function GalleryManagementPage() {
             <SelectContent>
               <SelectItem value="all">Tất cả danh mục</SelectItem>
               {categories.map((c) => (
-                <SelectItem key={c.slug} value={c.slug ?? ''}>{c.name}</SelectItem>
+                <SelectItem key={c.id} value={c.id ?? ''}>{c.name}</SelectItem>
               ))}
             </SelectContent>
           </Select>

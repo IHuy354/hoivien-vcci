@@ -1,12 +1,12 @@
 "use client";
-
+import { useSiteSetting } from "@/hooks/use-site-settings";
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
-import { stats } from "@/mockdata/ceovcci";
 
 function useCountUp(target: number, duration = 2000, start = false) {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (!start) return;
     let startTime: number;
@@ -52,14 +52,27 @@ const StatItem = ({ value, suffix, label, delay }: { value: number; suffix: stri
   );
 };
 
-export const StatsSection = () => (
-  <section className="py-16 md:py-20 bg-gray-50/50">
-    <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-12 text-center">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((s, i) => (
-          <StatItem key={i} {...s} delay={i * 0.1} />
-        ))}
+export const StatsSection = () => {
+  const counter_ceos = useSiteSetting('counter_ceos');
+  const counter_cohorts = useSiteSetting('counter_cohorts');
+  const counter_months = useSiteSetting('counter_months');
+  const counter_community = useSiteSetting('counter_community');
+  const stats = [
+    { value: Number(counter_cohorts), suffix: "", label: "Niên khóa" },
+    { value: Number(counter_ceos) || 500, suffix: "+", label: "CEO tham gia" },
+    { value: Number(counter_months), suffix: "", label: "Tháng đào tạo" },
+    { value: Number(counter_community), suffix: "+", label: "Cộng đồng CEO VCCI" },
+  ];
+  
+  return (
+    <section className="py-16 md:py-20 bg-gray-50/50">
+      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 p-8 md:p-12 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s, i) => (
+            <StatItem key={i} {...s} delay={i * 0.1} />
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};

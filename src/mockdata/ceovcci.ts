@@ -1,3 +1,4 @@
+
 import { Target, Zap, DollarSign, Sparkles, Rocket, Building, Map, Calendar, GraduationCap, Users, BookOpen, Award, Lightbulb, Network, MessageSquare } from "lucide-react";
 
 export const Entrepreneur = [
@@ -88,7 +89,7 @@ export const silverSponsors = [
 
 export const stats = [
   { value: 5, suffix: "", label: "Niên khóa" },
-  { value: 500, suffix: "+", label: "CEO tham gia" },
+  { value: 600, suffix: "+", label: "CEO tham gia" },
   { value: 4, suffix: "", label: "Tháng đào tạo" },
   { value: 3000, suffix: "+", label: "Cộng đồng CEO VCCI" },
 ];

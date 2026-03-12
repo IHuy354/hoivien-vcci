@@ -4,6 +4,7 @@ import "./globals.css";
 // import Providers from "@/components/providers";
 import { Providers } from "@/app/_providers";
 import { Toaster } from "@components/ui/toaster";
+import { generateSEOMetadata } from "@/lib/metadata";
 // import Header from "@/components/common/header";
 // import Footer from "@/components/common/footer";
 
@@ -18,10 +19,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "SMEQ - Hỗ trợ doanh nghiệp",
-  description: "Nền tảng hỗ trợ doanh nghiệp vừa và nhỏ",
-};
+// Generate metadata from site settings
+export async function generateMetadata(): Promise<Metadata> {
+  return generateSEOMetadata();
+}
 
 export default function RootLayout({
   children,

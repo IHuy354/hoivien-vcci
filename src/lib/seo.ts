@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-
+import baseConfig from '@/configs/base';
 interface SeoProps {
   title: string;
   description?: string;
@@ -8,6 +8,8 @@ interface SeoProps {
   type?: 'website' | 'article' | 'product';
   keywords?: string[];
   noIndex?: boolean;
+  siteFavicon?: string;
+  
 }
 
 /**
@@ -22,12 +24,12 @@ export function constructMetadata({
   type = 'website',
   keywords = [],
   noIndex = false,
+  siteFavicon,
 }: SeoProps): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
-  const fullImageUrl = image.startsWith('http') ? image : `${baseUrl}${image}`;
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const baseUrl = baseConfig.imageDomain || 'https://your-domain.com';
+  const fullImageUrl = `${baseUrl}/${image}`;
+  const fullUrl = url.startsWith('http') ? url : `${baseConfig.frontendDomain}`;
   const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Your App Name';
-
   return {
     title: {
       default: title,
@@ -38,7 +40,9 @@ export function constructMetadata({
     authors: [{ name: siteName }],
     creator: siteName,
     publisher: siteName,
-    
+      icons: {
+    icon: siteFavicon?`${baseConfig.imageDomain}/${siteFavicon}` : `${baseConfig.imageDomain}/favicon.ico`,
+  },
     robots: {
       index: !noIndex,
       follow: !noIndex,

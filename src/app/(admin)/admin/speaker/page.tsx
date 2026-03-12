@@ -93,15 +93,15 @@ export default function SpeakerManagementPage() {
         }
         
         if (yearFilter !== 'all') filters.push(`year==${yearFilter}`);
-        if (searchName.trim())    filters.push(`full_name==%${searchName.trim()}%`);
+        if (searchName.trim())    filters.push(`full_name@=${searchName.trim()}`);
         
         return {
             page,
             pageSize: PAGE_SIZE,
             sortField: 'sort_order',
             sortOrder: 'asc' as const,
-            ...(filters.length && currentTypes.length === 1 ? { filters: filters.join(';') } : 
-               (filters.length ? { filters: filters.filter(f => !f.startsWith('type==')).join(';') } : {})), 
+            ...(filters.length && currentTypes.length === 1 ? { filters: filters.join(',') } : 
+               (filters.length ? { filters: filters.filter(f => !f.startsWith('type==')).join(',') } : {})), 
                // Ignore type filter for API if > 1 type (handle client side) - Note: pagination will be broken.
                // Let's assume the API supports `type=in=advisor,director` or we just filter normally. 
                // For safety, I will change the UI to have 4 sub-tabs or just pass type==advisor and type==director as needed.

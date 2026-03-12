@@ -93,7 +93,7 @@ export default function CategoryManagementPage() {
 
   const queryParams = useMemo(() => {
     const filters: string[] = [];
-    if (searchName.trim()) filters.push(`name==%${searchName.trim()}%`);
+    if (searchName.trim()) filters.push(`name@=${searchName.trim()}`);
     return {
       page,
       pageSize: PAGE_SIZE,

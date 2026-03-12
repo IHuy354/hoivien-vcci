@@ -4,11 +4,21 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { heroStats } from "@/mockdata/ceovcci";
+import { useSiteSetting } from "@/hooks/use-site-settings";
+import {  Calendar, GraduationCap, Users,} from "lucide-react";
 
 export function HeroSection() {
   const router = useRouter();
+    const opening_date= useSiteSetting('opening_date');
+const formatDate = (date: string | null) => {
+  return date?.split(" ")[0] || "";
+};
 
+const heroStats = [
+  { icon: Calendar, label: "Khai giảng", value: formatDate(opening_date) },
+  { icon: GraduationCap, label: "Học bổng", value: "50 Triệu VNĐ" },
+  { icon: Users, label: "Chi phí", value: "Chỉ 3 Triệu" },
+];
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-r from-[#020C1B] via-[#0A192F] to-[#112240]">
       {/* Background image overlay */}

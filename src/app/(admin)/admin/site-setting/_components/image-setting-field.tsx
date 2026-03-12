@@ -32,13 +32,13 @@ export function ImageSettingField({
   // Build image URL: use local preview or the stored path directly
   const imageUrl = previewUrl || (filePath ? `${baseConfig.imageDomain}/${filePath}` : '');
 
-  console.log('🖼️ Image URL:', { filePath, imageUrl });
+
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    console.log('📤 Uploading file:', file.name, file.type, file.size);
+    
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
@@ -57,7 +57,7 @@ export function ImageSettingField({
     setPreviewUrl(localUrl);
 
     try {
-      console.log('🚀 Calling upload API...');
+    
       const res = await uploadFile({
         data: { 
           file, 
@@ -66,13 +66,13 @@ export function ImageSettingField({
         },
       });
 
-      console.log('✅ Upload response:', res);
+
 
       const uploadedFile = (res as { responseData?: { id?: string; path?: string } })
         ?.responseData;
 
       if (uploadedFile?.path) {
-        console.log('✅ File uploaded, Path:', uploadedFile.path);
+
         
         // Save the file PATH instead of ID
         onFilePathChange(uploadedFile.path);

@@ -2,11 +2,26 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useSiteSetting } from "@/hooks/use-site-settings";
+import { parse, format } from "date-fns";
+import { vi } from "date-fns/locale";
 
-import { countdownTarget as TARGET } from "@/mockdata/ceovcci";
-
-function getTimeLeft() {
-  const diff = Math.max(0, TARGET - Date.now());
+function getTimeLeft(opening_date: string | null) {
+  if (!opening_date) {
+    // Default fallback date if no opening_date is set
+    const defaultDate = new Date("2025-07-11T08:30:00").getTime();
+    const diff = Math.max(0, defaultDate - Date.now());
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+    };
+  }
+  
+  const date = parse(opening_date, "dd/MM/yyyy HH:mm", new Date());
+  const countdownTarget = date.getTime();
+  const diff = Math.max(0, countdownTarget - Date.now());
   return {
     days: Math.floor(diff / 86400000),
     hours: Math.floor((diff % 86400000) / 3600000),
@@ -16,14 +31,26 @@ function getTimeLeft() {
 }
 
 export const CountdownSection = () => {
-  const [time, setTime] = useState(getTimeLeft);
+  const opening_date = useSiteSetting('opening_date');
+  const [time, setTime] = useState(() => getTimeLeft(opening_date));
   const [mounted, setMounted] = useState(false);
-
+  
+  const formattedDate = opening_date 
+    ? (() => {
+        const date = parse(opening_date, "dd/MM/yyyy HH:mm", new Date());
+        return `${format(date, "H'h'mm", { locale: vi })}, ${format(
+          date,
+          "EEEE 'ngày' d/M/yyyy",
+          { locale: vi }
+        )}`;
+      })()
+    : "8h30, Thứ Sáu ngày 11/7/2025";
+  
   useEffect(() => {
     setMounted(true);
-    const id = setInterval(() => setTime(getTimeLeft()), 1000);
+    const id = setInterval(() => setTime(getTimeLeft(opening_date)), 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [opening_date]);
 
   const blocks = [
     { val: time.days, label: "Ngày" },
@@ -69,7 +96,7 @@ export const CountdownSection = () => {
           ))}
         </div>
 
-        <p className="text-white/60 text-sm md:text-base font-medium">(8h30, Thứ 6 ngày 11/7/2025)</p>
+        <p className="text-white/60 text-sm md:text-base font-medium">({formattedDate})</p>
       </div>
     </section>
   );
