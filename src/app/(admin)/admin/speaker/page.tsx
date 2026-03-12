@@ -195,7 +195,8 @@ export default function SpeakerManagementPage() {
                 <TabsList className="mb-4 bg-slate-100/50 p-1">
                     <TabsTrigger value="speaker" className="data-[state=active]:bg-[#19426D] data-[state=active]:text-white">Diễn Giả Qua Các Năm</TabsTrigger>
                     <TabsTrigger value="instructor" className="data-[state=active]:bg-[#19426D] data-[state=active]:text-white">Đội Ngũ Giảng Viên</TabsTrigger>
-                    <TabsTrigger value="advisor" className="data-[state=active]:bg-[#19426D] data-[state=active]:text-white">Ban Cố Vấn & Ban Chủ Nhiệm</TabsTrigger>
+                    <TabsTrigger value="advisor" className="data-[state=active]:bg-[#19426D] data-[state=active]:text-white">Ban Cố Vấn</TabsTrigger>
+                    <TabsTrigger value="director" className="data-[state=active]:bg-[#19426D] data-[state=active]:text-white">Ban Chủ Nhiệm</TabsTrigger>
                 </TabsList>
 
                 {/* ── Filters ── */}
