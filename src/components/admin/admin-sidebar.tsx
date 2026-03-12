@@ -9,6 +9,7 @@ import { useSidebarStore } from '@/hooks/use-sidebar';
 import useAuthStore from '@/stores/auth';
 import { useSiteSetting } from "@/hooks/use-site-settings";
 import baseConfig from '@/configs/base';
+import { clearAuthCookies } from '@/utils/cookies';
 import {
   // LayoutDashboard,
   ChevronLeft,
@@ -98,6 +99,7 @@ export function AdminSidebar() {
 
   const handleLogout = () => {
     resetStore();
+    clearAuthCookies();
     router.push('/login');
   };
 
