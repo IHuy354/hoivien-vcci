@@ -11,6 +11,7 @@ import { Category } from "@/api/models/category";
 
 export const GallerySection = () => {
   const [activeTabId, setActiveTabId] = useState<string>("all");
+  const [displayCount, setDisplayCount] = useState<number>(9);
 
   const { data: galleryData, isLoading } = useGetApiV10PublicGallery({
     page: 1,
@@ -42,6 +43,8 @@ export const GallerySection = () => {
         return item.categories?.some((c) => c.id === activeTabId);
       });
 
+  const displayedItems = filtered.slice(0, displayCount);
+
   return (
     <section id="gallery" className="py-20 md:py-28 bg-gray-50/50">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -71,7 +74,10 @@ export const GallerySection = () => {
                 {uniqueCategories.map((cat) => (
                   <button
                     key={cat.id}
-                    onClick={() => setActiveTabId(cat.id!)}
+                    onClick={() => {
+                      setActiveTabId(cat.id!);
+                      setDisplayCount(9);
+                    }}
                     className={`px-5 py-2.5 rounded-full text-sm transition-all duration-300 ${
                       activeTabId === cat.id
                         ? "bg-yellow-500 text-gray-900 font-bold shadow-md transform scale-105"
@@ -87,7 +93,7 @@ export const GallerySection = () => {
             {/* Grid */}
             <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <AnimatePresence>
-                {filtered.map((item) => {
+                {displayedItems.map((item) => {
                   const imageUrl = item.image?.path ? `${baseConfig.imageDomain}/${item.image.path}` : '/placeholder-image.jpg';
                   const displayCategory = item.categories && item.categories.length > 0 
                                             ? item.categories[0].name 
@@ -127,6 +133,17 @@ export const GallerySection = () => {
                 })}
               </AnimatePresence>
             </motion.div>
+
+            {filtered.length > displayCount && (
+              <div className="flex justify-center mt-12">
+                <button
+                  onClick={() => setDisplayCount((prev) => prev + 9)}
+                  className="px-8 py-3 bg-white border border-gray-200 text-gray-700 rounded-full font-semibold shadow-sm hover:shadow hover:bg-gray-50 transition-all duration-300 transform hover:-translate-y-1"
+                >
+                  Xem thêm
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>
