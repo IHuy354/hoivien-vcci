@@ -34,7 +34,7 @@ const PersonCard = ({ person, i, type }: { person: any; i: number, type: 'adviso
             <img 
               src={person.avatar?.path ? `${baseConfig.imageDomain}/${person.avatar.path}` : ""} 
               alt={person.full_name || "Person"} 
-              className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-[1.02] group-hover:scale-110" 
+              className="w-full h-full object-cover transition-all duration-700 scale-[1.02] group-hover:scale-110" 
               loading="lazy" 
             />
           </div>

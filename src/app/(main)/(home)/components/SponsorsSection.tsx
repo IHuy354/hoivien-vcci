@@ -7,16 +7,16 @@ import baseConfig from "@/configs/base";
 import { Loader2 } from "lucide-react";
 
 const SponsorLogo = ({ name, img, type }: { name: string; img: string, type: 'gold' | 'silver' }) => (
-  <div className={`group/card bg-white/[0.02] backdrop-blur-md rounded-2xl p-6 md:p-8 flex items-center justify-center aspect-[5/3] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border transition-all duration-500 relative overflow-hidden ${
+  <div className={`group/card bg-white/[0.04] backdrop-blur-md rounded-2xl p-6 md:p-8 flex items-center justify-center aspect-[5/3] shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] border transition-all duration-500 relative overflow-hidden ${
     type === 'gold' 
-      ? 'border-amber-500/10 hover:border-amber-500/40 hover:bg-amber-500/5 hover:shadow-[0_0_30px_rgba(251,191,36,0.15)]' 
-      : 'border-slate-500/10 hover:border-slate-400/40 hover:bg-slate-500/5 hover:shadow-[0_0_30px_rgba(148,163,184,0.15)]'
+      ? 'border-amber-500/20 hover:border-amber-500/50 hover:bg-amber-500/10 hover:shadow-[0_0_30px_rgba(251,191,36,0.2)]' 
+      : 'border-slate-500/20 hover:border-slate-400/50 hover:bg-slate-500/10 hover:shadow-[0_0_30px_rgba(148,163,184,0.2)]'
   }`}>
-    <div className={`absolute inset-0 opacity-0 group-hover/card:opacity-[0.03] transition-opacity duration-500 ${type === 'gold' ? 'bg-amber-400' : 'bg-white'}`} />
+    <div className={`absolute inset-0 opacity-0 group-hover/card:opacity-[0.05] transition-opacity duration-500 ${type === 'gold' ? 'bg-amber-400' : 'bg-white'}`} />
     <img 
       src={img} 
       alt={name || "Sponsor Image"} 
-      className="w-full h-full object-contain filter grayscale invert opacity-60 group-hover/card:grayscale-0 group-hover/card:invert-0 group-hover/card:opacity-100 transition-all duration-500 scale-95 group-hover/card:scale-110" 
+      className="w-full h-full object-contain opacity-90 group-hover/card:opacity-100 transition-all duration-500 group-hover/card:scale-110 drop-shadow-md group-hover/card:drop-shadow-lg" 
       loading="lazy" 
     />
   </div>
@@ -99,17 +99,18 @@ export const SponsorsSection = () => {
             {/* Gold Marquee */}
             {goldSponsors.length > 0 && (
               <div className="relative overflow-hidden group">
-                <div className="flex items-center justify-center gap-4 mb-10 relative z-20">
-                  <div className="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent to-amber-500/50" />
-                  <p className="text-center text-sm md:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 uppercase tracking-[0.4em] drop-shadow-[0_0_15px_rgba(251,191,36,0.4)]">
-                    Tài Trợ Vàng
-                  </p>
-                  <div className="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent to-amber-500/50" />
+                <div className="flex justify-center mb-10 relative z-20">
+                  <div className="relative inline-flex items-center gap-4 px-8 py-3 bg-gradient-to-r from-amber-500/10 via-amber-500/20 to-amber-500/10 border-y md:border border-amber-500/30 rounded-none md:rounded-full shadow-[0_0_30px_rgba(251,191,36,0.15)] backdrop-blur-md overflow-hidden">
+                    <div className="absolute inset-x-0 h-px top-0 bg-gradient-to-r from-transparent via-amber-200 to-transparent opacity-50" />
+                    <div className="hidden md:block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
+                    <h3 className="text-center text-lg md:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-500 uppercase tracking-[0.3em] md:tracking-[0.4em] drop-shadow-[0_0_20px_rgba(251,191,36,0.6)]">
+                      Tài Trợ Vàng
+                    </h3>
+                    <div className="hidden md:block w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_10px_rgba(251,191,36,0.8)]" />
+                  </div>
                 </div>
                 
-                {/* Gradient blur edges for seamless looping */}
-                <div className="absolute top-0 left-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#0f172a] to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 right-0 w-32 md:w-64 h-full bg-gradient-to-l from-[#0f172a] to-transparent z-10 pointer-events-none" />
+                {/* Gradient blur edges removed per request */}
 
                 <div className="flex w-max animate-marquee-left hover:[animation-play-state:paused] items-center">
                   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
@@ -125,17 +126,18 @@ export const SponsorsSection = () => {
             {/* Silver Marquee */}
             {silverSponsors.length > 0 && (
               <div className="relative overflow-hidden group">
-                <div className="flex items-center justify-center gap-4 mb-10 relative z-20 mt-8">
-                  <div className="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent to-slate-400/50" />
-                  <p className="text-center text-sm md:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-slate-400 to-slate-500 uppercase tracking-[0.4em] drop-shadow-[0_0_15px_rgba(148,163,184,0.4)]">
-                    Tài Trợ Bạc
-                  </p>
-                  <div className="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent to-slate-400/50" />
+                <div className="flex justify-center mb-10 relative z-20 mt-8">
+                  <div className="relative inline-flex items-center gap-4 px-8 py-3 bg-gradient-to-r from-slate-500/10 via-slate-500/20 to-slate-500/10 border-y md:border border-slate-500/30 rounded-none md:rounded-full shadow-[0_0_30px_rgba(148,163,184,0.1)] backdrop-blur-md overflow-hidden">
+                    <div className="absolute inset-x-0 h-px top-0 bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-50" />
+                    <div className="hidden md:block w-2.5 h-2.5 rounded-full bg-slate-400 animate-pulse shadow-[0_0_10px_rgba(148,163,184,0.8)]" />
+                    <h3 className="text-center text-lg md:text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-slate-100 to-slate-400 uppercase tracking-[0.3em] md:tracking-[0.4em] drop-shadow-[0_0_20px_rgba(148,163,184,0.6)]">
+                      Tài Trợ Bạc
+                    </h3>
+                    <div className="hidden md:block w-2.5 h-2.5 rounded-full bg-slate-400 animate-pulse shadow-[0_0_10px_rgba(148,163,184,0.8)]" />
+                  </div>
                 </div>
                 
-                {/* Gradient blur edges for seamless looping */}
-                <div className="absolute top-0 left-0 w-32 md:w-64 h-full bg-gradient-to-r from-[#0f172a] to-transparent z-10 pointer-events-none" />
-                <div className="absolute top-0 right-0 w-32 md:w-64 h-full bg-gradient-to-l from-[#0f172a] to-transparent z-10 pointer-events-none" />
+                {/* Gradient blur edges removed per request */}
 
                 <div className="flex w-max animate-marquee-right hover:[animation-play-state:paused] items-center">
                   {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}

@@ -87,7 +87,7 @@ export const SpeakersSection = () => {
                           <img 
                             src={s.avatar?.path ? `${baseConfig.imageDomain}/${s.avatar.path}` : ""} 
                             alt={s.full_name || "Speaker"} 
-                            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-[1.02] group-hover:scale-110" 
+                            className="w-full h-full object-cover transition-all duration-700 scale-[1.02] group-hover:scale-110" 
                             loading="lazy" 
                           />
                         </div>

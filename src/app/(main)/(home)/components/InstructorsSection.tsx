@@ -78,7 +78,7 @@ export const InstructorsSection = () => {
                           <img 
                             src={inst.avatar?.path ? `${baseConfig.imageDomain}/${inst.avatar.path}` : ""} 
                             alt={inst.full_name || "Instructor"} 
-                            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-110" 
+                            className="w-full h-full object-cover transition-all duration-700 scale-105 group-hover:scale-110" 
                             loading="lazy" 
                           />
                         </div>
