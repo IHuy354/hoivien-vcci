@@ -29,7 +29,7 @@ export const galleryImages = [
 ];
 
 export const heroStats = [
-  { icon: Calendar, label: "Khai giảng", value: "11/07/2025" },
+  { icon: Calendar, label: "Khai giảng", value: "11/07/2026" },
   { icon: GraduationCap, label: "Học bổng", value: "50 Triệu VNĐ" },
   { icon: Users, label: "Chi phí", value: "Chỉ 3 Triệu" },
 ];
@@ -127,7 +127,7 @@ export const whyChooseFeatures = [
   },
 ];
 
-export const countdownTarget = new Date("2025-07-11T08:30:00+07:00").getTime();
+export const countdownTarget = new Date("2026-07-11T08:30:00+07:00").getTime();
 
 export const valuePropositions = [
   {

@@ -50,7 +50,7 @@ export const SponsorsSection = () => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-slate-500/20 bg-slate-500/10 mb-6">
             <span className="text-sm font-semibold text-slate-400 uppercase tracking-[0.2em]">Đối tác đồng hành</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Niềm Tự Hào Của CEO VCCI 2025</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">Niềm Tự Hào Của CEO VCCI 2026</h2>
         </motion.div>
 
         {isLoading ? (

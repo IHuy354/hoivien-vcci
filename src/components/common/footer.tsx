@@ -108,7 +108,7 @@ export default function Footer({ className }: FooterProps) {
         {/* Footer Bottom */}
         <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2025 CEO VCCI. All rights reserved.
+            © 2026 CEO VCCI. All rights reserved.
           </p>
           <div className="text-sm text-muted-foreground flex flex-wrap justify-center items-center gap-1">
             Được đồng hành cùng{" "}

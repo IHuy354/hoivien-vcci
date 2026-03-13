@@ -262,7 +262,7 @@ export const RegistrationForm = () => {
         commitment_sharing: data.commitShare,
         commitment_contribution: data.commitGiveBack,
         message_to_organizers: data.message || undefined,
-        year: 2025,
+        year: 2026,
       };
 
       await submitRegistration({ data: apiData });
@@ -294,7 +294,7 @@ export const RegistrationForm = () => {
         </div>
         <h3 className="text-3xl font-bold text-gray-900 mb-4">Đăng Ký Thành Công!</h3>
         <p className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl mx-auto">
-          Cảm ơn bạn đã đăng ký chương trình CEO 4.0 - 2025.
+          Cảm ơn bạn đã đăng ký chương trình CEO 4.0 - 2026.
           <br />
           Chúng tôi sẽ xem xét hồ sơ và liên hệ trong vòng 5 ngày làm việc.
         </p>

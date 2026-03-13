@@ -256,7 +256,7 @@ export const advisoryBoardData = {
 export const sponsorsData = {
   title: "Nhà Tài Trợ Đồng Hành",
   subtitle: "Những đối tác tin cậy đồng hành cùng chương trình",
-  year: "2025",
+  year: "2026",
   sponsors: [
     { id: 1, name: "VCCI-JP", logo: "/images/sponsors/vcci-jp.png", tier: "platinum" as const },
     { id: 2, name: "Seaplanes", logo: "/images/sponsors/seaplanes.png", tier: "platinum" as const },
@@ -273,7 +273,7 @@ export const sponsorsData = {
 // ============================================================================
 
 export const countdownData: CountdownConfig = {
-  eventDate: new Date("2025-12-31T00:00:00"),
+  eventDate: new Date("2026-12-31T00:00:00"),
   title: "Ngày Khai Giảng Khóa Học CEO",
   subtitle: "Đừng bỏ lỡ cơ hội tham gia chương trình đặc biệt này",
 };

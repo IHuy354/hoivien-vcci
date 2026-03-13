@@ -25,7 +25,7 @@ export function HeroSection() {
       <div className="absolute inset-0">
         <Image
           src="/imgs/hero-banner.png"
-          alt="CEO VCCI 2025"
+          alt="CEO VCCI 2026"
           fill
           priority
           className="object-cover opacity-20 mix-blend-luminosity grayscale contrast-125"
@@ -66,7 +66,7 @@ export function HeroSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
               </span>
-              <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">VCCI-HCM • Niên khóa 2025</span>
+              <span className="text-xs font-semibold tracking-wider text-white/90 uppercase">VCCI-HCM • Niên khóa 2026</span>
               <ChevronRight size={14} className="text-white/50 group-hover:text-white group-hover:translate-x-1 transition-all" />
             </motion.div>
 

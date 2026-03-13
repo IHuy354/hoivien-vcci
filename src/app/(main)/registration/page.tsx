@@ -18,7 +18,7 @@ export default function RegistrationPage() {
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
              <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" />
-             <span className="text-sm font-medium text-gray-300">VCCI-HCM • Niên khóa 2025</span>
+             <span className="text-sm font-medium text-gray-300">VCCI-HCM • Niên khóa 2026</span>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">

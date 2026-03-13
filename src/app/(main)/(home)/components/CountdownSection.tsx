@@ -8,7 +8,7 @@ import { vi } from "date-fns/locale";
 
 function getTimeLeft(opening_date: string | null) {
   if (!opening_date) {
-    const defaultDate = new Date("2025-07-11T08:30:00").getTime();
+    const defaultDate = new Date("2026-07-11T08:30:00").getTime();
     const diff = Math.max(0, defaultDate - Date.now());
     return {
       days: Math.floor(diff / 86400000),
@@ -43,7 +43,7 @@ export const CountdownSection = () => {
           { locale: vi }
         )}`;
       })()
-    : "8h30, Thứ Sáu ngày 11/7/2025";
+    : "8h30, Thứ Sáu ngày 11/7/2026";
   
   useEffect(() => {
     setMounted(true);
