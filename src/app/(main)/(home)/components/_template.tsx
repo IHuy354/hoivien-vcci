@@ -36,7 +36,7 @@ export function NewSection({
   items = defaultItems,
 }: NewSectionProps) {
   return (
-    <section className="py-16 md:py-16 md:py-24 bg-white">
+    <section className="py-16 md:py-24 bg-white">
       {/* Use bg-gray-50 or bg-[#1a2942] for alternating sections */}
       
       <div className="container mx-auto px-4">
@@ -109,7 +109,7 @@ export function NewSection({
  *    - Dark background: text-white / text-gray-300
  * 
  * 5. SPACING:
- *    - Section padding: py-16 md:py-16 md:py-24
+ *    - Section padding: py-16 md:py-24
  *    - Content gap: gap-4 to gap-8
  *    - Bottom margin: mb-4 to mb-12
  * 
@@ -159,7 +159,7 @@ export function NewSection({
  * VARIATION 4: Dark Theme Section
  */
 /*
-<section className="py-16 md:py-16 md:py-24 bg-[#1a2942]">
+<section className="py-16 md:py-24 bg-[#1a2942]">
   <h2 className="text-white">Title</h2>
   <p className="text-gray-300">Description</p>
 </section>
@@ -170,7 +170,7 @@ export function NewSection({
  */
 /*
 <section 
-  className="py-16 md:py-16 md:py-24 bg-cover bg-center relative"
+  className="py-16 md:py-24 bg-cover bg-center relative"
   style={{ backgroundImage: 'url(/images/bg.jpg)' }}
 >
   <div className="absolute inset-0 bg-black/50" />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FileText, Zap, Phone, Mail, ArrowRight } from "lucide-react";
+import { FileText, Phone, Mail, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useSiteSetting } from "@/hooks/use-site-settings";
 
