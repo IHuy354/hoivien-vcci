@@ -2,53 +2,35 @@
 
 import {
   HeroSection,
-  StatsSection,
-  WhyChooseSection,
-  ObjectivesSection,
-  RegistrationSection,
-  GallerySection,
-  SpeakersSection,
-  InstructorsSection,
-  AdvisorsSection,
-  SponsorsSection,
-  CountdownSection,
+  SolutionsSection,
+  FeaturesSection,
+  AboutUsSection,
+  PartnersSection,
+  ContactSection,
 } from "@/app/(main)/(home)/components";
 
 export default function HomePage() {
   return (
     <div className="homepage">
-      {/* Hero Section with Stats */}
-      <HeroSection />
+      {/* Hero Section */}
+      <section id="hero">
+        <HeroSection />
+      </section>
 
-      {/* Stats Section */}
-      <StatsSection />
+      {/* Giai phap (Solutions) */}
+      <SolutionsSection />
 
-      {/* Why Choose Us Section */}
-      <WhyChooseSection />
+      {/* Tinh nang (Features) */}
+      <FeaturesSection />
 
-      {/* Objectives Section */}
-      <ObjectivesSection />
+      {/* Ve chung toi (About Us) */}
+      <AboutUsSection />
 
-      {/* Registration Section */}
-      <RegistrationSection />
+      {/* Doi tac (Partners) */}
+      <PartnersSection />
 
-      {/* Gallery Section */}
-      <GallerySection />
-
-      {/* Speakers Section */}
-      <SpeakersSection />
-
-      {/* Instructors Section */}
-      <InstructorsSection />
-
-      {/* Advisors Section */}
-      <AdvisorsSection />
-
-      {/* Sponsors Section */}
-      <SponsorsSection />
-
-      {/* Countdown Timer Section */}
-      <CountdownSection />
+      {/* Lien he (Contact) */}
+      <ContactSection />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import { Toaster } from "@components/ui/toaster";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
+import { ScrollToTop } from "@/components/common/ScrollToTop";
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -38,6 +39,7 @@ export default function DashboardLayout({
             {/* </RouteGuard> */}
           </main>
           <Footer />
+          <ScrollToTop />
           <Toaster
             richColors
             closeButton
