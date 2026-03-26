@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { Upload, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -79,7 +80,7 @@ export function AvatarPicker({
         
         {previewUrl ? (
           <>
-            <img src={previewUrl} alt="Avatar" className="w-full h-full object-cover" />
+            <Image src={previewUrl} alt="Avatar" width={128} height={128} className="w-full h-full object-cover" />
             {isHovered && (
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity">
                 <div className="flex gap-2">

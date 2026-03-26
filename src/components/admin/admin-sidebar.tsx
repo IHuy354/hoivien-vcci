@@ -7,8 +7,6 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useSidebarStore } from '@/hooks/use-sidebar';
 import useAuthStore from '@/stores/auth';
-import { useSiteSetting } from "@/hooks/use-site-settings";
-import baseConfig from '@/configs/base';
 import { clearAuthCookies } from '@/utils/cookies';
 import {
   // LayoutDashboard,
@@ -92,7 +90,6 @@ export function AdminSidebar() {
   const router = useRouter();
   const { isOpen, toggle } = useSidebarStore();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  const site_logo= useSiteSetting('site_logo');
 
   const user = useAuthStore((s) => s.user);
   const resetStore = useAuthStore((s) => s.resetStore);
