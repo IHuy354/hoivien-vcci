@@ -206,18 +206,18 @@ export function AdminSidebar() {
         {/* ── Logo / Header ── */}
         <div
           className={cn(
-            'flex h-16 shrink-0 items-center border-b border-slate-200 bg-[#19426D]',
-            isOpen ? 'px-4 justify-between' : 'justify-center px-2'
+            'flex h-20 shrink-0 items-center border-b border-slate-100 bg-white shadow-sm transition-all duration-300',
+            isOpen ? 'px-6 justify-between' : 'justify-center px-2'
           )}
         >
           {isOpen && (
-            <Link href="/admin" className="flex items-center gap-2 overflow-hidden">
+            <Link href="/" className="flex items-center gap-2 overflow-hidden py-1 transition-all duration-300 hover:opacity-80">
               <Image
-                src={site_logo ? `${baseConfig.imageDomain}/${site_logo}` : "/imgs/logo.png"}
-                alt="CEO VCCI"
-                width={120}
-                height={40}
-                className="object-contain"
+                src="https://meu.com.vn/wp-content/uploads/2025/07/logo-meu-solutions-new-no-background.png"
+                alt="MeU Solutions Logo"
+                width={160}
+                height={55}
+                className="object-contain w-auto h-12"
                 priority
               />
             </Link>
@@ -229,7 +229,7 @@ export function AdminSidebar() {
             size="icon"
             onClick={toggle}
             className={cn(
-              'h-8 w-8 text-white/80 hover:bg-white/15 hover:text-white rounded-md flex-shrink-0',
+              'h-8 w-8 text-slate-500 hover:bg-slate-50 hover:text-primary rounded-md flex-shrink-0 transition-all duration-300',
               !isOpen && 'mx-auto'
             )}
           >

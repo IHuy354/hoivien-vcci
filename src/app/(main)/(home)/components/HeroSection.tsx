@@ -51,7 +51,7 @@ export function HeroSection() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] mb-6 tracking-tight">
               Tối ưu hóa quản lý hội viên cùng
               <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-500 pb-2 inline-block">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-yellow-200 to-yellow-500 pb-2 inline-block">
                 MeU Solutions
               </span>
             </h1>

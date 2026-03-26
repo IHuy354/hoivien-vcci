@@ -9,6 +9,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "**",
       },
+      {
+        protocol: "http",
+        hostname: "103.57.222.79",
+        port: "8105",
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },

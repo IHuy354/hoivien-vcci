@@ -58,7 +58,14 @@ const LoginPage = () => {
             {/* Laptop graphic */}
             <div className="relative z-10 flex flex-col items-center">
               <div className="flex h-32 w-48 items-center justify-center rounded-t-md border-x-8 border-t-8 border-slate-700 bg-white-600">
-              <Image src="/imgs/logo.png" alt="Logo" width={150} height={100} />
+                <Image 
+                  src="https://meu.com.vn/wp-content/uploads/2025/07/logo-meu-solutions-new-no-background.png" 
+                  alt="MeU Solutions Logo" 
+                  width={200} 
+                  height={100} 
+                  className="object-contain"
+                  priority
+                />
               </div>
               <div className="h-3 w-56 rounded-b-md bg-slate-700"></div>
             </div>

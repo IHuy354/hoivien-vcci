@@ -1,6 +1,6 @@
 const backendDomain =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
-  "https://giangvien.org/ceovcci-backend";
+  "http://103.57.222.79:8105";
 
 const baseConfig = {
   backendDomain,
