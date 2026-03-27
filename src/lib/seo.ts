@@ -1,23 +1,24 @@
-import { Metadata } from 'next';
-import baseConfig from '@/configs/base';
+import { Metadata } from "next";
+import baseConfig from "@/configs/base";
 
 // ─── Site-wide constants ────────────────────────────────────────────────────
-export const SITE_NAME = 'MeU Solutions';
-export const SITE_URL  = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://vcci-yo8b.vercel.app';
-export const TWITTER_HANDLE = '@meusolutions';
+export const SITE_NAME = "MeU Solutions";
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_FRONTEND_URL || "https://vcci-yo8b.vercel.app";
+export const TWITTER_HANDLE = "@meusolutions";
 
 const DEFAULT_DESCRIPTION =
-  'Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.';
+  "Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.";
 
 const DEFAULT_KEYWORDS = [
-  'MeU Solutions',
-  'quản trị doanh nghiệp',
-  'quản lý hội viên',
-  'VCCI',
-  'CEO 4.0',
-  'số hóa dữ liệu',
-  'VCCI-HCM',
-  'hiệp hội doanh nghiệp',
+  "MeU Solutions",
+  "quản trị doanh nghiệp",
+  "quản lý hội viên",
+  "VCCI",
+  "CEO 4.0",
+  "số hóa dữ liệu",
+  "VCCI-HCM",
+  "hiệp hội doanh nghiệp",
 ];
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -26,11 +27,10 @@ interface SeoProps {
   description?: string;
   image?: string;
   url?: string;
-  type?: 'website' | 'article' | 'product';
+  type?: "website" | "article" | "product";
   keywords?: string[];
   noIndex?: boolean;
   siteFavicon?: string;
-  
 }
 
 /**
@@ -40,21 +40,21 @@ interface SeoProps {
 export function constructMetadata({
   title,
   description = DEFAULT_DESCRIPTION,
-  image = '/og-image.png',
-  url = '',
-  type = 'website',
+  image = "/og-image.png",
+  url = "",
+  type = "website",
   keywords = [],
   noIndex = false,
   siteFavicon,
 }: SeoProps): Metadata {
   const baseUrl = SITE_URL;
-  const imageUrl = image.startsWith('http')
+  const imageUrl = image.startsWith("http")
     ? image
-    : image.startsWith('/')
+    : image.startsWith("/")
       ? `${baseUrl}${image}`
       : `${baseConfig.imageDomain}/${image}`;
 
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const fullUrl = url.startsWith("http") ? url : `${baseUrl}${url}`;
 
   return {
     metadataBase: new URL(baseUrl),
@@ -72,9 +72,11 @@ export function constructMetadata({
     icons: {
       icon: siteFavicon
         ? `${baseConfig.imageDomain}/${siteFavicon}`
-        : '/imgs/meu-logo.png',
-      apple: '/imgs/meu-logo.png',
+        : "/favicon.ico",
+      apple: "/imgs/meu-logo.png",
     },
+
+    manifest: "/manifest.json",
 
     robots: {
       index: !noIndex,
@@ -82,29 +84,31 @@ export function constructMetadata({
       googleBot: {
         index: !noIndex,
         follow: !noIndex,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
       },
     },
 
     openGraph: {
-      type: type === 'product' ? 'website' : type,
+      type: type === "product" ? "website" : type,
       title,
       description,
       url: fullUrl,
       siteName: SITE_NAME,
-      images: [{
-        url: imageUrl,
-        width: 1200,
-        height: 630,
-        alt: `${title} | ${SITE_NAME}`,
-      }],
-      locale: 'vi_VN',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${title} | ${SITE_NAME}`,
+        },
+      ],
+      locale: "vi_VN",
     },
 
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [imageUrl],
@@ -116,10 +120,16 @@ export function constructMetadata({
       canonical: fullUrl,
     },
 
+    viewport: {
+      width: "device-width",
+      initialScale: 1,
+      maximumScale: 1,
+    },
+
     // Additional meta for Vietnamese market
     other: {
-      'zalo-platform-site-verification': process.env.ZALO_VERIFICATION || '',
-      'facebook-domain-verification': process.env.FB_DOMAIN_VERIFICATION || '',
+      "zalo-platform-site-verification": process.env.ZALO_VERIFICATION || "",
+      "facebook-domain-verification": process.env.FB_DOMAIN_VERIFICATION || "",
     },
   };
 }
@@ -141,88 +151,97 @@ interface StructuredDataInput {
   [key: string]: unknown;
 }
 
-export function generateStructuredData(type: 'Product' | 'Article' | 'Organization', data: StructuredDataInput) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Your App Name';
-  
+export function generateStructuredData(
+  type: "Product" | "Article" | "Organization",
+  data: StructuredDataInput,
+) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://your-domain.com";
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "Your App Name";
+
   const schemas = {
     Product: {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
+      "@context": "https://schema.org",
+      "@type": "Product",
       name: data.name,
       description: data.description,
-      image: data.image?.startsWith('http') ? data.image : `${baseUrl}${data.image}`,
+      image: data.image?.startsWith("http")
+        ? data.image
+        : `${baseUrl}${data.image}`,
       brand: {
-        '@type': 'Brand',
+        "@type": "Brand",
         name: siteName,
       },
       offers: {
-        '@type': 'Offer',
+        "@type": "Offer",
         price: data.price,
-        priceCurrency: 'VND',
-        availability: data.inStock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        priceCurrency: "VND",
+        availability: data.inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
         seller: {
-          '@type': 'Organization',
+          "@type": "Organization",
           name: siteName,
         },
       },
     },
-    
+
     Article: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
+      "@context": "https://schema.org",
+      "@type": "Article",
       headline: data.title,
       description: data.description,
-      image: data.image?.startsWith('http') ? data.image : `${baseUrl}${data.image}`,
+      image: data.image?.startsWith("http")
+        ? data.image
+        : `${baseUrl}${data.image}`,
       author: {
-        '@type': 'Person',
+        "@type": "Person",
         name: data.author || siteName,
       },
       publisher: {
-        '@type': 'Organization',
+        "@type": "Organization",
         name: siteName,
         logo: {
-          '@type': 'ImageObject',
+          "@type": "ImageObject",
           url: `${baseUrl}/images/logo.png`,
         },
       },
       datePublished: data.publishedAt,
       dateModified: data.updatedAt || data.publishedAt,
       mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': `${baseUrl}${data.url}`,
+        "@type": "WebPage",
+        "@id": `${baseUrl}${data.url}`,
       },
     },
-    
+
     Organization: {
-      '@context': 'https://schema.org',
-      '@type': 'EducationalOrganization',
-      name: 'VCCI-HCM – Phòng Thương mại và Công nghiệp Việt Nam – Chi nhánh TP.HCM',
-      alternateName: 'CEO VCCI',
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      name: "VCCI-HCM – Phòng Thương mại và Công nghiệp Việt Nam – Chi nhánh TP.HCM",
+      alternateName: "CEO VCCI",
       url: SITE_URL,
       logo: {
-        '@type': 'ImageObject',
+        "@type": "ImageObject",
         url: `${SITE_URL}/logo.png`,
         width: 300,
         height: 120,
       },
       sameAs: [
-        'https://www.facebook.com/vccihochiminh',
-        'https://vcci-hcm.org.vn',
+        "https://www.facebook.com/vccihochiminh",
+        "https://vcci-hcm.org.vn",
       ],
       contactPoint: {
-        '@type': 'ContactPoint',
-        telephone: '+84-28-3823-6678',
-        contactType: 'customer service',
-        areaServed: 'VN',
-        availableLanguage: ['Vietnamese'],
+        "@type": "ContactPoint",
+        telephone: "+84-28-3823-6678",
+        contactType: "customer service",
+        areaServed: "VN",
+        availableLanguage: ["Vietnamese"],
       },
       address: {
-        '@type': 'PostalAddress',
-        streetAddress: '171 Võ Thị Sáu, Phường Võ Thị Sáu',
-        addressLocality: 'Quận 3',
-        addressRegion: 'TP. Hồ Chí Minh',
-        addressCountry: 'VN',
+        "@type": "PostalAddress",
+        streetAddress: "171 Võ Thị Sáu, Phường Võ Thị Sáu",
+        addressLocality: "Quận 3",
+        addressRegion: "TP. Hồ Chí Minh",
+        addressCountry: "VN",
       },
     },
   };
@@ -238,17 +257,17 @@ export function validateSocialImage(imageUrl: string): {
   warnings: string[];
 } {
   const warnings: string[] = [];
-  
+
   // Check if image is absolute URL
-  if (!imageUrl.startsWith('http')) {
-    warnings.push('Image should be an absolute URL for social sharing');
+  if (!imageUrl.startsWith("http")) {
+    warnings.push("Image should be an absolute URL for social sharing");
   }
-  
+
   // Zalo/Facebook recommendations
-  if (!imageUrl.includes('1200x630') && !imageUrl.includes('og-image')) {
-    warnings.push('Image should be 1200x630px for optimal social sharing');
+  if (!imageUrl.includes("1200x630") && !imageUrl.includes("og-image")) {
+    warnings.push("Image should be 1200x630px for optimal social sharing");
   }
-  
+
   return {
     isValid: warnings.length === 0,
     warnings,
@@ -258,17 +277,19 @@ export function validateSocialImage(imageUrl: string): {
 /**
  * Generate breadcrumb structured data
  */
-export function generateBreadcrumbStructuredData(breadcrumbs: Array<{ name: string; url: string }>) {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://your-domain.com';
-  
+export function generateBreadcrumbStructuredData(
+  breadcrumbs: Array<{ name: string; url: string }>,
+) {
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://your-domain.com";
+
   return {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: breadcrumbs.map((item, index) => ({
-      '@type': 'ListItem',
+      "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`,
+      item: item.url.startsWith("http") ? item.url : `${baseUrl}${item.url}`,
     })),
   };
 }
