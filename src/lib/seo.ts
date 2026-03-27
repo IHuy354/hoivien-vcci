@@ -1,5 +1,28 @@
 import { Metadata } from 'next';
 import baseConfig from '@/configs/base';
+
+// ─── Site-wide constants ────────────────────────────────────────────────────
+export const SITE_NAME = 'CEO VCCI - VCCI-HCM';
+export const SITE_URL  = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://ceovcci.com';
+export const TWITTER_HANDLE = '@vccihochiminh';
+
+const DEFAULT_DESCRIPTION =
+  'Chương trình đào tạo Giám Đốc Điều Hành CEO 4.0 do VCCI-HCM tổ chức — nâng tầm lãnh đạo, phát triển doanh nghiệp bền vững trong kỷ nguyên số.';
+
+const DEFAULT_KEYWORDS = [
+  'CEO 4.0',
+  'đào tạo CEO',
+  'VCCI',
+  'VCCI-HCM',
+  'khóa học lãnh đạo',
+  'quản trị doanh nghiệp',
+  'giám đốc điều hành',
+  'kỹ năng lãnh đạo',
+  'chuyển đổi số doanh nghiệp',
+  'phát triển bền vững',
+];
+
+// ─── Types ──────────────────────────────────────────────────────────────────
 interface SeoProps {
   title: string;
   description?: string;
@@ -18,31 +41,42 @@ interface SeoProps {
  */
 export function constructMetadata({
   title,
-  description = "High-performance Next.js web application focused on SEO rankings and social media virality",
-  image = "/images/default-og-image.jpg",
-  url = "",
+  description = DEFAULT_DESCRIPTION,
+  image = '/og-image.jpg',
+  url = '',
   type = 'website',
   keywords = [],
   noIndex = false,
   siteFavicon,
 }: SeoProps): Metadata {
-  const baseUrl = baseConfig.imageDomain || 'https://your-domain.com';
-  const fullImageUrl = `${baseUrl}/${image}`;
-  const fullUrl = url.startsWith('http') ? url : `${baseConfig.frontendDomain}`;
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || 'Your App Name';
+  const baseUrl = SITE_URL;
+  const imageUrl = image.startsWith('http')
+    ? image
+    : image.startsWith('/')
+      ? `${baseUrl}${image}`
+      : `${baseConfig.imageDomain}/${image}`;
+  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+
   return {
+    metadataBase: new URL(baseUrl),
+
     title: {
       default: title,
-      template: `%s | ${siteName}`,
+      template: `%s | ${SITE_NAME}`,
     },
     description,
-    keywords: keywords.length > 0 ? keywords : ['next.js', 'react', 'typescript', 'tailwind'],
-    authors: [{ name: siteName }],
-    creator: siteName,
-    publisher: siteName,
-      icons: {
-    icon: siteFavicon?`${baseConfig.imageDomain}/${siteFavicon}` : `${baseConfig.imageDomain}/favicon.ico`,
-  },
+    keywords: keywords.length > 0 ? keywords : DEFAULT_KEYWORDS,
+    authors: [{ name: SITE_NAME, url: baseUrl }],
+    creator: SITE_NAME,
+    publisher: SITE_NAME,
+
+    icons: {
+      icon: siteFavicon
+        ? `${baseConfig.imageDomain}/${siteFavicon}`
+        : '/favicon.ico',
+      apple: '/apple-touch-icon.png',
+    },
+
     robots: {
       index: !noIndex,
       follow: !noIndex,
@@ -54,37 +88,35 @@ export function constructMetadata({
         'max-snippet': -1,
       },
     },
-    
+
     openGraph: {
       type: type === 'product' ? 'website' : type,
       title,
       description,
       url: fullUrl,
-      siteName,
+      siteName: SITE_NAME,
       images: [{
-        url: fullImageUrl,
+        url: imageUrl,
         width: 1200,
         height: 630,
-        alt: title,
+        alt: `${title} | ${SITE_NAME}`,
       }],
       locale: 'vi_VN',
-      alternateLocale: 'en_US',
     },
-    
+
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [fullImageUrl],
-      creator: '@yourhandle',
+      images: [imageUrl],
+      creator: TWITTER_HANDLE,
+      site: TWITTER_HANDLE,
     },
-    
+
     alternates: {
       canonical: fullUrl,
     },
-    
-    metadataBase: new URL(baseUrl),
-    
+
     // Additional meta for Vietnamese market
     other: {
       'zalo-platform-site-verification': process.env.ZALO_VERIFICATION || '',
@@ -165,20 +197,33 @@ export function generateStructuredData(type: 'Product' | 'Article' | 'Organizati
     
     Organization: {
       '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: siteName,
-      url: baseUrl,
-      logo: `${baseUrl}/images/logo.png`,
+      '@type': 'EducationalOrganization',
+      name: 'VCCI-HCM – Phòng Thương mại và Công nghiệp Việt Nam – Chi nhánh TP.HCM',
+      alternateName: 'CEO VCCI',
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_URL}/logo.png`,
+        width: 300,
+        height: 120,
+      },
       sameAs: [
-        // Add your social media URLs
-        'https://facebook.com/yourpage',
-        'https://instagram.com/yourpage',
+        'https://www.facebook.com/vccihochiminh',
+        'https://vcci-hcm.org.vn',
       ],
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+84-xxx-xxx-xxx',
+        telephone: '+84-28-3823-6678',
         contactType: 'customer service',
-        availableLanguage: ['Vietnamese', 'English'],
+        areaServed: 'VN',
+        availableLanguage: ['Vietnamese'],
+      },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '171 Võ Thị Sáu, Phường Võ Thị Sáu',
+        addressLocality: 'Quận 3',
+        addressRegion: 'TP. Hồ Chí Minh',
+        addressCountry: 'VN',
       },
     },
   };

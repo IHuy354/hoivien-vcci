@@ -1,15 +1,37 @@
 import { Metadata } from "next";
 import { RegistrationForm } from "@/app/(main)/registration/components/RegistrationForm";
+import { generateSEOMetadata } from "@/lib/metadata";
+import { generateBreadcrumbStructuredData } from "@/lib/seo";
 
+const breadcrumbSchema = generateBreadcrumbStructuredData([
+  { name: "Trang chủ", url: "/" },
+  { name: "Đăng ký khóa học CEO 4.0", url: "/registration" },
+]);
 
-export const metadata: Metadata = {
-  title: "Đăng Ký Khóa Học CEO 4.0 | VCCI",
-  description: "Đăng ký tham gia khóa học CEO 4.0 do VCCI tổ chức dành cho lãnh đạo doanh nghiệp.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  return generateSEOMetadata({
+    title: "Đăng Ký Khóa Học CEO 4.0",
+    description:
+      "Đăng ký tham gia chương trình đào tạo CEO 4.0 do VCCI-HCM tổ chức. Khóa học dành cho lãnh đạo, giám đốc và chủ doanh nghiệp muốn nâng cao năng lực quản trị.",
+    keywords: [
+      "đăng ký CEO 4.0",
+      "form đăng ký VCCI",
+      "khóa học lãnh đạo VCCI-HCM",
+      "đào tạo giám đốc điều hành",
+      "niên khóa 2026",
+    ],
+    url: "/registration",
+    type: "website",
+  });
+}
 
 export default function RegistrationPage() {
   return (
     <main className="min-h-screen bg-gray-50/50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="relative pt-36 pb-40 bg-[#0A192F] overflow-hidden">
         {/* Background glow and subtle decor */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A192F]/80 to-[#0A192F]" />
