@@ -32,13 +32,18 @@ export async function generateSEOMetadata(options?: {
   keywords?: string[];
   noIndex?: boolean;
 }): Promise<Metadata> {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 3000); // 3-second timeout for build safety
+
   try {
     // Fetch site settings from API
-    const response = await getApiV10PublicSiteSettings();
-    const settings = response.responseData;
+    const response = await getApiV10PublicSiteSettings({}, controller.signal);
+    clearTimeout(timeoutId);
+
+    const settings = response?.responseData;
 
     return constructMetadata({
-      title: options?.title || settings?.seo_title || 'CEO VCCI',
+      title: options?.title || settings?.seo_title || 'MeU Solutions',
       description: options?.description || settings?.seo_description || undefined,
       image: options?.image || settings?.site_og_image || undefined,
       url: options?.url,
@@ -48,11 +53,12 @@ export async function generateSEOMetadata(options?: {
       siteFavicon: options?.siteFavicon || settings?.site_favicon || undefined,
     });
   } catch (error) {
-    console.error('Failed to fetch site settings for metadata:', error);
+    clearTimeout(timeoutId);
+    console.error('Metadata fetch skipped or failed:', error instanceof Error ? error.message : 'Timeout');
     
-    // Fallback to default metadata if API fails
+    // Fallback to default metadata defined in constructMetadata (src/lib/seo.ts)
     return constructMetadata({
-      title: options?.title || 'CEO VCCI',
+      title: options?.title || 'MeU Solutions',
       description: options?.description,
       image: options?.image,
       url: options?.url,
@@ -62,3 +68,4 @@ export async function generateSEOMetadata(options?: {
     });
   }
 }
+
