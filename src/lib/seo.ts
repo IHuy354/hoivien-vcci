@@ -72,8 +72,8 @@ export function constructMetadata({
     icons: {
       icon: siteFavicon
         ? `${baseConfig.imageDomain}/${siteFavicon}`
-        : '/favicon.ico',
-      apple: '/apple-touch-icon.png',
+        : '/imgs/meu-logo.png',
+      apple: '/imgs/meu-logo.png',
     },
 
     robots: {
