@@ -168,7 +168,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            "lg:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] border-t",
+            "lg:hidden overflow-hidden transition-all duration-500 ease-in-out border-t",
             scrolled
               ? "bg-white/95 border-gray-100"
               : "bg-black/60 border-white/10 backdrop-blur-2xl",
