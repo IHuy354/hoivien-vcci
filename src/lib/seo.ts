@@ -1,25 +1,14 @@
 import { Metadata } from "next";
 import baseConfig from "@/configs/base";
+import { seoConfig } from "@/configs/seo.config";
 
 // ─── Site-wide constants ────────────────────────────────────────────────────
-export const SITE_NAME = "MeU Solutions";
-export const SITE_URL =
-  process.env.NEXT_PUBLIC_FRONTEND_URL || "https://vcci-yo8b.vercel.app";
-export const TWITTER_HANDLE = "@meusolutions";
+export const SITE_NAME = seoConfig.siteName;
+export const SITE_URL = seoConfig.siteUrl;
+export const TWITTER_HANDLE = seoConfig.twitterHandle;
 
-const DEFAULT_DESCRIPTION =
-  "Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.";
-
-const DEFAULT_KEYWORDS = [
-  "MeU Solutions",
-  "quản trị doanh nghiệp",
-  "quản lý hội viên",
-  "VCCI",
-  "CEO 4.0",
-  "số hóa dữ liệu",
-  "VCCI-HCM",
-  "hiệp hội doanh nghiệp",
-];
+const DEFAULT_DESCRIPTION = seoConfig.description;
+const DEFAULT_KEYWORDS = seoConfig.keywords;
 
 // ─── Types ──────────────────────────────────────────────────────────────────
 interface SeoProps {
@@ -35,12 +24,12 @@ interface SeoProps {
 
 /**
  * Construct SEO metadata for Next.js pages
- * Optimized for Vietnamese market and social sharing (Zalo, Facebook)
+ * Optimized for international and local social sharing (Zalo, Facebook)
  */
 export function constructMetadata({
   title,
   description = DEFAULT_DESCRIPTION,
-  image = "/og-image.png",
+  image = seoConfig.ogImage,
   url = "",
   type = "website",
   keywords = [],
@@ -60,7 +49,7 @@ export function constructMetadata({
     metadataBase: new URL(baseUrl),
 
     title: {
-      default: title,
+      default: title || seoConfig.defaultTitle,
       template: `%s | ${SITE_NAME}`,
     },
     description,
@@ -92,7 +81,7 @@ export function constructMetadata({
 
     openGraph: {
       type: type === "product" ? "website" : type,
-      title,
+      title: title || seoConfig.defaultTitle,
       description,
       url: fullUrl,
       siteName: SITE_NAME,
@@ -101,7 +90,7 @@ export function constructMetadata({
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${title} | ${SITE_NAME}`,
+          alt: `${title || seoConfig.defaultTitle} | ${SITE_NAME}`,
         },
       ],
       locale: "vi_VN",
@@ -109,7 +98,7 @@ export function constructMetadata({
 
     twitter: {
       card: "summary_large_image",
-      title,
+      title: title || seoConfig.defaultTitle,
       description,
       images: [imageUrl],
       creator: TWITTER_HANDLE,
@@ -126,10 +115,10 @@ export function constructMetadata({
       maximumScale: 1,
     },
 
-    // Additional meta for Vietnamese market
+    // Additional meta for specific platforms (Zalo, FB)
     other: {
-      "zalo-platform-site-verification": process.env.ZALO_VERIFICATION || "",
-      "facebook-domain-verification": process.env.FB_DOMAIN_VERIFICATION || "",
+      "zalo-platform-site-verification": seoConfig.verification.zalo,
+      "facebook-domain-verification": seoConfig.verification.facebook,
     },
   };
 }
@@ -216,7 +205,7 @@ export function generateStructuredData(
     Organization: {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
-      name: "VCCI-HCM – Phòng Thương mại và Công nghiệp Việt Nam – Chi nhánh TP.HCM",
+      name: seoConfig.defaultTitle,
       alternateName: "CEO VCCI",
       url: SITE_URL,
       logo: {
@@ -231,17 +220,17 @@ export function generateStructuredData(
       ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+84-28-3823-6678",
+        telephone: seoConfig.organization.telephone,
         contactType: "customer service",
         areaServed: "VN",
         availableLanguage: ["Vietnamese"],
       },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "171 Võ Thị Sáu, Phường Võ Thị Sáu",
-        addressLocality: "Quận 3",
-        addressRegion: "TP. Hồ Chí Minh",
-        addressCountry: "VN",
+        streetAddress: seoConfig.organization.address.streetAddress,
+        addressLocality: seoConfig.organization.address.addressLocality,
+        addressRegion: seoConfig.organization.address.addressRegion,
+        addressCountry: seoConfig.organization.address.addressCountry,
       },
     },
   };
