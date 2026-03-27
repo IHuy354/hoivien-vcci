@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Menu,
   X,
+  ChevronRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -56,7 +57,7 @@ export default function Header() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-500",
-        !scrolled && "bg-gradient-to-b from-black/20 via-black/5 to-transparent"
+        !scrolled && "bg-gradient-to-b from-black/40 via-black/10 to-transparent"
       )}
     >
 
@@ -65,7 +66,7 @@ export default function Header() {
         className={cn(
           "transition-all duration-300 ease-in-out border-b will-change-transform",
           scrolled
-            ? "bg-white/60 backdrop-blur-lg shadow-md py-3 border-gray-100"
+            ? "bg-black/80 backdrop-blur-xl shadow-2xl py-3 border-white/10"
             : "bg-transparent py-5 border-transparent"
         )}
       >
@@ -84,7 +85,7 @@ export default function Header() {
                 }}
               >
                 <div className="relative transform-gpu">
-                  <div className="absolute -inset-2 bg-blue-500/10 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  <div className="absolute -inset-2 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300" />
                   <div className={cn(
                     "relative z-10 transition-transform duration-300 ease-in-out",
                     scrolled ? "scale-90" : "scale-100"
@@ -107,7 +108,7 @@ export default function Header() {
               "hidden lg:flex items-center gap-1 p-1 rounded-full transition-all duration-300",
               scrolled
                 ? "bg-transparent border-transparent"
-                : "bg-white/10 border border-white/20 backdrop-blur-sm"
+                : "bg-white/5 border border-white/10 backdrop-blur-md"
             )}>
               {navItems.map((link) => {
                 const isActive = pathname === "/" && typeof window !== "undefined" && window.location.hash === link.href;
@@ -119,12 +120,8 @@ export default function Header() {
                     className={cn(
                       "relative group px-5 py-2 rounded-full transition-all duration-300",
                       isActive
-                        ? (scrolled
-                          ? "bg-primary text-white shadow-md shadow-primary/20"
-                          : "bg-white text-primary shadow-md")
-                        : (scrolled
-                          ? "hover:bg-gray-100/50 text-gray-600 hover:text-primary"
-                          : "hover:bg-white/20 text-white/90 hover:text-white")
+                        ? "bg-primary text-black shadow-lg shadow-primary/20"
+                        : "hover:bg-white/10 text-white/80 hover:text-white"
                     )}
                   >
                     <span className="text-sm font-bold tracking-tight">
@@ -140,10 +137,10 @@ export default function Header() {
               <Button 
                 onClick={() => {}} 
                 className={cn(
-                  "rounded-full font-bold px-7 py-2 h-10 transition-all shadow-lg duration-300 overflow-hidden",
+                  "rounded-full font-extrabold px-7 py-2 h-10 transition-all shadow-xl duration-300 overflow-hidden",
                   scrolled
-                    ? "bg-primary text-white shadow-primary/10"
-                    : "bg-white text-primary hover:bg-white/90 shadow-white/5"
+                    ? "bg-primary text-black hover:bg-primary/90 shadow-primary/10"
+                    : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 shadow-white/5"
                 )}
               >
                 XEM DEMO
@@ -156,7 +153,7 @@ export default function Header() {
               size="icon"
               className={cn(
                 "lg:hidden rounded-2xl transition-all duration-300 w-11 h-11",
-                scrolled ? "bg-gray-50 text-slate-900 border border-gray-100" : "bg-white/10 text-white border border-white/20"
+                "bg-white/10 text-white border border-white/20"
               )}
               onClick={() => setIsOpen(!isOpen)}
             >
@@ -169,13 +166,11 @@ export default function Header() {
         <div
           className={cn(
             "lg:hidden overflow-hidden transition-all duration-500 ease-in-out border-t",
-            scrolled
-              ? "bg-white/95 border-gray-100"
-              : "bg-black/60 border-white/10 backdrop-blur-2xl",
-            isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0",
+            "bg-black/90 border-white/10 backdrop-blur-2xl",
+            isOpen ? "max-h-[500px] opacity-100 py-6" : "max-h-0 opacity-0",
           )}
         >
-          <nav className="flex flex-col p-6 space-y-3">
+          <nav className="flex flex-col px-6 space-y-3">
             {navItems.map((link) => {
               const isActive = pathname === "/" && typeof window !== "undefined" && window.location.hash === link.href;
               return (
@@ -183,22 +178,19 @@ export default function Header() {
                   key={link.href}
                   href={pathname === "/" ? link.href : `/${link.href}`}
                   className={cn(
-                    "flex items-center justify-between p-4 rounded-2xl transition-all",
+                    "flex items-center justify-between p-4 rounded-2xl transition-all overflow-hidden relative",
                     isActive
-                      ? (scrolled
-                        ? "bg-primary/10 text-primary font-bold shadow-sm"
-                        : "bg-white/20 text-white font-bold border border-white/20")
-                      : (scrolled
-                        ? "bg-gray-50 text-gray-700 font-bold"
-                        : "bg-white/5 text-gray-200 font-medium border border-white/5")
+                      ? "bg-primary text-black font-black shadow-lg"
+                      : "bg-white/5 text-gray-200 font-bold border border-white/5 hover:bg-white/10 transition-colors"
                   )}
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   <span>{link.label}</span>
+                  {isActive && <ChevronRight size={18} />}
                 </Link>
               );
             })}
-            <Button className="w-full mt-4 rounded-2xl py-7 text-lg bg-primary text-white font-bold shadow-xl shadow-primary/20" onClick={() => setIsOpen(false)}>
+            <Button className="w-full mt-4 rounded-2xl py-7 text-lg bg-primary text-black font-black shadow-2xl shadow-primary/30" onClick={() => setIsOpen(false)}>
               XEM DEMO NGAY
             </Button>
           </nav>

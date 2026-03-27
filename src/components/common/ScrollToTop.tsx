@@ -40,7 +40,7 @@ export const ScrollToTop = () => {
           onClick={scrollToTop}
           className={cn(
             "fixed bottom-8 right-8 z-[60]",
-            "w-14 h-14 rounded-2xl bg-primary text-white shadow-2xl shadow-primary/30",
+            "w-14 h-14 rounded-2xl bg-primary text-black shadow-2xl shadow-primary/30",
             "flex items-center justify-center transition-all duration-300",
             "border border-white/20 hover:shadow-primary/50"
           )}

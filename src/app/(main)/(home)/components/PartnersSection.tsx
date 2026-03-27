@@ -36,13 +36,13 @@ const partners = [
 
 export const PartnersSection = () => {
   return (
-    <section id="doi-tac" className="py-20 bg-slate-50 overflow-hidden relative">
+    <section id="doi-tac" className="py-20 bg-background overflow-hidden relative">
       {/* High-Fidelity Network Node Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-screen">
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <pattern id="nodePattern" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="2" cy="2" r="0.5" fill="#3b82f6" />
-            <path d="M2,2 L18,18 M18,2 L2,18" stroke="#3b82f6" strokeWidth="0.1" fill="none" />
+            <circle cx="2" cy="2" r="0.5" fill="#D4AF37" />
+            <path d="M2,2 L18,18 M18,2 L2,18" stroke="#D4AF37" strokeWidth="0.1" fill="none" />
           </pattern>
           <rect width="100%" height="100%" fill="url(#nodePattern)" />
         </svg>
@@ -53,7 +53,7 @@ export const PartnersSection = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-6 py-2 mb-6 text-xs font-black tracking-[0.2em] text-blue-600 uppercase bg-blue-50 rounded-xl"
+            className="inline-flex items-center gap-2 px-6 py-2 mb-6 text-xs font-black tracking-[0.2em] text-primary uppercase bg-primary/10 rounded-xl"
           >
             Trusted Ecosystem
         </motion.div>
@@ -63,10 +63,10 @@ export const PartnersSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter leading-tight"
+          className="text-3xl md:text-5xl font-black text-foreground tracking-tighter leading-tight"
         >
           Một số đơn vị <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500 italic">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/60 italic">
             hợp tác
           </span>
         </motion.h2>
@@ -76,7 +76,7 @@ export const PartnersSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="mt-6 text-slate-500 max-w-2xl mx-auto text-lg leading-relaxed font-medium"
+          className="mt-6 text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed font-medium"
         >
           Hợp tác với những đơn vị uy tín là nền tảng để chúng tôi không ngừng hoàn thiện và mang lại giá thực nhất cho cộng đồng doanh nghiệp.
         </motion.p>
@@ -84,8 +84,8 @@ export const PartnersSection = () => {
 
       <div className="relative z-10">
         {/* Quality Fade Masks with Gradient Depth */}
-        <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-background via-background/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-background via-background/80 to-transparent z-20 pointer-events-none" />
 
         <div className="flex overflow-hidden group">
           <div className="flex py-8 animate-marquee whitespace-nowrap items-center hover:[animation-play-state:paused] transition-all duration-300">
@@ -95,8 +95,8 @@ export const PartnersSection = () => {
                 whileHover={{ y: -8, scale: 1.05 }}
                 className="mx-8 flex-shrink-0"
               >
-                <div className="group/card relative h-32 w-72 flex items-center justify-center p-8 bg-white rounded-[2rem] border border-slate-100 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.08)] hover:shadow-2xl hover:border-blue-100 transition-all duration-500">
-                  <div className="relative h-full w-full filter brightness-[0.9] group-hover/card:brightness-[1] transition-all duration-500">
+                <div className="group/card relative h-32 w-72 flex items-center justify-center p-8 bg-card/40 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] hover:border-primary/20 transition-all duration-500">
+                  <div className="relative h-full w-full transition-all duration-500">
                     <Image 
                       src={partner.logo} 
                       alt={partner.name}
@@ -106,7 +106,7 @@ export const PartnersSection = () => {
                     />
                   </div>
                   {/* Subtle Glow Layer */}
-                  <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover/card:opacity-100 rounded-[2rem] transition-opacity pointer-events-none" />
+                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/card:opacity-100 rounded-[2rem] transition-opacity pointer-events-none" />
                 </div>
               </motion.div>
             ))}

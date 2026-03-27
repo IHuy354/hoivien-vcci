@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 import { constructMetadata } from './seo';
 import { getApiV10PublicSiteSettings } from '@/api/endpoints/public';
-import { seoConfig } from '@/configs/seo.config';
 
 /**
  * Generate metadata with site settings from API
@@ -14,8 +13,8 @@ import { seoConfig } from '@/configs/seo.config';
  * 
  * export async function generateMetadata() {
  *   return generateSEOMetadata({
- *     title: 'Home',
- *     description: 'Home page description'
+ *     title: 'Trang chủ',
+ *     description: 'Mô tả trang chủ'
  *   });
  * }
  * 
@@ -44,7 +43,7 @@ export async function generateSEOMetadata(options?: {
     const settings = response?.responseData;
 
     return constructMetadata({
-      title: options?.title || settings?.seo_title || seoConfig.siteName,
+      title: options?.title || settings?.seo_title || 'MeU Solutions',
       description: options?.description || settings?.seo_description || undefined,
       image: options?.image || settings?.site_og_image || undefined,
       url: options?.url,
@@ -59,7 +58,7 @@ export async function generateSEOMetadata(options?: {
     
     // Fallback to default metadata defined in constructMetadata (src/lib/seo.ts)
     return constructMetadata({
-      title: options?.title || seoConfig.siteName,
+      title: options?.title || 'MeU Solutions',
       description: options?.description,
       image: options?.image,
       url: options?.url,
@@ -69,4 +68,3 @@ export async function generateSEOMetadata(options?: {
     });
   }
 }
-

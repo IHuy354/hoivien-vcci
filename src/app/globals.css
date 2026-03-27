@@ -6,11 +6,11 @@
 
 
 :root {
-  --primary-color: #1e3a8a;
-  --secondary-color: #0ea5e9;
-  --background-color: #f8fafc;
-  --text-color: #1e293b;
-  --border-color: #e2e8f0;
+  --primary-color: #D4AF37; /* Gold accent */
+  --secondary-color: #112240; /* Navy light */
+  --background-color: #020C1B; /* Deepest Navy */
+  --text-color: #f8fafc; /* Off-white */
+  --border-color: #112240;
 
   /* Tiptap text colors */
   --tiptap-stone-foreground: oklch(0.27 0.01 34);
