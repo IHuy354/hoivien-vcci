@@ -4,17 +4,16 @@ import HomePageClient from './HomePageClient';
 
 export async function generateMetadata() {
   return generateSEOMetadata({
-    title: 'Chương Trình Đào Tạo CEO 4.0',
+    title: 'Tối ưu hóa quản lý hội viên cùng MeU Solutions',
     description:
-      'Chương trình đào tạo Giám Đốc Điều Hành CEO 4.0 do VCCI-HCM tổ chức — nâng tầm lãnh đạo, phát triển doanh nghiệp bền vững trong kỷ nguyên số.',
+      'Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.',
     keywords: [
-      'CEO 4.0',
-      'đào tạo CEO VCCI',
-      'khóa học giám đốc điều hành',
+      'MeU Solutions',
+      'quản lý hội viên VCCI',
+      'quản trị doanh nghiệp 4.0',
       'VCCI-HCM',
-      'lãnh đạo doanh nghiệp',
-      'quản trị 4.0',
-      'chuyển đổi số',
+      'số hóa quy trình',
+      'bảo mật dữ liệu',
     ],
     url: '/',
     type: 'website',

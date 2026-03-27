@@ -2,24 +2,22 @@ import { Metadata } from 'next';
 import baseConfig from '@/configs/base';
 
 // ─── Site-wide constants ────────────────────────────────────────────────────
-export const SITE_NAME = 'CEO VCCI - VCCI-HCM';
-export const SITE_URL  = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://ceovcci.com';
-export const TWITTER_HANDLE = '@vccihochiminh';
+export const SITE_NAME = 'MeU Solutions';
+export const SITE_URL  = process.env.NEXT_PUBLIC_FRONTEND_URL || 'https://vcci-yo8b.vercel.app';
+export const TWITTER_HANDLE = '@meusolutions';
 
 const DEFAULT_DESCRIPTION =
-  'Chương trình đào tạo Giám Đốc Điều Hành CEO 4.0 do VCCI-HCM tổ chức — nâng tầm lãnh đạo, phát triển doanh nghiệp bền vững trong kỷ nguyên số.';
+  'Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.';
 
 const DEFAULT_KEYWORDS = [
-  'CEO 4.0',
-  'đào tạo CEO',
-  'VCCI',
-  'VCCI-HCM',
-  'khóa học lãnh đạo',
+  'MeU Solutions',
   'quản trị doanh nghiệp',
-  'giám đốc điều hành',
-  'kỹ năng lãnh đạo',
-  'chuyển đổi số doanh nghiệp',
-  'phát triển bền vững',
+  'quản lý hội viên',
+  'VCCI',
+  'CEO 4.0',
+  'số hóa dữ liệu',
+  'VCCI-HCM',
+  'hiệp hội doanh nghiệp',
 ];
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -42,7 +40,7 @@ interface SeoProps {
 export function constructMetadata({
   title,
   description = DEFAULT_DESCRIPTION,
-  image = '/og-image.jpg',
+  image = '/og-image.png',
   url = '',
   type = 'website',
   keywords = [],
@@ -55,6 +53,7 @@ export function constructMetadata({
     : image.startsWith('/')
       ? `${baseUrl}${image}`
       : `${baseConfig.imageDomain}/${image}`;
+
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
   return {
