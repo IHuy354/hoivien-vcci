@@ -36,7 +36,7 @@ const partners = [
 
 export const PartnersSection = () => {
   return (
-    <section id="doi-tac" className="py-20 bg-white overflow-hidden relative">
+    <section id="doi-tac" className="py-20 bg-slate-50 overflow-hidden relative">
       {/* High-Fidelity Network Node Pattern */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply">
         <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -65,9 +65,9 @@ export const PartnersSection = () => {
           transition={{ delay: 0.1 }}
           className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter leading-tight"
         >
-          Đồng hành cùng <br />
+          Một số đơn vị <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-teal-500 italic">
-            phát triển bền vững
+            hợp tác
           </span>
         </motion.h2>
         
@@ -84,8 +84,8 @@ export const PartnersSection = () => {
 
       <div className="relative z-10">
         {/* Quality Fade Masks with Gradient Depth */}
-        <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-white via-white/80 to-transparent z-20 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-white via-white/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-48 bg-gradient-to-r from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-48 bg-gradient-to-l from-slate-50 via-slate-50/80 to-transparent z-20 pointer-events-none" />
 
         <div className="flex overflow-hidden group">
           <div className="flex py-8 animate-marquee whitespace-nowrap items-center hover:[animation-play-state:paused] transition-all duration-300">

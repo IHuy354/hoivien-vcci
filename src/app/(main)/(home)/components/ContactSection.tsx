@@ -118,7 +118,7 @@ export const ContactSection = () => {
                 ></textarea>
               </div>
               <motion.button
-                whileHover={{ scale: 1.02, y: -2, boxShadow: "0 25px 50px -12px rgba(20, 184, 166, 0.4)" }}
+                whileHover={{ boxShadow: "0 25px 50px -12px rgba(20, 184, 166, 0.4)" }}
                 whileTap={{ scale: 0.98 }}
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-teal-500 to-blue-600 text-white font-black text-lg shadow-xl transition-all flex items-center justify-center gap-4"
               >

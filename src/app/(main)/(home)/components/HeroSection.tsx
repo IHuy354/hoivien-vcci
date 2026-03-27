@@ -101,7 +101,7 @@ export function HeroSection() {
             className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto mb-16"
           >
             <motion.button
-              whileHover={{ scale: 1.05, y: -4, boxShadow: "0 25px 50px -12px rgba(37, 99, 235, 0.5)" }}
+              whileHover={{ boxShadow: "0 25px 50px -12px rgba(37, 99, 235, 0.5)" }}
               whileTap={{ scale: 0.98 }}
               onClick={() => window.open("https://vcci.erp.meu-solutions.com/dang-ky", "_blank")}
               className="group relative px-10 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black text-lg transition-all shadow-[0_15px_30px_-10px_rgba(37,99,235,0.4)] overflow-hidden"
@@ -113,7 +113,7 @@ export function HeroSection() {
             </motion.button>
             
             <motion.button
-              whileHover={{ scale: 1.05, y: -4, backgroundColor: "rgba(255,255,255,0.12)" }}
+              whileHover={{ backgroundColor: "rgba(255,255,255,0.12)" }}
               whileTap={{ scale: 0.98 }}
               className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white font-bold text-lg transition-all shadow-xl"
             >

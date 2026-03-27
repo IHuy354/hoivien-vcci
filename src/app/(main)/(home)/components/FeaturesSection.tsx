@@ -105,12 +105,11 @@ export const FeaturesSection = () => {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className={`flex flex-col ${
                 i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
-              } gap-12 items-center ${bgColors[i % 4]} p-8 md:p-12 rounded-[3rem] border-2 shadow-2xl shadow-slate-200/50 hover:scale-[1.01] transition-transform duration-500`}
+              } gap-12 items-center ${bgColors[i % 4]} p-8 md:p-12 rounded-[3rem] border-2 shadow-2xl shadow-slate-200/50 transition-transform duration-500`}
             >
               {/* Image Column with enhanced glassmorphism */}
               <div className="w-full lg:w-1/2">
                 <motion.div 
-                  whileHover={{ y: -10 }}
                   className="relative group cursor-zoom-in"
                   onClick={() => setSelectedImg(item.image)}
                 >
@@ -121,7 +120,7 @@ export const FeaturesSection = () => {
                         src={item.image}
                         alt={item.title}
                         fill
-                        className="object-contain p-4 transition-transform duration-1000 group-hover:scale-110"
+                        className="object-contain p-4 transition-transform duration-1000"
                       />
                     </div>
                     {/* Visual Flare Overlay for 'Colorful Charting' feel */}

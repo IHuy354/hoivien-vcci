@@ -66,7 +66,7 @@ export const AboutUsSection = () => {
             </div>
 
             <motion.a
-              whileHover={{ scale: 1.05, y: -4 }}
+              whileHover={{ opacity: 0.9 }}
               whileTap={{ scale: 0.95 }}
               href="https://drive.google.com/file/d/1xJKBScjJvcgw8bPGt-DYoFr1v8gDRkjt/view?usp=drivesdk"
               target="_blank"
