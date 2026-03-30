@@ -37,7 +37,7 @@ export const AboutUsSection = () => {
             </div>
             <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6 leading-[1.1] tracking-tighter">
               Đơn vị hàng đầu trong việc <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/60 italic">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/60 italic pr-2">
                 kiểm thử & phát triển
               </span>
             </h2>
@@ -54,8 +54,10 @@ export const AboutUsSection = () => {
               ].map((item, i) => (
                 <motion.div 
                   key={i} 
-                  whileHover={{ x: 10 }}
-                  className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm hover:border-primary/20 transition-all"
+                  whileHover={{ x: 10, scale: 1.01, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm hover:border-primary/30 transition-colors overflow-hidden [transform:translateZ(0)]"
                 >
                   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shadow-inner">
                     <CheckCircle2 size={16} />
@@ -66,13 +68,14 @@ export const AboutUsSection = () => {
             </div>
 
             <motion.a
-              whileHover={{ opacity: 0.9, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05, y: -2, boxShadow: "0 20px 40px -10px rgba(212, 175, 55, 0.4)" }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
               href="https://drive.google.com/file/d/1xJKBScjJvcgw8bPGt-DYoFr1v8gDRkjt/view?usp=drivesdk"
               target="_blank"
-              className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-black font-black shadow-xl shadow-primary/20 transition-all"
+              className="inline-flex items-center justify-center px-10 py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-black font-black shadow-xl shadow-primary/20"
             >
-              Hồ sơ năng lực (PDF)
+              Hồ sơ năng lực
             </motion.a>
           </motion.div>
 

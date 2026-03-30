@@ -109,30 +109,29 @@ export const FeaturesSection = () => {
             >
               {/* Image Column with enhanced dark glassmorphism */}
               <div className="w-full lg:w-1/2">
-                <motion.div 
-                  className="relative group cursor-zoom-in"
-                  onClick={() => setSelectedImg(item.image)}
-                >
-                  <div className="absolute -inset-4 bg-primary/5 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden border-4 border-white/5 shadow-2xl bg-white/5 backdrop-blur-xl p-3">
-                    <div className="relative h-full w-full rounded-[1.5rem] overflow-hidden bg-black/20">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-contain p-4 transition-transform duration-1000 brightness-90 group-hover:brightness-100"
-                      />
-                    </div>
-                    {/* Visual Flare Overlay for 'Premium' feel */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
-                    
-                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                       <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition-all duration-500">
-                          <Maximize2 className="text-black" size={24} />
-                       </div>
+                  <div 
+                    className="relative"
+                    onClick={() => setSelectedImg(item.image)}
+                  >
+                    <div className="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden border-2 border-white/10 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] bg-white/5 backdrop-blur-md p-1">
+                      <div className="relative h-full w-full rounded-[2.3rem] overflow-hidden bg-black/40">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-contain p-1 brightness-100"
+                        />
+                      </div>
+                      
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
+                      
+                      <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                         <div className="w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-2xl transform scale-90">
+                            <Maximize2 className="text-black" size={24} />
+                         </div>
+                      </div>
                     </div>
                   </div>
-                </motion.div>
               </div>
 
               {/* Content Column */}

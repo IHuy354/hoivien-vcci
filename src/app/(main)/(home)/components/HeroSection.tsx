@@ -79,7 +79,7 @@ export function HeroSection() {
             className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 tracking-tighter"
           >
             Tối ưu hóa quản lý hội viên cùng <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40 pr-2">
               MeU Solutions
             </span>
           </motion.h1>
@@ -103,19 +103,21 @@ export function HeroSection() {
             <motion.button
               whileHover={{ scale: 1.02, boxShadow: "0 25px 50px -12px rgba(212, 175, 55, 0.4)" }}
               whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
               onClick={() => window.open("https://vcci.erp.meu-solutions.com/dang-ky", "_blank")}
-              className="group relative px-10 py-4 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-black font-black text-lg transition-all shadow-[0_15px_30px_-10px_rgba(212,175,55,0.3)] overflow-hidden"
+              className="group relative px-10 py-4 rounded-2xl bg-gradient-to-r from-primary to-primary/80 text-black font-black text-lg shadow-[0_15px_30px_-10px_rgba(212,175,55,0.3)] overflow-hidden"
             >
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-200" />
               <span className="relative z-10 flex items-center gap-2">
-                Bắt đầu ngay <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                Bắt đầu ngay <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
               </span>
             </motion.button>
             
             <motion.button
-              whileHover={{ backgroundColor: "rgba(255,255,255,0.1)" }}
+              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.2)" }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white font-bold text-lg transition-all shadow-xl"
+              transition={{ duration: 0.2 }}
+              className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white font-bold text-lg shadow-xl"
             >
               Tìm hiểu thêm
             </motion.button>

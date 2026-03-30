@@ -74,7 +74,7 @@ export const SolutionsSection = () => {
             className="text-3xl md:text-5xl font-black text-foreground mb-6 leading-[1.1] tracking-tighter"
           >
             Nền tảng hợp nhất dẫn đầu xu hướng <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/60 italic">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/60 italic pr-2">
               chuyển đổi số 4.0
             </span>
           </motion.h2>
@@ -96,18 +96,18 @@ export const SolutionsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] hover:border-primary/20 transition-all duration-500 overflow-hidden"
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] hover:border-primary/20 transition-all duration-200 overflow-hidden"
             >
               {/* Geometric pattern on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" 
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-200 pointer-events-none" 
                    style={{ background: "radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)", backgroundSize: "24px 24px" }} />
               
               <div className="relative z-10">
-                <div className={`w-16 h-16 ${item.color.split(" ")[0]} rounded-[2rem] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
+                <div className={`w-16 h-16 ${item.color.split(" ")[0]} rounded-[2rem] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-200`}>
                   <item.icon size={32} className={`${item.color.split(" ")[1]}`} />
                 </div>
-                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight group-hover:translate-x-2 transition-transform duration-500">
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight group-hover:translate-x-2 transition-transform duration-200">
                   {item.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed font-bold">
