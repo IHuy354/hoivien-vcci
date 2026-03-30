@@ -2,26 +2,7 @@ import { Metadata } from 'next';
 import { constructMetadata } from './seo';
 import { getApiV10PublicSiteSettings } from '@/api/endpoints/public';
 
-/**
- * Generate metadata with site settings from API
- * Use this in Next.js generateMetadata() functions
- * 
- * Example usage:
- * ```tsx
- * // In app/(main)/page.tsx
- * import { generateSEOMetadata } from '@/lib/metadata';
- * 
- * export async function generateMetadata() {
- *   return generateSEOMetadata({
- *     title: 'Trang chủ',
- *     description: 'Mô tả trang chủ'
- *   });
- * }
- * 
- * // Or use directly:
- * export const metadata = await generateSEOMetadata();
- * ```
- */
+
 export async function generateSEOMetadata(options?: {
   title?: string;
   description?: string;
@@ -33,7 +14,7 @@ export async function generateSEOMetadata(options?: {
   noIndex?: boolean;
 }): Promise<Metadata> {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 3000); // 3-second timeout for build safety
+  const timeoutId = setTimeout(() => controller.abort(), 3000); 
 
   try {
     // Fetch site settings from API

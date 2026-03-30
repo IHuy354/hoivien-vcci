@@ -4,7 +4,7 @@ import HomePageClient from './HomePageClient';
 
 export async function generateMetadata() {
   return generateSEOMetadata({
-    title: 'Tối ưu hóa quản lý hội viên cùng MeU Solutions',
+    title: 'Quản lý hội viên VCCI',
     description:
       'Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.',
     keywords: [
