@@ -4,7 +4,7 @@ import baseConfig from "@/configs/base";
 // ─── Site-wide constants ────────────────────────────────────────────────────
 export const SITE_NAME = "MeU Solutions";
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_FRONTEND_URL || "https://hoivien-vcci-pagb.vercel.app/";
+  process.env.NEXT_PUBLIC_FRONTEND_URL || "https://hoivien-vcci.vercel.app/";
 export const TWITTER_HANDLE = "@meusolutions";
 
 export const DEFAULT_VIEWPORT: Viewport = {
