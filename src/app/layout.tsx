@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 // import Providers from "@/components/providers";
 import { Providers } from "@/app/_providers";
 import { Toaster } from "@components/ui/toaster";
 import { generateSEOMetadata } from "@/lib/metadata";
+import { DEFAULT_VIEWPORT } from "@/lib/seo";
 // import Header from "@/components/common/header";
 // import Footer from "@/components/common/footer";
 
@@ -18,6 +19,8 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+export const viewport: Viewport = DEFAULT_VIEWPORT;
 
 // Generate metadata from site settings
 export async function generateMetadata(): Promise<Metadata> {

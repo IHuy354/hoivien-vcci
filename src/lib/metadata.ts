@@ -35,7 +35,11 @@ export async function generateSEOMetadata(options?: {
     });
   } catch (error) {
     clearTimeout(timeoutId);
-    console.error('Metadata fetch skipped or failed:', error instanceof Error ? error.message : 'Timeout');
+    
+    // Log only relevant errors to avoid noise in dev
+    if (error !== 'Timeout' && !(error instanceof Error && error.message.includes('abort'))) {
+       console.error(`[Metadata] Site settings fetch failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
     
     // Fallback to default metadata defined in constructMetadata (src/lib/seo.ts)
     return constructMetadata({

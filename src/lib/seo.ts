@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import baseConfig from "@/configs/base";
 
 // ─── Site-wide constants ────────────────────────────────────────────────────
@@ -6,6 +6,13 @@ export const SITE_NAME = "MeU Solutions";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_FRONTEND_URL || "https://hoivien-vcci-pagb.vercel.app/";
 export const TWITTER_HANDLE = "@meusolutions";
+
+export const DEFAULT_VIEWPORT: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
 
 const DEFAULT_DESCRIPTION =
   "Giải pháp quản trị doanh nghiệp toàn diện cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, nâng cao trải nghiệm hội viên và bảo mật dữ liệu tuyệt đối.";
@@ -118,12 +125,6 @@ export function constructMetadata({
 
     alternates: {
       canonical: fullUrl,
-    },
-
-    viewport: {
-      width: "device-width",
-      initialScale: 1,
-      maximumScale: 1,
     },
 
     // Additional meta for Vietnamese market
