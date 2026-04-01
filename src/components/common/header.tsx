@@ -66,7 +66,7 @@ export default function Header() {
         className={cn(
           "transition-all duration-300 ease-in-out border-b will-change-transform",
           scrolled
-            ? "bg-black/80 backdrop-blur-xl shadow-2xl py-3 border-white/10"
+            ? "bg-[#1A1608]/90 backdrop-blur-3xl shadow-2xl py-3 border-primary/20 shadow-primary/5"
             : "bg-transparent py-5 border-transparent"
         )}
       >
@@ -137,10 +137,10 @@ export default function Header() {
               <Button 
                 onClick={() => {}} 
                 className={cn(
-                  "rounded-full font-extrabold px-7 py-2 h-10 transition-all shadow-xl duration-300 overflow-hidden",
+                  "rounded-full font-extrabold px-7 py-2 h-10 transition-all shadow-xl duration-300 overflow-hidden border",
                   scrolled
-                    ? "bg-primary text-black hover:bg-primary/90 shadow-primary/10"
-                    : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border border-white/10 shadow-white/5"
+                    ? "bg-primary text-black hover:bg-primary/90 shadow-primary/10 border-primary"
+                    : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-md border-white/10 shadow-white/5"
                 )}
               >
                 XEM DEMO
