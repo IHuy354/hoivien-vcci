@@ -8,26 +8,26 @@
   --radius-sm: calc(var(--radius) - 4px);
 
   /* Premium Dark Theme - Professional Navy & Gold */
-  --background: 217 64% 4%; /* Deepest Navy (#020C1B) */
-  --foreground: 210 40% 98%; /* Off-white for readability */
-  --card: 217 33% 8%; /* Slightly lighter navy for cards (#0A192F) */
+  --background: 43 15% 5%; /* Warm Golden-Black for OLED comfort */
+  --foreground: 210 40% 98%;
+  --card: 43 15% 8%; /* Slightly lighter warm black for cards */
   --card-foreground: 210 40% 98%;
-  --popover: 217 33% 8%;
+  --popover: 43 15% 8%;
   --popover-foreground: 210 40% 98%;
   --primary: 43 74% 53%; /* Gold (#D4AF37) */
-  --primary-foreground: 217 64% 4%; /* Dark contrast for gold primary */
-  --secondary: 217 64% 16%; /* Lighter navy for secondary actions (#112240) */
+  --primary-foreground: 43 15% 5%;
+  --secondary: 43 20% 12%; /* Warm dark bronze for secondary elements */
   --secondary-foreground: 210 40% 98%;
-  --muted: 217 33% 15%; /* Muted dark for backgrounds */
+  --muted: 43 15% 10%; /* Warmer muted background */
   --muted-foreground: 215 20% 75%; /* Soft gray for captions */
   --accent: 43 74% 53%; /* Gold accent */
-  --accent-foreground: 217 64% 4%;
+  --accent-foreground: 43 15% 5%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 40% 98%;
   --success: 142.1 76.2% 36.3%;
   --success-foreground: 210 40% 98%;
-  --border: 217 33% 18%; /* Subtle dark borders */
-  --input: 217 33% 18%;
+  --border: 43 15% 18%; /* Warm dark borders */
+  --input: 43 15% 18%;
   --ring: 43 74% 53%; /* Gold ring for interaction */
   --radius: 0.75rem; /* Smoother radius */
   --header-primary: 217 64% 4%;

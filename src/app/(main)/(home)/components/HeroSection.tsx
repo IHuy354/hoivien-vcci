@@ -1,9 +1,24 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Calendar, Users, Briefcase } from "lucide-react";
 
 export function HeroSection() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 35, stiffness: 60 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
+  const backgroundGlow = useMotionTemplate`radial-gradient(900px circle at ${springX}px ${springY}px, rgba(212, 175, 55, 0.12), transparent 90%)`;
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   const heroStats = [
     { icon: Calendar, label: "Thành lập", value: "8+ Năm" },
     { icon: Users, label: "Nhân sự", value: "100+ Chuyên gia" },
@@ -11,15 +26,29 @@ export function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+    <section 
+      onMouseMove={handleMouseMove}
+      className="group/hero relative min-h-screen flex items-center overflow-hidden bg-background"
+    >
       {/* High-Fidelity Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Deep Atmospheric Base */}
+        {/* Deep Atmospheric Base with Warm Radial Accent */}
         <div className="absolute inset-0 bg-background" />
         
-        {/* Atmospheric Light Glows - Premium Gold/Navy */}
-        <div className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] bg-primary/10 rounded-full blur-[140px] animate-pulse" />
-        <div className="absolute bottom-[-10%] right-[-5%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]" />
+        {/* Mouse Following Magnetic Glow - High Performance Layer */}
+        <motion.div 
+          className="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover/hero:opacity-100 transition-opacity duration-300"
+          style={{ backgroundImage: backgroundGlow }}
+        />
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(212,175,55,0.08)_0%,transparent_70%)] pointer-events-none" />
+        
+        {/* Atmospheric Light Glows - Warmer Gold Tones */}
+        <div className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] bg-primary/15 rounded-full blur-[140px] animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-primary/8 rounded-full blur-[150px] opacity-70" />
+        
+        {/* Subtle Warm Amber Glow in the Center */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.03)_0%,transparent_50%)]" />
         
         {/* Glowing Geometric Web Pattern */}
         <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-screen">
@@ -67,21 +96,57 @@ export function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mb-6 px-6 py-2 rounded-full border border-primary/20 bg-primary/5 backdrop-blur-xl text-primary text-xs font-black tracking-[0.3em] uppercase"
+            className="mb-6 px-6 py-2 rounded-full bg-primary text-black text-[10px] md:text-xs font-black tracking-[0.3em] uppercase shadow-[0_10px_20px_-5px_rgba(212,175,55,0.4)]"
           >
             Digital Ecosystem
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={{
+              initial: { opacity: 0, y: 30 },
+              animate: { opacity: 1, y: 0 },
+              hovered: {}
+            }}
+            initial="initial"
+            animate="animate"
+            whileHover="hovered"
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 tracking-tighter"
+            className="group relative text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.2] mb-12 tracking-tighter cursor-default"
           >
-            Tối ưu hóa quản lý hội viên cùng <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40 pr-2">
-              MeU Solutions
-            </span>
+            <div className="relative inline-flex flex-col items-center">
+              <span>Tối ưu hóa quản lý hội viên cùng</span>
+              
+              {/* Refined Gold-to-White Gradient Line with Static Glow */}
+              <motion.div
+                variants={{
+                  initial: { width: 0, opacity: 0 },
+                  animate: { 
+                    width: 140, 
+                    opacity: 0.9, 
+                    boxShadow: "0 0 20px rgba(212, 175, 55, 0.6)" 
+                  },
+                  hovered: { 
+                    width: "100%", 
+                    opacity: 1,
+                  }
+                }}
+                className="h-[3px] md:h-1 rounded-full my-6 relative overflow-visible"
+                style={{
+                  background: "linear-gradient(to right, #AA8C2C 0%, #D4AF37 20%, #FFF9C4 45%, #FFFFFF 50%, #FFF9C4 55%, #D4AF37 80%, #AA8C2C 100%)"
+                }}
+                transition={{ 
+                  width: { type: "spring", stiffness: 200, damping: 25 },
+                  opacity: { duration: 0.3 }
+                }}
+              >
+                {/* Fixed Soft Ambient Glow Layer */}
+                <div className="absolute inset-x-0 -inset-y-2 bg-primary/20 blur-xl rounded-full -z-10" />
+              </motion.div>
+
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40 pr-2">
+                MeU Solutions
+              </span>
+            </div>
           </motion.h1>
 
           <motion.p
@@ -90,7 +155,7 @@ export function HeroSection() {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-12 font-medium leading-relaxed"
           >
-            Giải pháp chuyên sâu cho VCCI và các tổ chức hiệp hội. Hiện đại hóa quy trình, bảo mật tối đa và nâng cao trải nghiệm hội viên doanh nghiệp.
+            Giải pháp chuyên sâu cho VCCI và các hiệp hội. Hiện đại hóa quy trình, bảo mật tối đa, nâng cao trải nghiệm hội viên.
           </motion.p>
 
           {/* Premium Gold Buttons */}
