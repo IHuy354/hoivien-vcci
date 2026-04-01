@@ -95,8 +95,8 @@ export const PartnersSection = () => {
                 whileHover={{ y: -8, scale: 1.05 }}
                 className="mx-8 flex-shrink-0"
               >
-                <div className="group/card relative h-32 w-72 flex items-center justify-center p-8 bg-card/40 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] hover:border-primary/20 transition-all duration-500">
-                  <div className="relative h-full w-full transition-all duration-500">
+                <div className="group/card relative h-32 w-72 flex items-center justify-center p-8 bg-card/40 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] hover:bg-primary transition-all duration-500 cursor-pointer">
+                  <div className="relative h-full w-full transition-all duration-500 group-hover/card:brightness-0 group-hover/card:invert">
                     <Image 
                       src={partner.logo} 
                       alt={partner.name}
@@ -106,7 +106,7 @@ export const PartnersSection = () => {
                     />
                   </div>
                   {/* Subtle Glow Layer */}
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/card:opacity-100 rounded-[2rem] transition-opacity pointer-events-none" />
+                  <div className="absolute inset-0 bg-white/20 opacity-0 group-hover/card:opacity-100 rounded-[2rem] transition-opacity pointer-events-none" />
                 </div>
               </motion.div>
             ))}

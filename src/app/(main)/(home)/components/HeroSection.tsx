@@ -2,7 +2,6 @@
 
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Calendar, Users, Briefcase } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   const mouseX = useMotionValue(0);
@@ -191,59 +190,35 @@ export function HeroSection() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-            {heroStats.map((item, i) => {
-              const isMiddle = i === 1;
-              return (
+            {heroStats.map((item, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -8, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.8 }}
-                  className={cn(
-                    "group relative px-8 py-6 rounded-3xl border transition-all duration-500",
-                    isMiddle
-                      ? "bg-primary border-primary shadow-[0_20px_40px_-10px_rgba(212,175,55,0.4)] md:scale-105 z-20"
-                      : "border-white/10 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.05] hover:border-primary/30"
-                  )}
+                  transition={{ duration: 0.15, ease: "easeIn" }}
+                  className="group relative px-8 py-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md z-10 hover:z-20 will-change-transform cursor-pointer"
                 >
-                  {/* Subtle Inner Glow for Middle Card */}
-                  {isMiddle && (
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/30 to-transparent pointer-events-none opacity-50" />
-                  )}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/30 to-transparent pointer-events-none opacity-0 group-hover:opacity-50 transition-opacity" />
                   
-                  <div className={cn(
-                    "relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-inner ring-1 transition-all duration-500 group-hover:scale-110",
-                    isMiddle
-                      ? "bg-white ring-black/5 shadow-xl shadow-black/10"
-                      : "bg-gradient-to-br from-primary/20 to-transparent ring-white/10"
-                  )}>
+                  <div className="relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-inner ring-1 bg-gradient-to-br from-primary/20 to-transparent ring-white/10 transition-all duration-500 group-hover:scale-110 group-hover:bg-white group-hover:ring-black/5 group-hover:shadow-xl group-hover:shadow-black/10">
                     <item.icon 
                       size={24} 
-                      className={cn(
-                        "transition-colors",
-                        isMiddle ? "text-black" : "text-primary"
-                      )} 
+                      className="text-primary group-hover:text-black transition-colors" 
                     />
                   </div>
                   
                   <div className="relative z-10 text-left">
-                    <div className={cn(
-                      "text-[10px] font-black uppercase tracking-[0.2em] mb-2",
-                      isMiddle ? "text-black/40" : "text-white/30"
-                    )}>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 text-white/30 group-hover:text-black/40 transition-colors">
                       {item.label}
                     </div>
-                    <div className={cn(
-                      "text-2xl font-black tracking-tight",
-                      isMiddle ? "text-black" : "text-white"
-                    )}>
+                    <div className="text-2xl font-black tracking-tight text-white group-hover:text-black transition-colors">
                       {item.value}
                     </div>
                   </div>
                 </motion.div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </div>

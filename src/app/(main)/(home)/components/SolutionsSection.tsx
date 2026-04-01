@@ -95,22 +95,23 @@ export const SolutionsSection = () => {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -8, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
-              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] hover:border-primary/20 transition-all duration-200 overflow-hidden"
+              transition={{ duration: 0.15, ease: "easeIn" }}
+              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] overflow-hidden will-change-transform cursor-pointer"
             >
               {/* Geometric pattern on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.03] transition-opacity duration-200 pointer-events-none" 
-                   style={{ background: "radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-300 pointer-events-none" 
+                   style={{ background: "radial-gradient(circle at 2px 2px, #000 1px, transparent 0)", backgroundSize: "24px 24px" }} />
               
               <div className="relative z-10">
-                <div className={`w-16 h-16 ${item.color.split(" ")[0]} rounded-[2rem] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 transition-transform duration-200`}>
-                  <item.icon size={32} className={`${item.color.split(" ")[1]}`} />
+                <div className={`w-16 h-16 ${item.color.split(" ")[0]} rounded-[2rem] flex items-center justify-center mb-8 shadow-lg group-hover:scale-110 group-hover:bg-white transition-all duration-300`}>
+                  <item.icon size={32} className={`${item.color.split(" ")[1]} group-hover:text-black transition-colors`} />
                 </div>
-                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight group-hover:translate-x-2 transition-transform duration-200">
+                <h3 className="text-xl font-black text-foreground mb-4 tracking-tight group-hover:text-black transition-all duration-300">
                   {item.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed font-bold">
+                <p className="text-sm text-muted-foreground leading-relaxed font-bold group-hover:text-black/80 transition-colors">
                   {item.desc}
                 </p>
               </div>

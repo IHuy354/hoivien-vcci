@@ -121,7 +121,7 @@ export default function Header() {
                       "relative group px-5 py-2 rounded-full transition-all duration-300",
                       isActive
                         ? "bg-primary text-black shadow-lg shadow-primary/20"
-                        : "hover:bg-white/10 text-white/80 hover:text-white"
+                        : "hover:bg-white/10 text-white/80 hover:text-primary transition-colors"
                     )}
                   >
                     <span className="text-sm font-bold tracking-tight">
@@ -181,7 +181,7 @@ export default function Header() {
                     "flex items-center justify-between p-4 rounded-2xl transition-all overflow-hidden relative",
                     isActive
                       ? "bg-primary text-black font-black shadow-lg"
-                      : "bg-white/5 text-gray-200 font-bold border border-white/5 hover:bg-white/10 transition-colors"
+                      : "bg-white/5 text-gray-200 font-bold border border-white/5 hover:bg-white/10 hover:text-primary transition-all"
                   )}
                   onClick={(e) => handleNavClick(e, link.href)}
                 >

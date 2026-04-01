@@ -54,15 +54,15 @@ export const AboutUsSection = () => {
               ].map((item, i) => (
                 <motion.div 
                   key={i} 
-                  whileHover={{ x: 10, scale: 1.01, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+                  whileHover={{ x: 10, scale: 1.01, backgroundColor: "#D4AF37" }}
                   whileTap={{ scale: 0.99 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm hover:border-primary/30 transition-colors overflow-hidden [transform:translateZ(0)]"
+                  transition={{ duration: 0.15, ease: "easeIn" }}
+                  className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm overflow-hidden will-change-transform cursor-pointer"
                 >
-                  <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shadow-inner">
+                  <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shadow-inner group-hover:bg-white group-hover:text-black transition-colors">
                     <CheckCircle2 size={16} />
                   </div>
-                  <span className="text-foreground font-bold text-sm">{item}</span>
+                  <span className="text-foreground font-bold text-sm group-hover:text-black transition-colors">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -103,20 +103,26 @@ export const AboutUsSection = () => {
             <motion.div 
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -right-8 bg-card/90 p-8 rounded-[2rem] shadow-2xl border border-primary/20 hidden md:block max-w-[280px] backdrop-blur-2xl"
+              className="absolute -bottom-8 -right-8 hidden md:block z-20"
             >
-              <div className="flex items-center gap-5 mb-3">
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shadow-inner">
-                  <Handshake size={24} />
+              <motion.div
+                whileHover={{ scale: 1.05, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
+                transition={{ duration: 0.15, ease: "easeIn" }}
+                className="group/floating p-8 bg-card/90 rounded-[2rem] shadow-2xl border border-primary/20 backdrop-blur-2xl will-change-transform cursor-pointer max-w-[280px]"
+              >
+                <div className="flex items-center gap-5 mb-3">
+                  <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shadow-inner group-hover/floating:bg-white group-hover/floating:text-black transition-colors">
+                    <Handshake size={24} />
+                  </div>
+                  <div>
+                    <div className="text-3xl font-black text-foreground leading-tight group-hover/floating:text-black transition-all">100+</div>
+                    <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-black group-hover/floating:text-black/60 transition-all">Đối tác tin cậy</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-black text-foreground leading-tight">100+</div>
-                  <div className="text-[10px] text-muted-foreground uppercase tracking-widest font-black">Đối tác tin cậy</div>
-                </div>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed font-bold italic">
-                &quot;Kiến tạo giá trị bền vững qua từng dòng code và giải pháp công nghệ.&quot;
-              </p>
+                <p className="text-xs text-muted-foreground leading-relaxed font-bold italic group-hover/floating:text-black/80 transition-all">
+                  &quot;Kiến tạo giá trị bền vững qua từng dòng code và giải pháp công nghệ.&quot;
+                </p>
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -127,15 +133,16 @@ export const AboutUsSection = () => {
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -10, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
               viewport={{ once: true }}
-              transition={{ delay: i * i * 0.05 }}
-              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center hover:border-primary/30 transition-all duration-500"
+              transition={{ duration: 0.15, ease: "easeIn" }}
+              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center will-change-transform cursor-pointer"
             >
-              <div className="w-12 h-12 mx-auto bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
+              <div className="w-12 h-12 mx-auto bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white transition-all duration-500 shadow-inner">
                 <stat.icon size={22} className="text-primary group-hover:text-black transition-colors" />
               </div>
-              <div className="text-3xl font-black text-foreground mb-1 tracking-tighter">{stat.value}</div>
-              <div className="text-muted-foreground text-[10px] font-black uppercase tracking-widest leading-none">{stat.label}</div>
+              <div className="text-3xl font-black text-foreground mb-1 tracking-tighter group-hover:text-black transition-colors">{stat.value}</div>
+              <div className="text-muted-foreground text-[10px] font-black uppercase tracking-widest leading-none group-hover:text-black/70 transition-colors">{stat.label}</div>
             </motion.div>
           ))}
         </div>
