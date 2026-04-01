@@ -87,15 +87,15 @@ export const AboutUsSection = () => {
             className="relative"
           >
             {/* High-Contrast Bordered Image Frame */}
-            <div className="p-3 bg-gradient-to-br from-primary via-primary/60 to-primary/40 rounded-[3rem] shadow-2xl">
-              <div className="aspect-square relative rounded-[2.5rem] overflow-hidden bg-background">
+            <div className="p-2 bg-gradient-to-br from-primary/60 via-primary/30 to-transparent rounded-[3rem] shadow-2xl">
+              <div className="aspect-square relative rounded-[2.5rem] overflow-hidden bg-background/50 backdrop-blur-sm">
                 <Image 
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000" 
                   alt="MeU Solutions Team" 
                   fill
-                  className="object-cover brightness-75 hover:brightness-100 transition-all duration-700"
+                  className="object-cover brightness-90 hover:scale-105 transition-all duration-1000"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
               </div>
             </div>
             
@@ -103,7 +103,7 @@ export const AboutUsSection = () => {
             <motion.div 
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -right-8 bg-card/80 p-8 rounded-[2rem] shadow-2xl border border-white/10 hidden md:block max-w-[280px] backdrop-blur-xl"
+              className="absolute -bottom-8 -right-8 bg-card/90 p-8 rounded-[2rem] shadow-2xl border border-primary/20 hidden md:block max-w-[280px] backdrop-blur-2xl"
             >
               <div className="flex items-center gap-5 mb-3">
                 <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shadow-inner">
@@ -129,7 +129,7 @@ export const AboutUsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * i * 0.05 }}
-              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/10 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center hover:border-primary/20 transition-all duration-500"
+              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center hover:border-primary/30 transition-all duration-500"
             >
               <div className="w-12 h-12 mx-auto bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary transition-all duration-500">
                 <stat.icon size={22} className="text-primary group-hover:text-black transition-colors" />

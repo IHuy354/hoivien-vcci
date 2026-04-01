@@ -17,34 +17,34 @@ export default function Footer({ className }: FooterProps) {
   const seoDescription = "MeU Solutions là đơn vị hàng đầu trong việc kiểm thử và phát triển phần mềm máy tính, mang đến giải pháp chuyển đổi số toàn diện cho doanh nghiệp.";
 
   return (
-    <footer className={cn("relative bg-slate-950 text-slate-300 pt-20 pb-10 overflow-hidden", className)}>
-      {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary blur-[120px] rounded-full" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600 blur-[120px] rounded-full opacity-50" />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20" />
+    <footer className={cn("relative bg-background text-slate-300 pt-24 pb-12 overflow-hidden border-t border-white/5", className)}>
+      {/* High-Fidelity Background Decor */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-[150px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.03)_0%,transparent_70%)]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-12">
           
           {/* Brand Column */}
           <div className="md:col-span-2 lg:col-span-5 flex flex-col max-md:items-center max-md:text-center">
-            <div className="mb-6 transform hover:scale-105 transition-transform duration-300">
+            <div className="mb-8 transform hover:scale-105 transition-all duration-500">
               <Link href="/">
                 <Image 
                   src="https://meu.com.vn/wp-content/uploads/2025/07/logo-meu-solutions-new-no-background.png" 
                   alt="MeU Solutions" 
-                  width={200}
-                  height={60}
-                  className="object-contain brightness-110" 
+                  width={220}
+                  height={70}
+                  className="object-contain brightness-125 saturate-[0.8]" 
                 />
               </Link>
             </div>
-            <p className="text-sm md:text-base text-slate-400 leading-relaxed mb-8 max-w-md">
+            <p className="text-sm md:text-base text-slate-400 leading-relaxed mb-10 max-w-md font-medium">
               {seoDescription}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-5">
               {[
                 { icon: Facebook, href: "https://www.facebook.com/meusolutions" },
                 { icon: Youtube, href: "https://www.youtube.com/@meusolutions" },
@@ -55,9 +55,9 @@ export default function Footer({ className }: FooterProps) {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-black hover:border-primary hover:-translate-y-1 transition-all duration-300"
+                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-black hover:border-primary hover:-translate-y-2 shadow-lg transition-all duration-500"
                 >
-                  <social.icon size={20} />
+                  <social.icon size={22} />
                 </a>
               ))}
             </div>
@@ -65,75 +65,80 @@ export default function Footer({ className }: FooterProps) {
 
           {/* Contact Column */}
           <div className="md:col-span-1 lg:col-span-4">
-            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white mb-8 relative inline-block group">
+            <h4 className="text-sm font-black uppercase tracking-[0.25em] text-white mb-10 relative inline-block group">
               Liên hệ
-              <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full group-hover:w-full transition-all duration-500" />
+              <span className="absolute -bottom-3 left-0 w-10 h-0.5 bg-primary rounded-full group-hover:w-full transition-all duration-500" />
             </h4>
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
-                  <MapPin size={18} />
+            <div className="space-y-8">
+              <div className="flex items-start gap-5">
+                <div className="w-12 h-12 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary shadow-inner">
+                  <MapPin size={22} />
                 </div>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-4">
                   <div className="text-sm leading-relaxed">
-                    <strong className="text-primary/90 text-[10px] uppercase tracking-widest block mb-1">VP Đại diện</strong> 
-                    <span className="text-slate-300">{address1}</span>
+                    <strong className="text-primary text-[10px] font-black uppercase tracking-[0.2em] block mb-1">VP Đại diện</strong> 
+                    <span className="text-slate-300 font-medium">{address1}</span>
                   </div>
                   <div className="text-sm leading-relaxed">
-                    <strong className="text-primary/90 text-[10px] uppercase tracking-widest block mb-1">VP Phát triển</strong> 
-                    <span className="text-slate-300">{address2}</span>
+                    <strong className="text-primary text-[10px] font-black uppercase tracking-[0.2em] block mb-1">VP Phát triển</strong> 
+                    <span className="text-slate-300 font-medium">{address2}</span>
                   </div>
                 </div>
               </div>
-              <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-black transition-all">
-                  <Phone size={18} className="text-primary group-hover:text-black" />
-                </div>
-                <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{phone}</span>
-              </a>
-              <a href={`mailto:${email}`} className="flex items-center gap-4 group">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:text-black transition-all">
-                  <Mail size={18} className="text-primary group-hover:text-black" />
-                </div>
-                <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{email}</span>
-              </a>
+              
+              <div className="flex flex-col gap-5">
+                <a href={`tel:${phone.replace(/[^0-9+]/g, '')}`} className="flex items-center gap-5 group">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:border-primary transition-all duration-500 shadow-sm">
+                    <Phone size={20} className="text-primary group-hover:text-black transition-colors" />
+                  </div>
+                  <span className="text-sm font-black text-slate-300 group-hover:text-primary transition-colors tracking-tight">{phone}</span>
+                </a>
+                
+                <a href={`mailto:${email}`} className="flex items-center gap-5 group">
+                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary group-hover:border-primary transition-all duration-500 shadow-sm">
+                    <Mail size={20} className="text-primary group-hover:text-black transition-colors" />
+                  </div>
+                  <span className="text-sm font-black text-slate-300 group-hover:text-primary transition-colors tracking-tight">{email}</span>
+                </a>
+              </div>
             </div>
           </div>
 
           {/* Links Column */}
           <div className="md:col-span-1 lg:col-span-3">
-            <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white mb-8 relative inline-block group">
+            <h4 className="text-sm font-black uppercase tracking-[0.25em] text-white mb-10 relative inline-block group">
               Liên kết
-              <span className="absolute -bottom-2 left-0 w-8 h-0.5 bg-primary rounded-full group-hover:w-full transition-all duration-500" />
+              <span className="absolute -bottom-3 left-0 w-10 h-0.5 bg-primary rounded-full group-hover:w-full transition-all duration-500" />
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
+            <ul className="space-y-4">
               {[
                 { label: "Giải pháp số", href: "/#giai-phap" },
                 { label: "Về MeU Solutions", href: "/#ve-chung-toi" },
                 { label: "Liên hệ tư vấn", href: "/#lien-he" },
                 { label: "Đăng ký hội viên", href: "https://vcci.erp.meu-solutions.com/dang-ky" }
               ].map((item) => (
-                <Link 
-                  key={item.label} 
-                  href={item.href} 
-                  className="group flex items-center text-sm text-slate-400 hover:text-white transition-all"
-                >
-                  <ChevronRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 text-primary mr-2" />
-                  <span className="font-medium group-hover:translate-x-1 transition-transform duration-300">{item.label}</span>
-                </Link>
+                <li key={item.label}>
+                  <Link 
+                    href={item.href} 
+                    className="group flex items-center text-sm text-slate-400 hover:text-white transition-all duration-300"
+                  >
+                    <ChevronRight size={16} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-500 text-primary mr-2" />
+                    <span className="font-black group-hover:translate-x-1 uppercase tracking-wider text-[11px] transition-transform duration-300">{item.label}</span>
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
 
         {/* Footer Bottom */}
-        <div className="mt-16 md:mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <p className="text-[11px] text-slate-500 font-bold uppercase tracking-widest">
+        <div className="mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <p className="text-[11px] text-slate-500 font-black uppercase tracking-[0.2em]">
             © 2026 <span className="text-primary italic">MeU Solutions</span>. All Rights Reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
-            <Link href="#" className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500 hover:text-primary transition-all">Privacy Policy</Link>
-            <Link href="#" className="text-[10px] font-black uppercase tracking-[0.15em] text-slate-500 hover:text-primary transition-all">Terms of Service</Link>
+          <div className="flex flex-wrap justify-center gap-8 lg:gap-12">
+            <Link href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-all duration-300">Privacy Policy</Link>
+            <Link href="#" className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 hover:text-primary transition-all duration-300">Terms of Service</Link>
           </div>
         </div>
       </div>

@@ -59,10 +59,10 @@ export const SolutionsSection = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-6 py-2 mb-6 text-xs font-black tracking-[0.2em] text-primary uppercase bg-primary/10 rounded-xl"
+            className="mb-6 px-6 py-2 rounded-full bg-primary text-black text-[10px] md:text-xs font-black tracking-[0.3em] uppercase shadow-[0_10px_20px_-5px_rgba(212,175,55,0.4)] w-fit mx-auto"
           >
             Digital Core
           </motion.div>

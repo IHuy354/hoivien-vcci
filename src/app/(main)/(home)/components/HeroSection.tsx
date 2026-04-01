@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Calendar, Users, Briefcase } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function HeroSection() {
   const mouseX = useMotionValue(0);
@@ -95,8 +96,9 @@ export function HeroSection() {
         <div className="flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mb-6 px-6 py-2 rounded-full bg-primary text-black text-[10px] md:text-xs font-black tracking-[0.3em] uppercase shadow-[0_10px_20px_-5px_rgba(212,175,55,0.4)]"
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="w-fit mx-auto mb-6 px-6 py-2 rounded-full bg-primary text-black text-[10px] md:text-xs font-black tracking-[0.3em] uppercase shadow-[0_10px_20px_-5px_rgba(212,175,55,0.4)]"
           >
             Digital Ecosystem
           </motion.div>
@@ -143,7 +145,7 @@ export function HeroSection() {
                 <div className="absolute inset-x-0 -inset-y-2 bg-primary/20 blur-xl rounded-full -z-10" />
               </motion.div>
 
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary/80 to-primary/40 pr-2">
+              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-[#AA8C2C] via-primary via-[#FFF9C4] to-primary pr-2 filter drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] brightness-115">
                 MeU Solutions
               </span>
             </div>
@@ -189,24 +191,59 @@ export function HeroSection() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-            {heroStats.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.6 + i * 0.1, duration: 0.8 }}
-                className="group relative p-8 rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.08] hover:border-primary/30 transition-all duration-500"
-              >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-transparent flex items-center justify-center mb-6 shadow-inner ring-1 ring-white/10 group-hover:scale-110 transition-transform duration-500">
-                  <item.icon size={22} className="text-primary group-hover:text-white transition-colors" />
-                </div>
-                <div className="text-left">
-                  <div className="text-[10px] text-white/30 font-black uppercase tracking-[0.2em] mb-2">{item.label}</div>
-                  <div className="text-2xl font-black text-white tracking-tight">{item.value}</div>
-                </div>
-              </motion.div>
-            ))}
+            {heroStats.map((item, i) => {
+              const isMiddle = i === 1;
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 + i * 0.1, duration: 0.8 }}
+                  className={cn(
+                    "group relative px-8 py-6 rounded-3xl border transition-all duration-500",
+                    isMiddle
+                      ? "bg-primary border-primary shadow-[0_20px_40px_-10px_rgba(212,175,55,0.4)] md:scale-105 z-20"
+                      : "border-white/10 bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.05] hover:border-primary/30"
+                  )}
+                >
+                  {/* Subtle Inner Glow for Middle Card */}
+                  {isMiddle && (
+                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/30 to-transparent pointer-events-none opacity-50" />
+                  )}
+                  
+                  <div className={cn(
+                    "relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-inner ring-1 transition-all duration-500 group-hover:scale-110",
+                    isMiddle
+                      ? "bg-white ring-black/5 shadow-xl shadow-black/10"
+                      : "bg-gradient-to-br from-primary/20 to-transparent ring-white/10"
+                  )}>
+                    <item.icon 
+                      size={24} 
+                      className={cn(
+                        "transition-colors",
+                        isMiddle ? "text-black" : "text-primary"
+                      )} 
+                    />
+                  </div>
+                  
+                  <div className="relative z-10 text-left">
+                    <div className={cn(
+                      "text-[10px] font-black uppercase tracking-[0.2em] mb-2",
+                      isMiddle ? "text-black/40" : "text-white/30"
+                    )}>
+                      {item.label}
+                    </div>
+                    <div className={cn(
+                      "text-2xl font-black tracking-tight",
+                      isMiddle ? "text-black" : "text-white"
+                    )}>
+                      {item.value}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
