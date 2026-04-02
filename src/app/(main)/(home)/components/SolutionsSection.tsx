@@ -98,7 +98,7 @@ export const SolutionsSection = () => {
               whileHover={{ y: -8, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
               viewport={{ once: true }}
               transition={{ duration: 0.15, ease: "easeIn" }}
-              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] overflow-hidden will-change-transform cursor-pointer"
+              className="group relative p-10 bg-card/40 backdrop-blur-xl rounded-[2.5rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] overflow-hidden will-change-transform"
             >
               {/* Geometric pattern on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-[0.05] transition-opacity duration-300 pointer-events-none" 

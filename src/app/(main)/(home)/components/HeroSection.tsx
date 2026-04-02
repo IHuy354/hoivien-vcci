@@ -198,7 +198,7 @@ export function HeroSection() {
                   whileHover={{ y: -8, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.15, ease: "easeIn" }}
-                  className="group relative px-8 py-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md z-10 hover:z-20 will-change-transform cursor-pointer"
+                  className="group relative px-8 py-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md z-10 hover:z-20 will-change-transform"
                 >
                   <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/30 to-transparent pointer-events-none opacity-0 group-hover:opacity-50 transition-opacity" />
                   

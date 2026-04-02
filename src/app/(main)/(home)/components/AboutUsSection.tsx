@@ -57,7 +57,7 @@ export const AboutUsSection = () => {
                   whileHover={{ x: 10, scale: 1.01, backgroundColor: "#D4AF37" }}
                   whileTap={{ scale: 0.99 }}
                   transition={{ duration: 0.15, ease: "easeIn" }}
-                  className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm overflow-hidden will-change-transform cursor-pointer"
+                  className="group flex items-center gap-4 p-4 bg-white/5 backdrop-blur-md rounded-xl border border-white/10 shadow-sm overflow-hidden will-change-transform"
                 >
                   <div className="w-8 h-8 bg-primary/20 rounded-lg flex items-center justify-center text-primary shadow-inner group-hover:bg-white group-hover:text-black transition-colors">
                     <CheckCircle2 size={16} />
@@ -108,7 +108,7 @@ export const AboutUsSection = () => {
               <motion.div
                 whileHover={{ scale: 1.05, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
                 transition={{ duration: 0.15, ease: "easeIn" }}
-                className="group/floating p-8 bg-card/90 rounded-[2rem] shadow-2xl border border-primary/20 backdrop-blur-2xl will-change-transform cursor-pointer max-w-[280px]"
+                className="group/floating p-8 bg-card/90 rounded-[2rem] shadow-2xl border border-primary/20 backdrop-blur-2xl will-change-transform max-w-[280px]"
               >
                 <div className="flex items-center gap-5 mb-3">
                   <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center text-primary shadow-inner group-hover/floating:bg-white group-hover/floating:text-black transition-colors">
@@ -136,7 +136,7 @@ export const AboutUsSection = () => {
               whileHover={{ y: -10, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
               viewport={{ once: true }}
               transition={{ duration: 0.15, ease: "easeIn" }}
-              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center will-change-transform cursor-pointer"
+              className="group p-8 bg-card/40 backdrop-blur-lg rounded-[2rem] border border-white/5 shadow-[0_15px_40px_-20px_rgba(0,0,0,0.5)] text-center will-change-transform"
             >
               <div className="w-12 h-12 mx-auto bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white transition-all duration-500 shadow-inner">
                 <stat.icon size={22} className="text-primary group-hover:text-black transition-colors" />
