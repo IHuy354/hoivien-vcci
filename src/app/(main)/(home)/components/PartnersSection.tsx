@@ -92,7 +92,8 @@ export const PartnersSection = () => {
             {[...partners, ...partners, ...partners, ...partners].map((partner, i) => (
               <motion.div 
                 key={i} 
-                whileHover={{ y: -8, scale: 1.05 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 className="mx-8 flex-shrink-0"
               >
                 <div className="group/card relative h-32 w-72 flex items-center justify-center p-8 bg-card/40 backdrop-blur-xl rounded-[2rem] border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)] hover:bg-primary transition-all duration-500">

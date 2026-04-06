@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 import { ArrowRight, Calendar, Users, Briefcase } from "lucide-react";
+import React from "react";
 
 export function HeroSection() {
   const mouseX = useMotionValue(0);
@@ -178,47 +179,59 @@ export function HeroSection() {
                 Bắt đầu ngay <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-200" />
               </span>
             </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.02, backgroundColor: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.2)" }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 text-white font-bold text-lg shadow-xl"
-            >
-              Tìm hiểu thêm
-            </motion.button>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-            {heroStats.map((item, i) => (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-16 w-full max-w-7xl mt-16 items-center">
+            {/* High-Fidelity Video Player Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="lg:col-span-7 xl:col-span-8 relative aspect-video rounded-[2.5rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-sm shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] group"
+            >
+              <iframe
+                src="https://www.youtube.com/embed/0dMxTyWee-o"
+                className="absolute inset-0 w-full h-full border-none"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+              <div className="absolute inset-0 pointer-events-none border border-white/10 rounded-[2.5rem] group-hover:border-primary/30 transition-colors duration-500" />
+            </motion.div>
+
+            {/* Vertically Stacked Premium Stats */}
+            <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-5">
+              {heroStats.map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ y: -8, backgroundColor: "#D4AF37", borderColor: "#D4AF37" }}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  whileHover={{ 
+                    y: -8, 
+                    backgroundColor: "#D4AF37", 
+                    borderColor: "#D4AF37",
+                  }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.15, ease: "easeIn" }}
-                  className="group relative px-8 py-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md z-10 hover:z-20 will-change-transform"
+                  className="group relative flex items-center gap-6 px-8 py-6 rounded-[2rem] border border-white/5 bg-white/[0.02] backdrop-blur-xl cursor-default overflow-hidden transition-colors"
                 >
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/30 to-transparent pointer-events-none opacity-0 group-hover:opacity-50 transition-opacity" />
-                  
-                  <div className="relative z-10 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-inner ring-1 bg-gradient-to-br from-primary/20 to-transparent ring-white/10 transition-all duration-500 group-hover:scale-110 group-hover:bg-white group-hover:ring-black/5 group-hover:shadow-xl group-hover:shadow-black/10">
+                  <div className="relative flex-shrink-0 w-16 h-16 rounded-[1.25rem] flex items-center justify-center bg-white/5 ring-1 ring-white/10 group-hover:bg-white transition-all duration-150">
                     <item.icon 
-                      size={24} 
-                      className="text-primary group-hover:text-black transition-colors" 
+                      size={28} 
+                      className="text-primary group-hover:text-black transition-colors duration-150 relative z-10" 
                     />
                   </div>
-                  
-                  <div className="relative z-10 text-left">
-                    <div className="text-[10px] font-black uppercase tracking-[0.2em] mb-2 text-white/30 group-hover:text-black/40 transition-colors">
+
+                  <div className="text-left relative z-10">
+                    <div className="text-[11px] font-black uppercase tracking-[0.25em] mb-1 text-white/40 group-hover:text-black/60 transition-colors duration-150">
                       {item.label}
                     </div>
-                    <div className="text-2xl font-black tracking-tight text-white group-hover:text-black transition-colors">
+                    <div className="text-2xl md:text-3xl font-black tracking-tight text-white group-hover:text-black transition-colors duration-150">
                       {item.value}
                     </div>
                   </div>
                 </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
